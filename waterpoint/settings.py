@@ -194,6 +194,11 @@ CMS_SOFTROOT = True
 LANGUAGES = [
     ('en', 'English'),
 ]
+CMS_TEMPLATES = ( 
+	#('home.html', gettext('home page')),
+           
+   )
+
 CMS_LANGUAGES = {
     1: [
         {
