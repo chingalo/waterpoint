@@ -156,6 +156,7 @@ INSTALLED_APPS = (
     'cms.plugins.twitter',
     'cms_redirects',
     'waterpoints',
+    'users'
     
     
 )
