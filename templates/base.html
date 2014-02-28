@@ -1,0 +1,45 @@
+{% load sekizai_tags i18n cms_tags menu_tags %}
+{% load staticfiles %}
+<!DOCTYPE html>
+<html lang='en'>
+	
+<!--heading-->	
+<head>
+<meta charset="utf-8">
+<meta http-equiv='refresh' content='60' >
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<!--styles files-->
+<link rel="stylesheet" media='screen' href="{{STATIC_URL}}css/bootstrap.min.css" >
+<link rel="stylesheet" media='screen' href="{{STATIC_URL}}css/bootstrap-responsive.css" >
+<link rel="stylesheet" media='screen' href="{{STATIC_URL}}css/docs.css" >
+<link rel="stylesheet" media='screen' href="{{STATIC_URL}}css/prettify.css" >
+<!--	<link rel="stylesheet" media= 'screen' href="{{STATIC_URL}}css/>-->
+<link rel="stylesheet" media= 'screen' href="{{STATIC_URL}}css/font-awesome/css/font-awesome.min.css">
+<!--end of style files-->
+</head>
+<!--end of heading-->
+
+<!-- page body -->	
+<body align='center'>
+
+
+
+
+
+<!--js links for bootstrap-->
+<script src="{{STATIC_URL}}js/jquery.js"></script>
+<script src="{{STATIC_URL}}js/bootstrap.min.js"></script>
+<script>
+$(document).reaady(function(){
+	 $('#myCarousel').hide().carousel();
+});
+	
+</script>
+<script src="{{STATIC_URL}}js/holder.js"></script>
+<script src="{{STATIC_URL}}js/prettify.js"></script>
+<script src="{{STATIC_URL}}js/application.js"></script>
+<!--end of js files from bootstrap-->	
+</body>
+<!--end of page body-->
+</html>
