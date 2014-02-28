@@ -5,8 +5,8 @@ class Waterpoint(models.Model):
 	code_number = models.CharField(max_length = 20)
 	water_point_name = models.CharField(max_length = 200)
 	physical_location_name = models.CharField(max_length = 200)
-	latitude = models.CharField(max_length = 200 , blank=True) 
-	longitude = models.CharField(max_length = 200 , blank=True)
+	latitude = models.CharField(max_length = 200 , blank = True) 
+	longitude = models.CharField(max_length = 200 , blank = True)
 	fund = models.CharField(max_length = 200)
 	sponsor = models.CharField(max_length = 200)
 	
