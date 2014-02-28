@@ -155,6 +155,7 @@ INSTALLED_APPS = (
     'cms.plugins.video',
     'cms.plugins.twitter',
     'cms_redirects',
+    'waterpoints',
     
     
 )
@@ -195,7 +196,7 @@ LANGUAGES = [
     ('en', 'English'),
 ]
 CMS_TEMPLATES = ( 
-	#('home.html', gettext('home page')),
+#	('base.html', gettext('test')),
            
    )
 
