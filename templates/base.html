@@ -6,7 +6,8 @@
 <!--heading-->	
 <head>
 <meta charset="utf-8">
-<meta http-equiv='refresh' content='60' >
+<!--
+<meta http-equiv='refresh' content='60' > -->
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <!--styles files-->
@@ -22,10 +23,13 @@
 
 <!-- page body -->	
 <body align='center'>
+<div class='container-fluid'>
+{% block page_contents %}{% endblock %}
+</div>
+<footer>
+This site developed by <b>Mr. Joseph Chingalo</b>, Computer science student at University of Dar es salaam<br>
 
-
-
-
+</footer>
 <!--js links for bootstrap-->
 <script src="{{STATIC_URL}}js/jquery.js"></script>
 <script src="{{STATIC_URL}}js/bootstrap.min.js"></script>
