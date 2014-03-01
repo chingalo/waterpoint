@@ -197,7 +197,7 @@ LANGUAGES = [
     ('en', 'English'),
 ]
 CMS_TEMPLATES = ( 
-#	('base.html', gettext('test')),
+	('login.html', gettext('login')),
            
    )
 
