@@ -52,9 +52,9 @@ def authorize(request):
 		context={'position':position,'message':message,'username':username, 'password':password}
 		return render(request, 'chairperson.html',context)
 	else:
-		message = 'ok'
-		context={'position':position,'message':message,'username':username, 'password':password}
-		return render(request, 'test.html',context)	
+		message = 'Incorrect username or password'
+		context={'message':message,}
+		return render(request, 'login.html',context)	
 			
 	
 	
