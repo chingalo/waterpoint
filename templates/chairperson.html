@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+{% load cms_tags menu_tags %}
+
+{% block page_contents %}
+<div class = 'row-fluid'>
+
+<div class = 'well'>
+<span class ='pull-right'>message:{{message}}</span><br>
+position:{{position}}<br>
+username:{{username}}<br>
+password:{{password}}
+</div>
+
+</div>
+
+{% endblock %}
