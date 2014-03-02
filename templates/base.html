@@ -5,11 +5,12 @@
 	
 <!--heading-->	
 <head>
+	<title >Ministry of water</title>
 <meta charset="utf-8">
 <!--
 <meta http-equiv='refresh' content='60' > -->
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
+<link href="{{MEDIA_URL}}img/favicon.ico" rel="shortcut icon" type="image/x-icon" />
 <!--styles files-->
 <link rel="stylesheet" media='screen' href="{{STATIC_URL}}css/bootstrap.min.css" >
 <link rel="stylesheet" media='screen' href="{{STATIC_URL}}css/bootstrap-responsive.css" >
@@ -24,10 +25,22 @@
 <!-- page body -->	
 <body align='center'>
 <div class='container-fluid'>
+	
+<div class = 'row-fluid'>
+<img src = "{{MEDIA_URL}}img/title.png" /> 
+</div>
+
+<div class = 'row-fluid' style = 'color:white;background-image:url("{{MEDIA_URL}}img/title1.png");' >
+STATIC AND DYNAMIC WATER POINT INFORMATION  MANAGEMENT
+</div>
+
+	
+
 {% block page_contents %}{% endblock %}
 </div>
 <footer>
-This site developed by <b>Mr. Joseph Chingalo</b>, Computer science student at University of Dar es salaam<br>
+<p>This site developed by <b>Mr. Joseph Chingalo</b>, Computer science student at University of Dar es salaam<br>
+&copy; 2014<br> all right reserved</p>
 
 </footer>
 <!--js links for bootstrap-->
