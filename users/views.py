@@ -22,8 +22,7 @@ def authorize(request):
 	password = passwordlist[0]
 	
 	position = ''
-	message = 'Ok!!!'
-	
+		
 	#checking if user is system aadministor
 	for admin in adminlist:
 		if admin.e_mail == username and admin.password == password:
@@ -41,15 +40,19 @@ def authorize(request):
 
 	#provide list of actons depending on user's position in the system
 	if position == 'admin':
+		message = 'welcome System adminstrator'
 		context={'position':position,'message':message,'username':username, 'password':password}
-		return render(request, 'test.html',context)
+		return render(request, 'admin.html',context)
 	elif position == 'engineer':
+		message = 'welcome District engineer'
 		context={'position':position,'message':message,'username':username, 'password':password}
-		return render(request, 'test.html',context)
+		return render(request, 'engineer.html',context)
 	elif position == 'cowso chairperson':
+		message = 'welcome cowso chairperson '
 		context={'position':position,'message':message,'username':username, 'password':password}
-		return render(request, 'test.html',context)
+		return render(request, 'chairperson.html',context)
 	else:
+		message = 'ok'
 		context={'position':position,'message':message,'username':username, 'password':password}
 		return render(request, 'test.html',context)	
 			
