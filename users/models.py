@@ -26,8 +26,8 @@ class Engineer(models.Model):
 		return self.engineer_name
 
 class Chairperson(models.Model):
-	cowoso_id = models.CharField(max_length = 20)
-	cowoso_chairperson_name = models.CharField(max_length = 200)
+	cowso_id = models.CharField(max_length = 20)
+	cowso_chairperson_name = models.CharField(max_length = 200)
 	password = models.CharField(max_length = 200)
 	e_mail = models.EmailField(max_length = 200)
 	telphone_number =  models.CharField(max_length = 20)
@@ -36,4 +36,4 @@ class Chairperson(models.Model):
 	sex = models.CharField(max_length = 6)
 	
 	def __unicode__(self): #for pyhton 3 : def __str__(self):
-		return self.cowoso_chairperson_name
+		return self.cowso_chairperson_name
