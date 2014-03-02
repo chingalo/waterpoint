@@ -4,6 +4,7 @@ from django.db import models
 class Administrator(models.Model):
 	admin_id = models.CharField(max_length = 20)
 	admin_name = models.CharField(max_length = 200)
+	username = models.CharField(max_length = 50)
 	password = models.CharField(max_length = 200)
 	e_mail = models.EmailField(max_length = 200)
 	telphone_number =  models.CharField(max_length = 20)
@@ -16,6 +17,7 @@ class Administrator(models.Model):
 class Engineer(models.Model):
 	engineer_id = models.CharField(max_length = 20)
 	engineer_name = models.CharField(max_length = 200)
+	username = models.CharField(max_length = 50)
 	password = models.CharField(max_length = 200)
 	e_mail = models.EmailField(max_length = 200)
 	telphone_number = models.CharField(max_length = 20)
@@ -28,6 +30,7 @@ class Engineer(models.Model):
 class Chairperson(models.Model):
 	cowso_id = models.CharField(max_length = 20)
 	cowso_chairperson_name = models.CharField(max_length = 200)
+	username = models.CharField(max_length = 50)
 	password = models.CharField(max_length = 200)
 	e_mail = models.EmailField(max_length = 200)
 	telphone_number =  models.CharField(max_length = 20)
