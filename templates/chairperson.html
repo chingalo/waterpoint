@@ -5,12 +5,31 @@
 <div class = 'row-fluid'>
 
 <div class = 'well'>
-<span class ='pull-right'>message:{{message}}</span><br>
-position:{{position}}<br>
-username:{{username}}<br>
-password:{{password}}
+
+<form action = "" method = "">
+<!-- checking and display all water point for a particular COWSO chairperson-->	
+{% for waterpoint in waterpointslist%}
+{% if waterpoint.physical_location_name == p %}
+{{waterpoint}} 
+<!-- status choices -->
+<select name = "status">
+<option value = "">---------</option>
+<option value = "functioning" name = "status" > functioning </option>
+<option value = "non-functioning" name = "status" > non-functioning </option>
+<option value = "need to repair" name = "status" > need to repair </option>
+</select>
+
+{% endif %}
+<br>
+{% endfor %}
+
+<input type = "submit" value = "update" name "update" />
+<input type = "reset" value = "cancel" name "cancel" />
+</form>
+
 </div>
 
 </div>
 
 {% endblock %}
+
