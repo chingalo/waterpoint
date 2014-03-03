@@ -3,8 +3,14 @@ from django.shortcuts import render_to_response, get_object_or_404, render
 from django.core.context_processors import csrf
 from django.core.urlresolvers import reverse
 from users.models import *
+from waterpoints.models import *
 
+
+#authorization of users login into the system
 def authorize(request):
+	#retrive all water points in the system
+	waterpointslist = Waterpoint.objects.all()
+	
 	#retrieve list all system administrators, District water engineers and cowso chairperson
 	adminlist = Administrator.objects.all()
 	engineerlist = Engineer.objects.all()
@@ -36,6 +42,7 @@ def authorize(request):
 	#cheking if user is cowso chairperson
 	for chairperson in chairpersonlist:
 		if chairperson.e_mail == username and chairperson.password == password:
+			p=chairperson.physical_location_name
 			position = 'cowso chairperson'
 
 	#provide list of actons depending on user's position in the system
@@ -49,7 +56,8 @@ def authorize(request):
 		return render(request, 'engineer.html',context)
 	elif position == 'cowso chairperson':
 		message = 'welcome cowso chairperson '
-		context={'position':position,'message':message,'username':username, 'password':password}
+		
+		context={'p':p,'position':position,'message':message,'username':username, 'password':password, 'waterpointslist':waterpointslist}
 		return render(request, 'chairperson.html',context)
 	else:
 		message = 'Incorrect username or password'
@@ -57,5 +65,14 @@ def authorize(request):
 		return render(request, 'login.html',context)	
 			
 	
-	
-	
+#creater District water engineer
+def createEngineer(request):
+	message = 'ok'
+	context = {'message':message}
+	return render(request, 'test.html', context)
+
+#create COWSO chairperson	
+def createChairperson(request):
+	message = 'ok'
+	context = {'message':message}
+	return render(request, 'test.html', context)	
