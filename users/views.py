@@ -3,7 +3,9 @@ from django.shortcuts import render_to_response, get_object_or_404, render
 from django.core.context_processors import csrf
 from django.core.urlresolvers import reverse
 from users.models import *
+from users.forms import EngineerForm, ChairpersonForm
 from waterpoints.models import *
+
 
 
 #authorization of users login into the system
@@ -67,12 +69,12 @@ def authorize(request):
 	
 #creater District water engineer
 def createEngineer(request):
-	message = 'ok'
+	message = request.POST
 	context = {'message':message}
-	return render(request, 'test.html', context)
+	return render(request, 'createEngineer.html', context)
 
 #create COWSO chairperson	
 def createChairperson(request):
-	message = 'ok'
+	message = request.POST
 	context = {'message':message}
-	return render(request, 'test.html', context)	
+	return render(request, 'createChairperson.html', context)	

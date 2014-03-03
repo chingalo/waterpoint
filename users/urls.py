@@ -4,7 +4,7 @@ from users import views
 
 urlpatterns = patterns('',
     url(r'^$', views.authorize, name='authorize'),
-    url(r'^$', views.createEngineer, name='createEngineer'),
-    url(r'^$', views.createChairperson, name='createChairperson'),
+    url(r'^createEngineer/$', views.createEngineer, name='createEngineer'),
+    url(r'^createChairperson/$', views.createChairperson, name='createChairperson'),
    
 )
