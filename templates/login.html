@@ -2,11 +2,14 @@
 {% load cms_tags menu_tags %}
 <!-- contents for the login templates-->
 {% block page_contents %}
-<div class = 'row-fluid'>
+<div class = 'row-fluid' >
+<div class = 'well' style=' min-height: 100px;text-align:justfy;'>
 	
-<div class = 'well' style=' min-height: 100px;  padding-top: 50px; text-align:justfy;'>
-	<p><b>{{message}}</b></p>
+	
 <!-- login form -->
+<span class="pull-right"><em>Date : {% now "jS F Y" %}</em></span><br><br>
+<p><b>{{message}}</b></p>
+<hr>
 
 <form action ="{% url 'authorize'%}" method="POST">
 {% csrf_token %}	
