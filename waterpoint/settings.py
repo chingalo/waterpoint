@@ -20,7 +20,7 @@ DATABASES = {
         'HOST': 'localhost',
         'PASSWORD':'111987',
         'PORT':'5432',
-        'USER':'postgres',                     # Set to empty string for default.
+        'USER':'postgres',                   
     }
 }
 
@@ -198,6 +198,7 @@ LANGUAGES = [
 ]
 CMS_TEMPLATES = ( 
 	('login.html', gettext('login')),
+	('users.html', gettext('interface fro all users')),
            
    )
 
