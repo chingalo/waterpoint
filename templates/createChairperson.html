@@ -22,8 +22,11 @@ Address : <input type = "text" name = "address" placeholder = "Enter his or her 
 Telphone number : <input type = "text" name = "number" placeholder = "Enter telphone number" /><br>
 location : <input type = "text" name = "location" placeholder = "Enter name of his or her physical location"/><br>
 <!-- gender: male or female-->
-Sex : <input type = "radio" name = "sex" value = "male" />male
-	  <input type = "radio" name = "sex" value= "female" /> female<br><br>
+Sex : 
+	  <select name = 'sex'>
+	  <option name = 'sex' value = 'male'>male</option>
+	  <option name = 'sex' value = 'female'>female</option>
+	  </select><br>>
 <input type = "submit" name = "create user" value = "create user" />
 <input type = "reset"  value = "cancel" />
 </form>

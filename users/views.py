@@ -69,7 +69,7 @@ def authorize(request):
 	
 #creater District water engineer
 def createEngineer(request):
-	user_sex = ''
+	message = ''
 	#taking data from regstration form
 	if  request.POST :
 		form = request.POST
@@ -92,20 +92,25 @@ def createEngineer(request):
 		user_address_list = form.getlist('address')
 		user_address = user_address_list[0]
 	
-		user_sex_list = form.getlist('sex')
+		user_sex_list = form.getlist('sex')		
 		user_sex = user_sex_list[0]
+	
+		if user_sex == '' or user_telphone_number == '' or user_email == '' or user_password == '' or user_name == '' or user_id == '' :
+			message = 'please fill all information in the from inoreder to create new user'
+		else: 
+			message = 'ok'
+	
 	#create object for storing data from registration form
 	user = Engineer()
 	#add data into object created
-	
 	#saving data
 	
-	context = {'message':user_sex}
+	context = {'message':message,}
 	return render(request, 'createEngineer.html', context)
 
 #create COWSO chairperson	
 def createChairperson(request):
-	user_sex = ''
+	message = ''
 	#taking data from regstration form
 	if  request.POST :
 		form = request.POST
@@ -133,11 +138,17 @@ def createChairperson(request):
 	
 		user_sex_list = form.getlist('sex')
 		user_sex = user_sex_list[0]
+	
+		if user_sex == '' or user_location == '' or user_telphone_number == '' or user_email == '' or user_password == '' or user_name == '' or user_id == '' :
+			message = 'please fill all information in the from inoreder to create new user'
+		else: 
+			message = 'ok'	
+	
 	#create object for storing data from registration form
 	user = Chairperson()
 	#add data into object created
 	
 	#saving data
 	
-	context = {'message':user_sex}
+	context = {'message':message}
 	return render(request, 'createChairperson.html', context)	
