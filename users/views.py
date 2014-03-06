@@ -69,12 +69,75 @@ def authorize(request):
 	
 #creater District water engineer
 def createEngineer(request):
-	message = request.POST
-	context = {'message':message}
+	user_sex = ''
+	#taking data from regstration form
+	if  request.POST :
+		form = request.POST
+	#retrieve all data from registration
+		user_id_list= form.getlist('id')
+		user_id = user_id_list[0]
+	
+		user_name_list = form.getlist('name')
+		user_name = user_name_list[0]
+	
+		user_password_list = form.getlist('password')
+		user_password = user_password_list[0]
+	
+		user_email_list = form.getlist('email')
+		user_email = user_email_list[0]
+	
+		user_telphone_number_list = form.getlist('number')
+		user_telphone_number = user_telphone_number_list[0]
+	
+		user_address_list = form.getlist('address')
+		user_address = user_address_list[0]
+	
+		user_sex_list = form.getlist('sex')
+		user_sex = user_sex_list[0]
+	#create object for storing data from registration form
+	user = Engineer()
+	#add data into object created
+	
+	#saving data
+	
+	context = {'message':user_sex}
 	return render(request, 'createEngineer.html', context)
 
 #create COWSO chairperson	
 def createChairperson(request):
-	message = request.POST
-	context = {'message':message}
+	user_sex = ''
+	#taking data from regstration form
+	if  request.POST :
+		form = request.POST
+	#retrieve all data from registration
+		user_id_list= form.getlist('id')
+		user_id = user_id_list[0]
+	
+		user_name_list = form.getlist('name')
+		user_name = user_name_list[0]
+	
+		user_password_list = form.getlist('password')
+		user_password = user_password_list[0]
+	
+		user_email_list = form.getlist('email')
+		user_email = user_email_list[0]
+	
+		user_telphone_number_list = form.getlist('number')
+		user_telphone_number = user_telphone_number_list[0]
+	
+		user_address_list = form.getlist('address')
+		user_address = user_address_list[0]
+		
+		user_location_list = form.getlist('location')
+		user_location = user_location_list[0]
+	
+		user_sex_list = form.getlist('sex')
+		user_sex = user_sex_list[0]
+	#create object for storing data from registration form
+	user = Chairperson()
+	#add data into object created
+	
+	#saving data
+	
+	context = {'message':user_sex}
 	return render(request, 'createChairperson.html', context)	
