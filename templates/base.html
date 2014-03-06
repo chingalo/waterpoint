@@ -36,7 +36,11 @@ Ministry of water
 <div class = 'row-fluid' style = 'color:white;background-image:url("{{MEDIA_URL}}img/title1.png"); '  >
 STATIC AND DYNAMIC WATER POINT INFORMATION  MANAGEMENT
 </div>
-
+<div class = 'well'><ul class='breadcrumb' style='background-color:white; text-align:left'>
+{% show_breadcrumb %}
+<span class="pull-right"><em>Date : {% now "jS F Y" %}</em></span>
+</ul>
+</div>
 
 {% block page_contents %}{% endblock %}
 </div>
