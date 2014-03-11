@@ -86,6 +86,7 @@ def createEngineer(request,user_id):
 	user_name = ''
 	user_id = ''	
 	message = ''
+	warning = ''
 	#taking data from regstration form
 	if  request.POST :
 		form = request.POST
@@ -112,7 +113,7 @@ def createEngineer(request,user_id):
 		user_sex = user_sex_list[0]
 	
 		if user_sex == '' or user_telphone_number == '' or user_email == '' or user_password == '' or user_name == '' or user_id == '' :
-			message = 'please fill all information in the from inoreder to create new user'
+			warning = 'please fill all information in the from inoreder to create new user'
 		else: 
 			message = 'You have successful created new District water engineer'
 	
@@ -130,7 +131,7 @@ def createEngineer(request,user_id):
 	#saving data
 	newuser.save()
 	
-	context = {'message':message,'user':user}
+	context = {'message':message,'user':user,'warning':warning}
 	return render(request, 'createEngineer.html', context)
 
 #create COWSO chairperson	
@@ -150,6 +151,7 @@ def createChairperson(request, user_id):
 	user_location = ''
 	user_address = ''
 	message = ''
+	warning = ''
 	
 	#taking data from regstration form
 	if  request.POST :
@@ -180,7 +182,7 @@ def createChairperson(request, user_id):
 		user_sex = user_sex_list[0]
 	
 		if user_sex == '' or user_location == '' or user_telphone_number == '' or user_email == '' or user_password == '' or user_name == '' or user_id == '' :
-			message = 'please fill all information in the from inoreder to create new user'
+			warning = 'please fill all information in the from inoreder to create new user'
 		else: 
 			message = 'You have successful create new COWSO chairperson'	
 	
@@ -198,7 +200,7 @@ def createChairperson(request, user_id):
 	#saving data
 	newuser.save()
 	
-	context = {'message':message ,'user':user}
+	context = {'message':message ,'user':user,'warning':warning}
 	return render(request, 'createChairperson.html', context)	
 	
 def adminHome(request, user_id):
