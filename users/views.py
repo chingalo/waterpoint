@@ -76,6 +76,15 @@ def createEngineer(request,user_id):
 	user = Administrator()
 	user = Administrator.objects.get(id = user_id )
 	
+	#initialize all variables to empty strings
+	user_sex = ''
+	user_location = ''
+	user_telphone_number = '' 
+	user_email = ''
+	user_password = '' 
+	user_address = ''
+	user_name = ''
+	user_id = ''	
 	message = ''
 	#taking data from regstration form
 	if  request.POST :
@@ -105,12 +114,21 @@ def createEngineer(request,user_id):
 		if user_sex == '' or user_telphone_number == '' or user_email == '' or user_password == '' or user_name == '' or user_id == '' :
 			message = 'please fill all information in the from inoreder to create new user'
 		else: 
-			message = 'ok'
+			message = 'You have successful created new District water engineer'
 	
 	#create object for storing data from registration form
 	newuser = Engineer()
 	#add data into object created
+	newuser.engineer_id = user_id
+	newuser.engineer_name = user_name
+	newuser.password = user_password
+	newuser.e_mail = user_email
+	newuser.telphone_number = user_telphone_number
+	newuser.address = user_address
+	newuser.sex = user_sex
+	
 	#saving data
+	newuser.save()
 	
 	context = {'message':message,'user':user}
 	return render(request, 'createEngineer.html', context)
@@ -121,7 +139,18 @@ def createChairperson(request, user_id):
 	user = Administrator()
 	user = Administrator.objects.get(id = user_id )
 	
+	#initialize all variables to empty strings
+	user_sex = ''
+	user_location = ''
+	user_telphone_number = '' 
+	user_email = ''
+	user_password = '' 
+	user_name = ''
+	user_id = ''	
+	user_location = ''
+	user_address = ''
 	message = ''
+	
 	#taking data from regstration form
 	if  request.POST :
 		form = request.POST
@@ -153,13 +182,21 @@ def createChairperson(request, user_id):
 		if user_sex == '' or user_location == '' or user_telphone_number == '' or user_email == '' or user_password == '' or user_name == '' or user_id == '' :
 			message = 'please fill all information in the from inoreder to create new user'
 		else: 
-			message = 'ok'	
+			message = 'You have successful create new COWSO chairperson'	
 	
 	#create object for storing data from registration form
 	newuser = Chairperson()
 	#add data into object created
-	
+	newuser.cowso_id = user_id
+	newuser.cowso_chairperson_name = user_name
+	newuser.password = user_password
+	newuser.e_mail = user_email
+	newuser.telphone_number = user_telphone_number
+	newuser.physical_location_name = user_location
+	newuser.address = user_address
+	newuser.sex = user_sex
 	#saving data
+	newuser.save()
 	
 	context = {'message':message ,'user':user}
 	return render(request, 'createChairperson.html', context)	
