@@ -119,17 +119,19 @@ def createEngineer(request,user_id):
 	
 	#create object for storing data from registration form
 	newuser = Engineer()
-	#add data into object created
-	newuser.engineer_id = user_id
-	newuser.engineer_name = user_name
-	newuser.password = user_password
-	newuser.e_mail = user_email
-	newuser.telphone_number = user_telphone_number
-	newuser.address = user_address
-	newuser.sex = user_sex
+	if message :
+		
+		#add data into object created
+		newuser.engineer_id = user_id
+		newuser.engineer_name = user_name
+		newuser.password = user_password
+		newuser.e_mail = user_email
+		newuser.telphone_number = user_telphone_number
+		newuser.address = user_address
+		newuser.sex = user_sex
 	
-	#saving data
-	newuser.save()
+		#saving data
+		newuser.save()
 	
 	context = {'message':message,'user':user,'warning':warning}
 	return render(request, 'createEngineer.html', context)
@@ -188,17 +190,18 @@ def createChairperson(request, user_id):
 	
 	#create object for storing data from registration form
 	newuser = Chairperson()
-	#add data into object created
-	newuser.cowso_id = user_id
-	newuser.cowso_chairperson_name = user_name
-	newuser.password = user_password
-	newuser.e_mail = user_email
-	newuser.telphone_number = user_telphone_number
-	newuser.physical_location_name = user_location
-	newuser.address = user_address
-	newuser.sex = user_sex
-	#saving data
-	newuser.save()
+	if message :
+		#add data into object created
+		newuser.cowso_id = user_id
+		newuser.cowso_chairperson_name = user_name
+		newuser.password = user_password
+		newuser.e_mail = user_email
+		newuser.telphone_number = user_telphone_number
+		newuser.physical_location_name = user_location
+		newuser.address = user_address
+		newuser.sex = user_sex
+		#saving data
+		newuser.save()
 	
 	context = {'message':message ,'user':user,'warning':warning}
 	return render(request, 'createChairperson.html', context)	
