@@ -10,7 +10,7 @@
 <a href = "{% url 'adminhome' user.id %}">back</a>
 </span><br>
 <hr>
-{% if message %}{{message}}
+{% if message or warning%}{{message}} <i ><span style = 'color : red';>{{warning}}</span></i>
 {% else %}
 Fill the form below, to register new cowso chairperson
 {% endif %}
@@ -31,8 +31,8 @@ Sex :
 	  <select name = 'sex'>
 	  <option name = 'sex' value = 'male'>male</option>
 	  <option name = 'sex' value = 'female'>female</option>
-	  </select><br>>
-<input type = "submit" name = "create user" value = "ssubmit" />
+	  </select><br>
+<input type = "submit" name = "create user" value = "submit" />
 <input type = "reset"  value = "cancel" />
 </form>
 

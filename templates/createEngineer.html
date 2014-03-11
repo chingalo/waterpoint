@@ -9,7 +9,7 @@
 <span class="pull-right"><em>Date : {% now "jS F Y" %}</em><br>
 <a href = "{% url 'adminhome' user.id %}">back</a>
 </span><br><hr>
-{% if message %}{{message}}
+{% if message or warning%}{{message}} <i ><span style = 'color : red';>{{warning}}</span></i>
 {% else %}
 Fill the form below, to register new cowso chairperson
 {% endif %}
