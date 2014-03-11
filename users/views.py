@@ -200,3 +200,12 @@ def createChairperson(request, user_id):
 	
 	context = {'message':message ,'user':user}
 	return render(request, 'createChairperson.html', context)	
+	
+def adminHome(request, user_id):
+	#get user of system:
+	user = Administrator()
+	user = Administrator.objects.get(id = user_id)
+	message = 'welcome System adminstrator'
+	position = 'admin'
+	context = {'user':user, 'position':position, 'message':message}
+	return render(request,'admin.html',context)

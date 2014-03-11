@@ -7,7 +7,7 @@
 <div class = 'well' style=' min-height: 100px;  padding-top: 10px; text-align:justfy;'>
 <!--registsration form for creating COWSO chairperson-->
 <span class="pull-right"><em>Date : {% now "jS F Y" %}</em><br>
-<a href ''>back</a>
+<a href = "{% url 'adminhome' user.id %}">back</a>
 </span><br>
 <hr>
 {% if message %}{{message}}
