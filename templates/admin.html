@@ -12,9 +12,9 @@ position:{{position}}<br>
 username:{{user.admin_name}}<br>
 password:{{user.password}}<br>
 <hr>
-<a href = "{% url 'createEngineer' %}">add engineer</a>
+<a href = "{% url 'createEngineer' user.id %}">add engineer</a>
 <hr>
-<a href = "{% url 'createChairperson' %}">add Cowso</a>
+<a href = "{% url 'createChairperson' user.id %}">add Cowso</a>
 </div>
 
 </div>

@@ -23,24 +23,26 @@
 <!--end of heading-->
 
 <!-- page body -->	
-<body align='center'>
-<div class='container-fluid'>
+<body align='center' style = 'color : black'>
+<div class='container-fluid'  style = 'background-image:url("{{MEDIA_URL}}img/page.jpg");'>
 	
-<div class = 'row-fluid' style = 'color:white;background-image:url("{{MEDIA_URL}}img/title.png");min-height:90px; min-width:100px'>
-<!-- heading
-The United Republic of Tanzabia
-Ministry of water
--->
-</div>
+<div class = 'row-fluid '>
+<div class = 'well' style = 'background-image:url("{{MEDIA_URL}}img/page.jpg");margin-top:50px;'>
+The United Republic of Tanzabia<br>
+Ministry of water<br>
 
-<div class = 'row-fluid' style = 'color:white;background-image:url("{{MEDIA_URL}}img/title1.png"); '  >
+
+
+
 STATIC AND DYNAMIC WATER POINT INFORMATION  MANAGEMENT
+
 </div>
+<!--
 <div class = 'well'><ul class='breadcrumb' style='background-color:white; text-align:left'>
 {% show_breadcrumb %}
 <span class="pull-right"><em>Date : {% now "jS F Y" %}</em></span>
 </ul>
-</div>
+</div>-->
 
 {% block page_contents %}{% endblock %}
 </div>

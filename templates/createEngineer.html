@@ -11,7 +11,7 @@
 {{message}}
 <hr>
 
-<form action "{% url 'createEngineer' %}" method = "POST">
+<form action "{% url 'createEngineer' user.id %}" method = "POST">
 {% csrf_token %}
 
 District water Engineer id : <input type = "text" name = "id" placeholder = "Enter his or her id" /><br>

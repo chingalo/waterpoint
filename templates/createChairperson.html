@@ -11,7 +11,7 @@
 {{message}}
 <hr>
 
-<form action "{% url 'createChairperson' %}" method = "POST">
+<form action "{% url 'createChairperson' user.id%}" method = "POST">
 {% csrf_token %}
 
 COWSO chairperson id : <input type = "text" name = "id" placeholder = "Enter his or her id" /><br>
