@@ -35,31 +35,34 @@ def authorize(request):
 	for admin in adminlist:
 		if admin.e_mail == username and admin.password == password:
 			position = 'admin'
+			user = admin
 			 
 	#checking if user is district water engineer		
 	for engineer in engineerlist:
 		if engineer.e_mail == username and engineer.password == password: 
 			position = 'engineer'
+			user = engineer
 
 	#cheking if user is cowso chairperson
 	for chairperson in chairpersonlist:
 		if chairperson.e_mail == username and chairperson.password == password:
 			p=chairperson.physical_location_name
 			position = 'cowso chairperson'
+			user = chairperson
 
 	#provide list of actons depending on user's position in the system
 	if position == 'admin':
 		message = 'welcome System adminstrator'
-		context={'position':position,'message':message,'username':username, 'password':password}
+		context={'position':position,'message':message,'user':user}
 		return render(request, 'admin.html',context)
 	elif position == 'engineer':
 		message = 'welcome District engineer'
-		context={'position':position,'message':message,'username':username, 'password':password}
+		context={'position':position,'message':message,'user':user}
 		return render(request, 'engineer.html',context)
 	elif position == 'cowso chairperson':
 		message = 'welcome cowso chairperson '
 		
-		context={'p':p,'position':position,'message':message,'username':username, 'password':password, 'waterpointslist':waterpointslist}
+		context={'p':p,'position':position,'message':message,'user':user, 'waterpointslist':waterpointslist}
 		return render(request, 'chairperson.html',context)
 	else:
 		message = 'Incorrect username or password'
@@ -68,7 +71,11 @@ def authorize(request):
 			
 	
 #creater District water engineer
-def createEngineer(request):
+def createEngineer(request,user_id):
+	#get user of the system
+	user = Administrator()
+	user = Administrator.objects.get(id = user_id )
+	
 	message = ''
 	#taking data from regstration form
 	if  request.POST :
@@ -101,15 +108,19 @@ def createEngineer(request):
 			message = 'ok'
 	
 	#create object for storing data from registration form
-	user = Engineer()
+	newuser = Engineer()
 	#add data into object created
 	#saving data
 	
-	context = {'message':message,}
+	context = {'message':message,'user':user}
 	return render(request, 'createEngineer.html', context)
 
 #create COWSO chairperson	
-def createChairperson(request):
+def createChairperson(request, user_id):
+	#get user of system:
+	user = Administrator()
+	user = Administrator.objects.get(id = user_id )
+	
 	message = ''
 	#taking data from regstration form
 	if  request.POST :
@@ -145,10 +156,10 @@ def createChairperson(request):
 			message = 'ok'	
 	
 	#create object for storing data from registration form
-	user = Chairperson()
+	newuser = Chairperson()
 	#add data into object created
 	
 	#saving data
 	
-	context = {'message':message}
+	context = {'message':message ,'user':user}
 	return render(request, 'createChairperson.html', context)	
