@@ -11,10 +11,54 @@
 position:{{position}}<br>
 username:{{user.admin_name}}<br>
 password:{{user.password}}<br>
+
 <hr>
+<!--display options on admin userinterface-->
+<table class = 'table' style = ''>
+<thead>
+<tr>
+<th></th>
+<th></th>
+<th></th>
+<th></th>
+<th>District water Engineer </th>
+<th>COWSO chairperson</th>
+<th></th>
+
+</tr>
+</thead>
+<tbody>
+<tr>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td >
+District water Engineer is one involving to add static infromation.<br>	
+To add successful register new District water Engineer in the system,<br>
+<ul>
+<li>click link below</li>
+<li>fill all information on the from</li>
+<li>click submit to register new user or cancel to reset</li>
+</ul>
 <a href = "{% url 'createEngineer' user.id %}">add engineer</a>
-<hr>
+</td>
+<td>
+COWSO chairperson is one involving to add dynamic infromation.<br>	
+To add successful register new District water Engineer in the system,
+<ul>
+<li>click link below</li>
+<li>fill all information on the from</li>
+<li>click submit to register new user or cancel to reset</li>
+</ul>
 <a href = "{% url 'createChairperson' user.id %}">add Cowso</a>
+</td>
+<td></td>
+</tr>
+</tbody>
+
+</table>
+
 </div>
 
 </div>
