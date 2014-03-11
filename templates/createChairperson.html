@@ -6,9 +6,14 @@
 
 <div class = 'well' style=' min-height: 100px;  padding-top: 10px; text-align:justfy;'>
 <!--registsration form for creating COWSO chairperson-->
-<span class="pull-right"><em>Date : {% now "jS F Y" %}</em></span>
+<span class="pull-right"><em>Date : {% now "jS F Y" %}</em><br>
+<a href ''>back</a>
+</span><br>
 <hr>
-{{message}}
+{% if message %}{{message}}
+{% else %}
+Fill the form below, to register new cowso chairperson
+{% endif %}
 <hr>
 
 <form action "{% url 'createChairperson' user.id%}" method = "POST">
@@ -27,7 +32,7 @@ Sex :
 	  <option name = 'sex' value = 'male'>male</option>
 	  <option name = 'sex' value = 'female'>female</option>
 	  </select><br>>
-<input type = "submit" name = "create user" value = "create user" />
+<input type = "submit" name = "create user" value = "ssubmit" />
 <input type = "reset"  value = "cancel" />
 </form>
 
