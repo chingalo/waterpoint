@@ -5,3 +5,4 @@ class WaterpointRegistration(forms.ModelForm):
 	class Meta:
 		model = Waterpoint
 		
+
