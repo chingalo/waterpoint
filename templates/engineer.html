@@ -9,8 +9,12 @@
 	
 <span class ='pull-right'>message:{{message}}</span><br>
 position:{{position}}<br>
-username:{{username}}<br>
-password:{{password}}
+username:{{user.engineer_name}}<br>
+password:{{user.password}}<hr><br>
+
+<div class = "waterpointregform">
+<a href = "{% url 'waterpointDetail'%}">add</a>
+</div>
 </div>
 
 </div>

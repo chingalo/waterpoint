@@ -6,7 +6,9 @@
 
 <div class = 'well'>
 <span class="pull-right"><em>Date : {% now "jS F Y" %}</em></span><br><hr>
+user: {{user.cowso_chairperson_name}}
 <form action = "" method = "">
+	
 <!-- checking and display all water point for a particular COWSO chairperson-->	
 {% for waterpoint in waterpointslist%}
 {% if waterpoint.physical_location_name == p %}

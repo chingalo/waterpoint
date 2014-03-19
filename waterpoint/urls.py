@@ -22,6 +22,7 @@ urlpatterns = patterns('',
 if settings.DEBUG:
     urlpatterns = patterns('',
     url(r'^users/', include('users.urls')),
+    url(r'^waterpoints/', include('waterpoints.urls')),
     url(r'^media/(?P<path>.*)$', 'django.views.static.serve',
         {'document_root': settings.MEDIA_ROOT,
         'show_indexes': True}),
