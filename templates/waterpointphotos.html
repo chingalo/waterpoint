@@ -1,0 +1,36 @@
+{% extends "base.html" %}
+{% load cms_tags menu_tags %}
+
+{% block page_contents %}
+<div class = 'row-fluid'>
+
+<div class = 'well' style=' min-height: 100px;  padding-top: 10px; text-align:justfy;'>
+{{message}}<hr>
+
+<hr>
+{{result}}
+<hr>
+<br>
+
+<!-- form to upload image for a give water point-->
+<form action = "{% url 'waterpointPhotos'%}" method = "POST">
+{% csrf_token %}
+<table align = "center">
+<tr>
+<td style ="padding-right:5px;">
+Image:
+</td>
+
+<td style ="padding-left:5px;"><input type = "file" name = "image"></td>
+</tr>
+</table>
+<br>
+<td><input type = "submit" value = "save" name = "submit"></td>
+<td><input type = "reset" value = "cancel" name = "reset"></td>
+</form>
+
+
+</div>
+</div>
+
+{% endblock %}
