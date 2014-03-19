@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+{% load cms_tags menu_tags %}
+
+{% block page_contents %}
+<div class = 'row-fluid'>
+
+<div class = 'well' style=' min-height: 100px;  padding-top: 10px; text-align:justfy;'>
+{{message}}<hr>
+<br>
+
+<form action ="{% url 'waterpointDetail'%}" method="POST">
+{% csrf_token %}
+	
+<table >
+{{ form.as_table}}
+<table>
+<div style = "text-align:left;">
+<input type = 'submit' value = "save" name = "submit">
+<input type = "reset" value = "cancel">
+</div>
+</form>
+
+</div>
+
+</div>
+
+{% endblock %}
