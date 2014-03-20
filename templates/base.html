@@ -18,6 +18,7 @@
 <link rel="stylesheet" media='screen' href="{{STATIC_URL}}css/prettify.css" >
 <!--	<link rel="stylesheet" media= 'screen' href="{{STATIC_URL}}css/>-->
 <link rel="stylesheet" media= 'screen' href="{{STATIC_URL}}css/font-awesome/css/font-awesome.min.css">
+<link rel="stylesheet" media='screen' href="{{STATIC_URL}}css/style.css" >
 <!--end of style files-->
 </head>
 <!--end of heading-->
@@ -39,7 +40,7 @@ contents of the pages
 -->
 <div class = 'row-fluid'>
 <div class = 'well' style=' min-height: 100px;text-align:justfy;'>
-<span class="pull-right"><em>Date : {% now "jS F Y" %}</em></span><br><br>		
+<span class="pull-right"><em>Date : {% now "jS F Y" %}</em></span><br>		
 {% block page_contents %}{% endblock %}
 </div>
 </div>
@@ -47,7 +48,7 @@ contents of the pages
 </div>
 <footer>
 <p>This site developed by <b>Mr. Joseph Chingalo</b>, Computer science student at University of Dar es salaam<br>
-&copy; 2014<br> all right reserved</p>
+&copy; {% now " Y" %}<br> all right reserved</p>
 
 </footer>
 <!--js links for bootstrap-->
