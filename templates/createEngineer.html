@@ -1,23 +1,23 @@
 {% extends "base.html" %}
 {% load cms_tags menu_tags %}
-
 {% block page_contents %}
-<div class = 'row-fluid'>
 
-<div class = 'well' style=' min-height: 100px;  padding-top: 10px; text-align:justfy;'>
-<!--registsration form for creating District water engineer-->
-<span class="pull-right"><em>Date : {% now "jS F Y" %}</em><br>
-<a href = "{% url 'adminhome' user.id %}">back</a>
-</span><br><hr>
+<!-- back to admin home page-->
+<span class ='pull-right welcomeinfo'>{{welcome_message}},<i>&#160;{{user.admin_name}}.</i>&#160;&#160;<a href = "" >log out</a><br><a href = "{% url 'adminhome' user.id %}">back</a></span><br>
+<hr>
+
+<!-- info or error message during registration -->
 {% if message or warning%}{{message}} <i ><span style = 'color:red';>{{warning}}</span></i>
 {% else %}
-Fill the form below, to register new cowso chairperson
+
+<!-- header of registration form-->
+Fill the form below, to register new District water Engineer
 {% endif %}
 <hr>
 
+<!--registsration form for creating District water engineer-->
 <form action "{% url 'createEngineer' user.id %}" method = "POST">
 {% csrf_token %}
-
 District water Engineer id : <input type = "text" name = "id" placeholder = "Enter his or her id" /><br>
 District water Engineer name : <input type = "text" name = "name" placeholder = "Enter full name" /><br>
 password : <input type = "password" name = "password" placeholder = "Enter his or her password" /><br>
@@ -33,9 +33,5 @@ Sex :
 <input type = "submit" name = "create user" value = "submit" />
 <input type = "reset"  value = "cancel" />
 </form>
-
-</div>
-
-</div>
 
 {% endblock %}

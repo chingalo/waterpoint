@@ -2,20 +2,21 @@
 {% load cms_tags menu_tags %}
 
 {% block page_contents %}
-<div class = 'row-fluid'>
 
-<div class = 'well' style=' min-height: 100px;  padding-top: 10px; text-align:justfy;'>
-<!--registsration form for creating COWSO chairperson-->
-<span class="pull-right"><em>Date : {% now "jS F Y" %}</em><br>
-<a href = "{% url 'adminhome' user.id %}">back</a>
-</span><br>
+<!-- back to admin home page-->
+<span class ='pull-right welcomeinfo'>{{welcome_message}},<i>&#160;{{user.admin_name}}.</i>&#160;&#160;<a href = "" >log out</a><br><a href = "{% url 'adminhome' user.id %}">back</a></span><br>
 <hr>
+
+<!-- info or error message during registration -->
 {% if message or warning%}{{message}} <i ><span style = 'color:red';>{{warning}}</span></i>
 {% else %}
-Fill the form below, to register new cowso chairperson
+
+<!-- header of registration form-->
+Fill the form below, to register new COWSO Chairperson
 {% endif %}
 <hr>
 
+<!-- registration form for create new cowso chairperson -->
 <form action "{% url 'createChairperson' user.id%}" method = "POST">
 {% csrf_token %}
 

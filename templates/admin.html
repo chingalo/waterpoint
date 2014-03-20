@@ -2,12 +2,8 @@
 {% load cms_tags menu_tags %}
 {% block page_contents %}
 <!-- information about current user and logout option -->	
-<span class ='pull-right'>message:{{message}}</span><br>
-position:{{position}}<br>
-username:{{user.admin_name}}<br>
-password:{{user.password}}<br>
+<span class ='pull-right welcomeinfo'>{{message}},<i>&#160;{{user.admin_name}}.</i>&#160;&#160;<a href = "" >log out</a></span><hr><br>
 
-<hr>
 <!--display options on admin userinterface-->
 <table class = 'table' style = ''>
 <thead>

@@ -2,7 +2,8 @@
 {% load cms_tags menu_tags %}
 {% block page_contents %}
 <!-- information about current user and logout option -->
-Name: {{user.cowso_chairperson_name}}
+<span class ='pull-right welcomeinfo'>{{message}} <i>,&#160;{{user.cowso_chairperson_name}}.</i>&#160;&#160;<a href = "" >log out</a></span><hr><br>
+
 
 <!-- update form for water point status-->
 <form action = "" method = "">	

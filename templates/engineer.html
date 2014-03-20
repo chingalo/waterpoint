@@ -2,10 +2,7 @@
 {% load cms_tags menu_tags %}
 {% block page_contents %}
 <!-- information about current user and logout option -->	
-<span class ='pull-right'>message:{{message}}</span><br>
-position:{{position}}<br>
-username:{{user.engineer_name}}<br>
-password:{{user.password}}<hr><br>
+<span class ='pull-right welcomeinfo'>{{message}}<i>,&#160;{{user.engineer_name}}<b>&#160;.</b></i>&#160;&#160;<a href = "" >log out</a></span><hr><br>
 
 <!--links to the forms for add new waterpoint -->
 <div class = "waterpointregform">

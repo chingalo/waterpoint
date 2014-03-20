@@ -20,7 +20,7 @@ def waterpointDetail(request,user_id):
 	if form.is_valid():
 		form.save()
 		message = "You  have successfull create new water point"
-		context = {'message':message}
+		context = {'message':message,'user':user}
 		return render (request, 'test2.html',context)
 	else:
 		message = "not"	
