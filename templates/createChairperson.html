@@ -1,6 +1,5 @@
 {% extends "base.html" %}
 {% load cms_tags menu_tags %}
-
 {% block page_contents %}
 
 <!-- back to admin home page-->
@@ -19,7 +18,6 @@ Fill the form below, to register new COWSO Chairperson
 <!-- registration form for create new cowso chairperson -->
 <form action "{% url 'createChairperson' user.id%}" method = "POST">
 {% csrf_token %}
-
 COWSO chairperson id : <input type = "text" name = "id" placeholder = "Enter his or her id" /><br>
 COWSO chairperson name : <input type = "text" name = "name" placeholder = "Enter full name" /><br>
 password : <input type = "password" name = "password" placeholder = "Enter his or her password" /><br>
@@ -37,8 +35,5 @@ Sex :
 <input type = "reset"  value = "cancel" />
 </form>
 
-</div>
-
-</div>
 
 {% endblock %}
