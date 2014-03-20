@@ -1,19 +1,17 @@
 {% extends "base.html" %}
 {% load cms_tags menu_tags %}
-
 {% block page_contents %}
-<div class = 'row-fluid'>
-
-<div class = 'well'>
-<span class="pull-right"><em>Date : {% now "jS F Y" %}</em></span><br><hr>
-	
+<!-- information about current user and logout option -->	
 <span class ='pull-right'>message:{{message}}</span><br>
 position:{{position}}<br>
 username:{{user.engineer_name}}<br>
 password:{{user.password}}<hr><br>
 
+<!--links to the forms for add new waterpoint -->
 <div class = "waterpointregform">
-<a href = "{% url 'waterpointDetail'%}">add</a>
+<a href = "{% url 'waterpointDetail' user.id %}">Create new water point</a><br>
+<a href = "{% url 'waterpointPhotos'%}">add photos for water point</a>
+
 </div>
 </div>
 

@@ -1,18 +1,17 @@
 {% extends "base.html" %}
 {% load cms_tags menu_tags %}
-
 {% block page_contents %}
-<div class = 'row-fluid'>
+<!-- information about current user and logout option -->
+Name: {{user.cowso_chairperson_name}}
 
-<div class = 'well'>
-<span class="pull-right"><em>Date : {% now "jS F Y" %}</em></span><br><hr>
-user: {{user.cowso_chairperson_name}}
-<form action = "" method = "">
-	
+<!-- update form for water point status-->
+<form action = "" method = "">	
+
 <!-- checking and display all water point for a particular COWSO chairperson-->	
 {% for waterpoint in waterpointslist%}
 {% if waterpoint.physical_location_name == p %}
 {{waterpoint}} 
+
 <!-- status choices -->
 <select name = "status">
 <option value = "">---------</option>
@@ -24,14 +23,9 @@ user: {{user.cowso_chairperson_name}}
 {% endif %}
 <br>
 {% endfor %}
-
 <input type = "submit" value = "update" name "update" />
 <input type = "reset" value = "cancel" name "cancel" />
 </form>
-
-</div>
-
-</div>
 
 {% endblock %}
 
