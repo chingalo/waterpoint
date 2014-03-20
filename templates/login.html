@@ -2,23 +2,18 @@
 {% load cms_tags menu_tags %}
 <!-- contents for the login templates-->
 {% block page_contents %}
-<div class = 'row-fluid' >
-<div class = 'well' style=' min-height: 100px;text-align:justfy;'>
-	
 
+<!-- login error message -->
 <p style = 'color:red';><i>{{message}}</i></p>
 <hr>
 
+<!-- login form -->
 <form action ="{% url 'authorize'%}" method="POST">
 {% csrf_token %}	
 <b>username:</b><input type = 'text' name = 'username' placeholder = 'enter your E-mail'/> <br>
 <b>password:</b><input type = 'password' name = 'password' size = '20' placeholder = 'enter your password' /> <br><br>
 <input type = 'submit' value = 'login' name = 'login' />
 </form>
-
-</div>
-
-</div>
 
 {% endblock %}
 
