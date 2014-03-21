@@ -51,17 +51,17 @@ def authorize(request):
 
 	#provide list of actons depending on user's position in the system
 	if position == 'admin':
-		message = 'Welcome'
-		context={'position':position,'message':message,'user':user}
+		welcome_info = 'Welcome'
+		context={'position':position,'welcome_info':welcome_info,'user':user}
 		return render(request, 'admin.html',context)
 	elif position == 'engineer':
-		message = 'Welcome'
-		context={'position':position,'message':message,'user':user}
+		welcome_info = 'Welcome'
+		context={'position':position,'welcome_info':welcome_info,'user':user}
 		return render(request, 'engineer.html',context)
 	elif position == 'cowso chairperson':
-		message = 'Welcome'
+		welcome_info = 'Welcome'
 		
-		context={'p':p,'position':position,'message':message,'user':user, 'waterpointslist':waterpointslist}
+		context={'p':p,'position':position,'welcome_info':welcome_info,'user':user, 'waterpointslist':waterpointslist}
 		return render(request, 'chairperson.html',context)
 	else:
 		message = 'Incorrect username or password'
@@ -86,7 +86,7 @@ def createEngineer(request,user_id):
 	user_id = ''	
 	message = ''
 	warning = ''
-	welcome_message = "Welcome"
+	welcome_info = "Welcome"
 	
 	#taking data from regstration form
 	if  request.POST :
@@ -134,7 +134,7 @@ def createEngineer(request,user_id):
 		#saving data
 		newuser.save()
 	
-	context = {'message':message,'user':user,'warning':warning,'welcome_message':welcome_message}
+	context = {'message':message,'user':user,'warning':warning,'welcome_info':welcome_info}
 	return render(request, 'createEngineer.html', context)
 
 #create COWSO chairperson	
@@ -155,7 +155,7 @@ def createChairperson(request, user_id):
 	user_address = ''
 	message = ''
 	warning = ''
-	welcome_message = "Welcome"
+	welcome_info = "Welcome"
 	#taking data from regstration form
 	if  request.POST :
 		form = request.POST
@@ -204,7 +204,7 @@ def createChairperson(request, user_id):
 		#saving data
 		newuser.save()
 	
-	context = {'message':message ,'user':user,'warning':warning,'welcome_message':welcome_message}
+	context = {'message':message ,'user':user,'warning':warning,'welcome_info':welcome_info}
 	return render(request, 'createChairperson.html', context)	
 
 # back to admin home page	
@@ -213,18 +213,27 @@ def adminHome(request, user_id):
 	user = Administrator()
 	user = Administrator.objects.get(id = user_id)
 	message = 'welcome'
-	position = 'admin'
-	context = {'user':user, 'position':position, 'message':message}
+	context = {'user':user,'message':message}
 	return render(request,'admin.html',context)
 	
 #back to District water engineer home page
-
+def enginerHome(request, user_id):
+	#get current user
+	user = Engineer()
+	user = Engineer.objects.get(id = user_id)
+	welcome_info = "Welcome"
+	context = {'welcome_info':welcome_info, 'user':user}
+	return render(request, 'engineer.html',context)
 
 #thank word for cowso chairperson after updating water point status
 
 
 # log out function
-
+def log_out(request,user_id,user_e_mail):
+	message = "ok"
+	context = {'message':message}
+	return render (request, 'test.html', context)
+	
 
  
 
