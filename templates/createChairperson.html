@@ -3,7 +3,7 @@
 {% block page_contents %}
 
 <!-- back to admin home page-->
-<span class ='pull-right welcomeinfo'>{{welcome_message}},<i>&#160;{{user.admin_name}}.</i>&#160;&#160;<a href = "" >log out</a><br><a href = "{% url 'adminhome' user.id %}">back</a></span><br>
+<span class ='pull-right welcomeinfo'>{{welcome_info}},<i>&#160;{{user.admin_name}}.</i>&#160;&#160;<a href = "{% url 'log_out' user.id user.e_mail %}" >log out</a><br><a href = "{% url 'adminhome' user.id %}">back</a></span><br>
 <hr>
 
 <!-- info or error message during registration -->

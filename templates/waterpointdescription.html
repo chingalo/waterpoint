@@ -1,6 +1,8 @@
 {% extends "base.html" %}
 {% load cms_tags menu_tags %}
 {% block page_contents %}
+<!-- detail about current engineer -->
+<span class ='pull-right welcomeinfo'>{{welcome_info}}<i>,&#160;{{user.engineer_name}}<b>&#160;.</b></i>&#160;&#160;<a href = "{% url 'log_out' user.id user.e_mail %}" >log out</a><br> <a href = "{% url 'engineerhome' user.id %}">back</a></span><br><hr>
 	
 {{message}}<hr>
 

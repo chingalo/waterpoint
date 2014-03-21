@@ -2,28 +2,22 @@
 {% load cms_tags menu_tags %}
 {% block page_contents %}
 <!-- information about current user and logout option -->	
-<span class ='pull-right welcomeinfo'>{{message}},<i>&#160;{{user.admin_name}}.</i>&#160;&#160;<a href = "" >log out</a></span><hr><br>
+<span class ='pull-right welcomeinfo'>{{welcome_info}},<i>&#160;{{user.admin_name}}.</i>&#160;&#160;<a href = "{% url 'log_out' user.id user.e_mail %}" >log out</a></span><hr><br>
 
 <!--display options on admin userinterface-->
+
 <table class = 'table' style = ''>
 <thead>
 <tr>
-<th></th>
-<th></th>
-<th></th>
-<th></th>
+<!-- header in admin intaerface -->
 <th>District water Engineer </th>
 <th>COWSO chairperson</th>
-<th></th>
-
+<th>Reports</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
+<!-- details about respectively header-->
 <td >
 District water Engineer is one involving to add static infromation.<br>	
 To add successful register new District water Engineer in the system,<br>
@@ -44,11 +38,11 @@ To add successful register new District water Engineer in the system,
 </ul>
 <a href = "{% url 'createChairperson' user.id %}">add Cowso</a>
 </td>
-<td></td>
+<td>still unser development. Please wait!!!</td>
+
 </tr>
 </tbody>
 
 </table>
-
 
 {% endblock %}

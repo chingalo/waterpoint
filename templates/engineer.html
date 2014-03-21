@@ -2,15 +2,19 @@
 {% load cms_tags menu_tags %}
 {% block page_contents %}
 <!-- information about current user and logout option -->	
-<span class ='pull-right welcomeinfo'>{{message}}<i>,&#160;{{user.engineer_name}}<b>&#160;.</b></i>&#160;&#160;<a href = "" >log out</a></span><hr><br>
+<span class ='pull-right welcomeinfo'>{{welcome_info}}<i>,&#160;{{user.engineer_name}}<b>&#160;.</b></i>&#160;&#160;<a href = "{% url 'log_out' user.id user.e_mail %}">log out</a></span><br><br>
 
+<!-- info for success full register new water point -->
+
+<span style = "color:#7F7F7F"><i>{{message}}</i></span><hr>
 <!--links to the forms for add new waterpoint -->
-<div class = "waterpointregform">
-<a href = "{% url 'waterpointDetail' user.id %}">Create new water point</a><br>
+<div class = 'row-fluid'>
+	
+<div class = "span6"><a href = "{% url 'waterpointDetail' user.id %}">Create new water point</a><br>
+</div>
+<div class = "span6">
 <a href = "{% url 'waterpointPhotos'%}">add photos for water point</a>
-
-</div>
-</div>
+</div>	
 
 </div>
 
