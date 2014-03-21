@@ -12,7 +12,7 @@ def waterpointDetail(request,user_id):
 	#get the current user
 	user = Engineer()
 	user = Engineer.objects.get(id = user_id )
-	
+	welcome_info = "Welcome"
 	#take form from template
 	form = WaterpointRegistration(request.POST)
 	message = ""
@@ -20,12 +20,12 @@ def waterpointDetail(request,user_id):
 	if form.is_valid():
 		form.save()
 		message = "You  have successfull create new water point"
-		context = {'message':message,'user':user}
-		return render (request, 'test2.html',context)
+		context = {'message':message,'user':user,'welcome_info':welcome_info}
+		return render (request, 'engineer.html',context)
 	else:
-		message = "not"	
+		message = "Please fill all information below, for successfull create ner water point"	
 		form = WaterpointRegistration()
-		context = {'form':form,'message':message, 'user':user}
+		context = {'form':form,'message':message, 'user':user,'welcome_info':welcome_info}
 		return render(request,'waterpointdescription.html',context)
 		    
 # images for water points
