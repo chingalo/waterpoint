@@ -17,6 +17,24 @@ Fill the form below, to register new District water Engineer
 
 <!--registsration form for creating District water engineer-->
 <form action "{% url 'createEngineer' user.id %}" method = "POST">
+<table align = 'center'>
+<tr>
+	<td></td>
+	<td></td>
+</tr>
+	
+
+<tr>
+	<!-- gender: male or female-->
+	<td>Sex :</td>
+	<td>
+		<select name = 'sex'>
+			<option name = 'sex' value = 'male'>male</option>
+			<option name = 'sex' value = 'female'>female</option>
+		</select>
+	</td>
+</tr>
+</table>	
 {% csrf_token %}
 District water Engineer id : <input type = "text" name = "id" placeholder = "Enter his or her id" /><br>
 District water Engineer name : <input type = "text" name = "name" placeholder = "Enter full name" /><br>
