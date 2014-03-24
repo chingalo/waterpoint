@@ -34,12 +34,16 @@ def authorize(request):
 	for admin in adminlist:
 		if admin.e_mail == username and admin.password == password:
 			position = 'admin'
+			admin.login_status = 'log_in'
+			admin.save()
 			user = admin
 			 
 	#checking if user is district water engineer		
 	for engineer in engineerlist:
 		if engineer.e_mail == username and engineer.password == password: 
 			position = 'engineer'
+			engineerlogin_status = 'log_in'
+			engineer.save()
 			user = engineer
 
 	#cheking if user is cowso chairperson
@@ -47,6 +51,8 @@ def authorize(request):
 		if chairperson.e_mail == username and chairperson.password == password:
 			p=chairperson.physical_location_name
 			position = 'cowso chairperson'
+			chairperson.login_status = 'log_in'
+			chairperson.save()
 			user = chairperson
 
 	#provide list of actons depending on user's position in the system
@@ -83,7 +89,9 @@ def createEngineer(request,user_id):
 	user_password = '' 
 	user_address = ''
 	user_name = ''
-	user_id = ''	
+	user_id = ''
+	user_district = ''
+	user_region = ''	
 	message = ''
 	warning = ''
 	welcome_info = "Welcome"
@@ -112,6 +120,12 @@ def createEngineer(request,user_id):
 	
 		user_sex_list = form.getlist('sex')		
 		user_sex = user_sex_list[0]
+		
+		user_district_list = form.getlist('district')
+		user_district = user_district_list[0]
+		
+		user_region_list = form.getlist('region')
+		user_region = user_region_list[0]	
 	
 		if user_sex == '' or user_telphone_number == '' or user_email == '' or user_password == '' or user_name == '' or user_id == '' :
 			warning = 'please fill all information in the from for successfull create new District water Engineer'
@@ -130,6 +144,8 @@ def createEngineer(request,user_id):
 		newuser.telphone_number = user_telphone_number
 		newuser.address = user_address
 		newuser.sex = user_sex
+		newuser.district = user_district
+		newuser.region = user_region
 	
 		#saving data
 		newuser.save()
@@ -153,6 +169,8 @@ def createChairperson(request, user_id):
 	user_id = ''	
 	user_location = ''
 	user_address = ''
+	user_district = ''
+	user_region = ''
 	message = ''
 	warning = ''
 	welcome_info = "Welcome"
@@ -183,6 +201,12 @@ def createChairperson(request, user_id):
 	
 		user_sex_list = form.getlist('sex')
 		user_sex = user_sex_list[0]
+		
+		user_district_list = form.getlist('district')
+		user_district = user_district_list[0]
+		
+		user_region_list = form.getlist('region')
+		user_region = user_region_list[0]
 	
 		if user_sex == '' or user_location == '' or user_telphone_number == '' or user_email == '' or user_password == '' or user_name == '' or user_id == '' :
 			warning = 'please fill all information in the from inoreder to create new user'
@@ -201,6 +225,9 @@ def createChairperson(request, user_id):
 		newuser.physical_location_name = user_location
 		newuser.address = user_address
 		newuser.sex = user_sex
+		newuser.district = user_district
+		newuser.region = user_region
+	
 		#saving data
 		newuser.save()
 	
@@ -230,23 +257,32 @@ def enginerHome(request, user_id):
 
 # log out function
 def log_out(request,user_id,user_e_mail,user_password,user_position):
-	#check the position and apply changes on 
+	#check the position and apply changes on a given user
+	
+	#for admin to log out
 	if user_position == 'admin':
 		message = 'log out, admin'
 		user = Administrator.objects.get(id = user_id)
+		user.login_status = 'log_out'
+		user.save()
+	
+	# for engineer to log out	
 	elif user_position == 'engineer':
 		message = 'log out, engineer'
-		user = Engineer.objects.get(id = user_id)	
+		user = Engineer.objects.get(id = user_id)
+		user.login_status = 'log_out'
+		user.save()	
+		
+	# for cowso chairperson to log out	
 	elif user_position == 'cowso':
 		message = 'logout, cowso chairperson'
 		user = Chairperson.objects.get(id = user_id)
-		user.cowso_chairperson_name = 'latifa'
+		user.login_status = 'log_out'
 		user.save()
 	else:
 		message = ''		
 	
-	context={'message':message,'user':user}
-	return render(request, 'test.html',context)
+	return HttpResponseRedirect('/')
 	
 	
 	
