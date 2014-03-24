@@ -2,12 +2,10 @@
 {% load cms_tags menu_tags %}
 {% block page_contents %}
 <!-- information about current user and logout option -->
-<span class ='pull-right welcomeinfo'>{{welcome_info}} <i>,&#160;{{user.cowso_chairperson_name}}.</i>&#160;&#160;<a href = "{% url 'log_out' user.id user.e_mail %}" >log out</a></span><hr><br>
-
+<span class ='pull-right welcomeinfo'>{{welcome_info}} <i>,&#160;{{user.cowso_chairperson_name}}.</i>&#160;&#160;<a href = "{% url 'log_out' user.id user.e_mail user.password position %}" >log out</a></span><hr><br>
 
 <!-- update form for water point status-->
-<form action = "" method = "">	
-
+<form action = "" method = "">
 <!-- checking and display all water point for a particular COWSO chairperson-->	
 {% for waterpoint in waterpointslist%}
 {% if waterpoint.physical_location_name == p %}

@@ -2,7 +2,7 @@
 {% load cms_tags menu_tags %}
 {% block page_contents %}
 <!-- information about current user and logout option -->	
-<span class ='pull-right welcomeinfo'>{{welcome_info}},<i>&#160;{{user.admin_name}}.</i>&#160;&#160;<a href = "{% url 'log_out' user.id user.e_mail %}" >log out</a></span><hr><br>
+<span class ='pull-right welcomeinfo'>{{welcome_info}},<i>&#160;{{user.admin_name}}.</i>&#160;&#160;<a href = "{% url 'log_out'  user.id user.e_mail user.password position %}" >log out</a></span><hr><br>
 
 <!--display options on admin userinterface-->
 
