@@ -4,6 +4,8 @@ from django.db import models
 class Waterpoint(models.Model):
 	code_number = models.CharField(max_length = 20)
 	water_point_name = models.CharField(max_length = 200)
+	district = models.CharField(max_length = 200, blank = True)
+	region = models.CharField(max_length = 200, blank = True)
 	physical_location_name = models.CharField(max_length = 200)
 	latitude = models.CharField(max_length = 200 , blank = True) 
 	longitude = models.CharField(max_length = 200 , blank = True)

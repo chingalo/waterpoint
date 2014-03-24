@@ -8,7 +8,10 @@ class Administrator(models.Model):
 	e_mail = models.EmailField(max_length = 200)
 	telphone_number =  models.CharField(max_length = 20)
 	address =  models.CharField(max_length = 200, blank = True)
+	district = models.CharField(max_length = 200, blank = True)
+	region = models.CharField(max_length = 200, blank = True)
 	sex = models.CharField(max_length = 6)
+	login_status = models.CharField(max_length = 100,  default = 'log_out')
 	
 	def __unicode__(self): #for pyhton 3 : def __str__(self):
 		return self.admin_name
@@ -20,7 +23,10 @@ class Engineer(models.Model):
 	e_mail = models.EmailField(max_length = 200)
 	telphone_number = models.CharField(max_length = 20)
 	address =  models.CharField(max_length = 200, blank = True)
+	district = models.CharField(max_length = 200, blank = True)
+	region = models.CharField(max_length = 200, blank = True)
 	sex = models.CharField(max_length = 6)
+	login_status = models.CharField(max_length = 100, default = 'log_out')
 	
 	def __unicode__(self): #for pyhton 3 : def __str__(self):
 		return self.engineer_name
@@ -32,8 +38,11 @@ class Chairperson(models.Model):
 	e_mail = models.EmailField(max_length = 200)
 	telphone_number =  models.CharField(max_length = 20)
 	address =  models.CharField(max_length = 200, blank = True)
+	district = models.CharField(max_length = 200, blank = True)
+	region = models.CharField(max_length = 200, blank = True)
 	physical_location_name = models.CharField(max_length = 200)
 	sex = models.CharField(max_length = 6)
+	login_status = models.CharField(max_length = 100, default = 'log_out')
 	
 	def __unicode__(self): #for pyhton 3 : def __str__(self):
 		return self.cowso_chairperson_name
