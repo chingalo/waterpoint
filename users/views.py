@@ -22,12 +22,23 @@ def authorize(request):
 	
 	#extract username
 	usernamelist = loginform.getlist('username')
-	username = usernamelist[0]
+	if not usernamelist :
+		message = 'Sorry! Currently you are not log in into this System.'
+		context = {'message':message}
+		return render(request, 'notlogin.html', context)
+	else:
+		username = usernamelist[0]
+	
 	
 	#extract password
 	passwordlist = loginform.getlist('password')
-	password = passwordlist[0]
-	
+	if not passwordlist:
+		message = 'Sorry! Currently you are not log in into this System.'
+		context = {'message':message}
+		return render(request, 'notlogin.html', context)
+	else:
+		password = passwordlist[0]	
+
 	position = ''
 		
 	#checking if user is system aadministor

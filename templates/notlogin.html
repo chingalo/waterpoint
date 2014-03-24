@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+{% load cms_tags menu_tags %}
+{% block page_contents %}
+<!-- message to be displayed -->
+<hr>
+<p style = 'color:red';><i>{{message}}</i></p><br>
+
+<!-- link to login page -->
+<p>
+Please click <a href ='/'><i>here</i> </a>to log in
+</p>
+<hr>
+
+{% endblock %}
