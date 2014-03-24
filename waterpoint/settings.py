@@ -198,8 +198,7 @@ LANGUAGES = [
 ]
 CMS_TEMPLATES = ( 
 	('login.html', gettext('login')),
-	('users.html', gettext('interface fro all users')),
-           
+	           
    )
 
 CMS_LANGUAGES = {
