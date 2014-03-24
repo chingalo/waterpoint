@@ -53,7 +53,7 @@ def authorize(request):
 	for engineer in engineerlist:
 		if engineer.e_mail == username and engineer.password == password: 
 			position = 'engineer'
-			engineerlogin_status = 'log_in'
+			engineer.login_status = 'log_in'
 			engineer.save()
 			user = engineer
 
@@ -107,62 +107,68 @@ def createEngineer(request,user_id):
 	warning = ''
 	welcome_info = "Welcome"
 	
-	#taking data from regstration form
-	if  request.POST :
-		form = request.POST
-	#retrieve all data from registration
-		user_id_list= form.getlist('id')
-		user_id = user_id_list[0]
+	#check if current user is authorized user or not
+	if user.login_status == 'log_out':
+		message = 'Sorry! Currently you are not log in into this System.'
+		context = {'message':message}
+		return render(request, 'notlogin.html', context)
+	else:
+		#taking data from regstration form
+		if  request.POST :
+			form = request.POST
+		#retrieve all data from registration
+			user_id_list= form.getlist('id')
+			user_id = user_id_list[0]
 	
-		user_name_list = form.getlist('name')
-		user_name = user_name_list[0]
+			user_name_list = form.getlist('name')
+			user_name = user_name_list[0]
 	
-		user_password_list = form.getlist('password')
-		user_password = user_password_list[0]
+			user_password_list = form.getlist('password')
+			user_password = user_password_list[0]
 	
-		user_email_list = form.getlist('email')
-		user_email = user_email_list[0]
+			user_email_list = form.getlist('email')
+			user_email = user_email_list[0]
 	
-		user_telphone_number_list = form.getlist('number')
-		user_telphone_number = user_telphone_number_list[0]
+			user_telphone_number_list = form.getlist('number')
+			user_telphone_number = user_telphone_number_list[0]
 	
-		user_address_list = form.getlist('address')
-		user_address = user_address_list[0]
+			user_address_list = form.getlist('address')
+			user_address = user_address_list[0]
 	
-		user_sex_list = form.getlist('sex')		
-		user_sex = user_sex_list[0]
+			user_sex_list = form.getlist('sex')		
+			user_sex = user_sex_list[0]
 		
-		user_district_list = form.getlist('district')
-		user_district = user_district_list[0]
+			user_district_list = form.getlist('district')
+			user_district = user_district_list[0]
 		
-		user_region_list = form.getlist('region')
-		user_region = user_region_list[0]	
+			user_region_list = form.getlist('region')
+			user_region = user_region_list[0]	
 	
-		if user_sex == '' or user_telphone_number == '' or user_email == '' or user_password == '' or user_name == '' or user_id == '' :
-			warning = 'please fill all information in the from for successfull create new District water Engineer'
-		else: 
-			message = 'You have successful created new District water engineer'
+			if user_sex == '' or user_telphone_number == '' or user_email == '' or user_password == '' or user_name == '' or user_id == '' :
+				warning = 'please fill all information in the from for successfull create new District water Engineer'
+			else: 
+				message = 'You have successful created new District water engineer'
 	
-	#create object for storing data from registration form
-	newuser = Engineer()
-	if message :
+			#create object for storing data from registration form
+			newuser = Engineer()
+			if message :
 		
-		#add data into object created
-		newuser.engineer_id = user_id
-		newuser.engineer_name = user_name
-		newuser.password = user_password
-		newuser.e_mail = user_email
-		newuser.telphone_number = user_telphone_number
-		newuser.address = user_address
-		newuser.sex = user_sex
-		newuser.district = user_district
-		newuser.region = user_region
+				#add data into object created
+				newuser.engineer_id = user_id
+				newuser.engineer_name = user_name
+				newuser.password = user_password
+				newuser.e_mail = user_email
+				newuser.telphone_number = user_telphone_number
+				newuser.address = user_address
+				newuser.sex = user_sex
+				newuser.district = user_district
+				newuser.region = user_region
 	
-		#saving data
-		newuser.save()
+				#saving data
+				newuser.save()
 	
-	context = {'message':message,'position':'admin','user':user,'warning':warning,'welcome_info':welcome_info}
-	return render(request, 'createEngineer.html', context)
+		context = {'message':message,'position':'admin','user':user,'warning':warning,'welcome_info':welcome_info}
+		return render(request, 'createEngineer.html', context)
 
 #create COWSO chairperson	
 def createChairperson(request, user_id):
@@ -185,83 +191,99 @@ def createChairperson(request, user_id):
 	message = ''
 	warning = ''
 	welcome_info = "Welcome"
-	#taking data from regstration form
-	if  request.POST :
-		form = request.POST
-	#retrieve all data from registration
-		user_id_list= form.getlist('id')
-		user_id = user_id_list[0]
+	#check if current user is authorized user or not
+	if user.login_status == 'log_out':
+		message = 'Sorry! Currently you are not log in into this System.'
+		context = {'message':message}
+		return render(request, 'notlogin.html', context)
+	else:
+		#taking data from regstration form
+		if  request.POST :
+			form = request.POST
+			#retrieve all data from registration
+			user_id_list= form.getlist('id')
+			user_id = user_id_list[0]
 	
-		user_name_list = form.getlist('name')
-		user_name = user_name_list[0]
+			user_name_list = form.getlist('name')
+			user_name = user_name_list[0]
 	
-		user_password_list = form.getlist('password')
-		user_password = user_password_list[0]
+			user_password_list = form.getlist('password')
+			user_password = user_password_list[0]
 	
-		user_email_list = form.getlist('email')
-		user_email = user_email_list[0]
+			user_email_list = form.getlist('email')
+			user_email = user_email_list[0]
 	
-		user_telphone_number_list = form.getlist('number')
-		user_telphone_number = user_telphone_number_list[0]
+			user_telphone_number_list = form.getlist('number')
+			user_telphone_number = user_telphone_number_list[0]
 	
-		user_address_list = form.getlist('address')
-		user_address = user_address_list[0]
+			user_address_list = form.getlist('address')
+			user_address = user_address_list[0]
 		
-		user_location_list = form.getlist('location')
-		user_location = user_location_list[0]
+			user_location_list = form.getlist('location')
+			user_location = user_location_list[0]
 	
-		user_sex_list = form.getlist('sex')
-		user_sex = user_sex_list[0]
+			user_sex_list = form.getlist('sex')
+			user_sex = user_sex_list[0]
 		
-		user_district_list = form.getlist('district')
-		user_district = user_district_list[0]
+			user_district_list = form.getlist('district')
+			user_district = user_district_list[0]
 		
-		user_region_list = form.getlist('region')
-		user_region = user_region_list[0]
+			user_region_list = form.getlist('region')
+			user_region = user_region_list[0]
 	
-		if user_sex == '' or user_location == '' or user_telphone_number == '' or user_email == '' or user_password == '' or user_name == '' or user_id == '' :
-			warning = 'please fill all information in the from inoreder to create new user'
-		else: 
-			message = 'You have successful create new COWSO chairperson'	
+			if user_sex == '' or user_location == '' or user_telphone_number == '' or user_email == '' or user_password == '' or user_name == '' or user_id == '' :
+				warning = 'please fill all information in the from inoreder to create new user'
+			else: 
+				message = 'You have successful create new COWSO chairperson'	
 	
-	#create object for storing data from registration form
-	newuser = Chairperson()
-	if message :
-		#add data into object created
-		newuser.cowso_id = user_id
-		newuser.cowso_chairperson_name = user_name
-		newuser.password = user_password
-		newuser.e_mail = user_email
-		newuser.telphone_number = user_telphone_number
-		newuser.physical_location_name = user_location
-		newuser.address = user_address
-		newuser.sex = user_sex
-		newuser.district = user_district
-		newuser.region = user_region
+		#create object for storing data from registration form
+		newuser = Chairperson()
+		if message :
+			#add data into object created
+			newuser.cowso_id = user_id
+			newuser.cowso_chairperson_name = user_name
+			newuser.password = user_password
+			newuser.e_mail = user_email
+			newuser.telphone_number = user_telphone_number
+			newuser.physical_location_name = user_location
+			newuser.address = user_address
+			newuser.sex = user_sex
+			newuser.district = user_district
+			newuser.region = user_region
 	
-		#saving data
-		newuser.save()
+			#saving data
+			newuser.save()
 	
-	context = {'message':message ,'user':user,'warning':warning,'welcome_info':welcome_info,'position':'admin' }
-	return render(request, 'createChairperson.html', context)	
+		context = {'message':message ,'user':user,'warning':warning,'welcome_info':welcome_info,'position':'admin' }
+		return render(request, 'createChairperson.html', context)	
 
 # back to admin home page	
 def adminHome(request, user_id):
 	#get user of system:
 	user = Administrator()
 	user = Administrator.objects.get(id = user_id)
-	welcome_info = "Welcome"
-	context = {'user':user,'welcome_info':welcome_info,'position':'admin'}
-	return render(request,'admin.html',context)
+	if user.login_status == 'log_out':
+		message = 'Sorry! Currently you are not log in into this System.'
+		context = {'message':message}
+		return render(request, 'notlogin.html', context)
+	else:
+		welcome_info = "Welcome"
+		context = {'user':user,'welcome_info':welcome_info,'position':'admin'}
+		return render(request,'admin.html',context)
 	
 #back to District water engineer home page
 def enginerHome(request, user_id):
 	#get current user
 	user = Engineer()
 	user = Engineer.objects.get(id = user_id)
-	welcome_info = "Welcome"
-	context = {'welcome_info':welcome_info,'position':'engineer' , 'user':user}
-	return render(request, 'engineer.html',context)
+	if user.login_status == 'log_out':
+		message = 'Sorry! Currently you are not log in into this System.'
+		context = {'message':message}
+		return render(request, 'notlogin.html', context)
+	else:
+		welcome_info = "Welcome"
+		context = {'welcome_info':welcome_info,'position':'engineer' , 'user':user}
+		return render(request, 'engineer.html',context)
 
 #thank word for cowso chairperson after updating water point status
 

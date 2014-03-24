@@ -12,21 +12,26 @@ def waterpointDetail(request,user_id):
 	#get the current user
 	user = Engineer()
 	user = Engineer.objects.get(id = user_id )
-	welcome_info = "Welcome"
-	#take form from template
-	form = WaterpointRegistration(request.POST)
-	message = ""
-	#checking if form is completed or not, and taking the action
-	if form.is_valid():
-		form.save()
-		message = "You  have successfull create new water point"
-		context = {'message':message,'position':'engineer','user':user,'welcome_info':welcome_info}
-		return render (request, 'engineer.html',context)
+	if user.login_status == 'log_out':
+		message = 'Sorry! Currently you are not log in into this System.'
+		context = {'message':message}
+		return render(request, 'notlogin.html', context)
 	else:
-		message = "Please fill all information below, for successfull create ner water point"	
-		form = WaterpointRegistration()
-		context = {'form':form,'message':message,'position':'engineer', 'user':user,'welcome_info':welcome_info}
-		return render(request,'waterpointdescription.html',context)
+		welcome_info = "Welcome"
+		#take form from template
+		form = WaterpointRegistration(request.POST)
+		message = ""
+		#checking if form is completed or not, and taking the action
+		if form.is_valid():
+			form.save()
+			message = "You  have successfull create new water point"
+			context = {'message':message,'position':'engineer','user':user,'welcome_info':welcome_info}
+			return render (request, 'engineer.html',context)
+		else:
+			message = "Please fill all information below, for successfull create ner water point"	
+			form = WaterpointRegistration()
+			context = {'form':form,'message':message,'position':'engineer', 'user':user,'welcome_info':welcome_info}
+			return render(request,'waterpointdescription.html',context)
 		    
 # images for water points
 def waterpointPhotos(request):
