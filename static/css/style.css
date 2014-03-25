@@ -1,3 +1,8 @@
+body{
+font-family:tohama;
+font-size:16px;
+}
+
 /* welcome info and logout link*/
 .welcomeinfo{
 color:#1E90FF;
@@ -13,4 +18,12 @@ text-align:justify;
 color:;
 text-transform:capitalize;
 }
-
+.title_of_site{
+text-transform:capitalize;
+font: 24px bold  tohama;
+}
+.head_of_site{
+text-transform:capitalize;
+font: 15px bold italic tohama;
+color:#000000;
+}
