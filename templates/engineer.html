@@ -9,13 +9,36 @@
 <span style = "color:#7F7F7F"><i>{{message}}</i></span><hr>
 <!--links to the forms for add new waterpoint -->
 <div class = 'row-fluid'>
-	
-<div class = "span6"><a href = "{% url 'waterpointDetail' user.id %}">Create new water point</a><br>
+<div class = "span1"></div>	
+<!-- water point details -->	
+<div class = "span5 detail_on_engineer_ui">
+<p>
+To register new water point
+</p>
+<ul>
+<li>Click on "Register new water point", below</li>
+<li>Fill the provided form, to register new water point</li>
+<li>click "Register" buttom to register new water point or "Cancel" buttom to reset the form</li>
+</ul>	
+<a href = "{% url 'waterpointDetail' user.id %}">Register new water point</a><br><br>
 </div>
-<div class = "span6">
-<a href = "{% url 'waterpointPhotos' user.id %}">add photos for water point</a>
-</div>	
 
+<!-- water point images upload -->
+<div class = "span5 detail_on_engineer_ui">
+<p>
+To upload image for a given water point:
+</p>
+<ul>
+<li>Make sure you have register a given water point</li>
+<li>Click on "Upload photos for a given water point", below</li>
+<li>Fill all fields, to upload image for a given water point</li>
+<li>Click on "Upload" buttom to upload image or "Cancel" buttom to reset the form</li>
+</ul>
+	
+<a href = "{% url 'waterpointPhotos' user.id %}">Upload photos for a given water point</a><br><br>
+
+</div>	
+<div class = "span1"></div>
 </div>
 
 {% endblock %}

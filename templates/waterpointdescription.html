@@ -3,9 +3,8 @@
 {% block page_contents %}
 <!-- detail about current engineer -->
 <span class ='pull-right welcomeinfo'>{{welcome_info}}<i>,&#160;{{user.engineer_name}}<b>&#160;.</b></i>&#160;&#160;<a href = "{% url 'log_out' user.id user.e_mail user.password position %}" >log out</a><br> <a href = "{% url 'engineerhome' user.id %}">back</a></span><br><hr>
-	
-{{message}}<hr>
-{{warning}}
+<!-- info or error message during registration -->
+ <i >{{message}}</i><br><br>
 
 <!-- form for creating all descrption of water point-->
 <form action ="{% url 'waterpointDetail' user.id %}" method="POST">
