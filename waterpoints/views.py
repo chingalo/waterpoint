@@ -75,7 +75,11 @@ def waterpointPhotos(request, user_id):
 			return render(request,'waterpointphotos.html',context)		
 			
 		
-		
+#update water point status
+def update_waterpoint(request, user_id, user_location):
+	
+	context = {'user_id':user_id, 'user_location':user_location, 'form':'not yet defined'}	
+	return render (request, 'test.html', context)	
 		
 	
 	

@@ -6,12 +6,12 @@
 {% if waterpoint_update %}
 {{waterpoint_update}}
 <!-- update form for water point status-->
-<form action = "" method = "">
+<form action = "{% url 'update_waterpoint' user.id user_location %}" method = "">
 <!-- checking and display all water point for a particular COWSO chairperson-->	
 {% for waterpoint in waterpoint_update %}
 {{waterpoint}}
 <!-- status choices -->
-<select name = "status">
+<select name = "status_list">
 <option value = "">---------</option>
 <option value = "functioning" name = "status" > functioning </option>
 <option value = "non-functioning" name = "status" > non-functioning </option>
