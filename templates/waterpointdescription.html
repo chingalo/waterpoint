@@ -5,6 +5,7 @@
 <span class ='pull-right welcomeinfo'>{{welcome_info}}<i>,&#160;{{user.engineer_name}}<b>&#160;.</b></i>&#160;&#160;<a href = "{% url 'log_out' user.id user.e_mail user.password position %}" >log out</a><br> <a href = "{% url 'engineerhome' user.id %}">back</a></span><br><hr>
 	
 {{message}}<hr>
+{{warning}}
 
 <!-- form for creating all descrption of water point-->
 <form action ="{% url 'waterpointDetail' user.id %}" method="POST">
@@ -13,8 +14,9 @@
 <table align="center">
 {{ form.as_table}}
 </table>
-<input type = 'submit' value = "save" name = "submit">
-<input type = "reset" value = "cancel">
+<br>
+<input type = 'submit' value = "Register" name = "submit">&#160;&#160;
+<input type = "reset" value = "Cancel">
 </div>
 </form>
 

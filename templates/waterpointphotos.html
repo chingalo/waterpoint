@@ -2,31 +2,24 @@
 {% load cms_tags menu_tags %}
 {% block page_contents %}
 <!-- detail about current engineer -->
-<span class ='pull-right welcomeinfo'>{{welcome_info}}<i>,&#160;{{user.engineer_name}}<b>&#160;.</b></i>&#160;&#160;<a href = "{% url 'log_out' user.id user.e_mail %}" >log out</a><br> <a href = "{% url 'engineerhome' user.id  %}">back</a></span><br><hr>
-{{message}}<hr>
+<span class ='pull-right welcomeinfo'>{{welcome_info}}<i>,&#160;{{user.engineer_name}}<b>&#160;.</b></i>&#160;&#160;<a href = "{% url 'log_out' user.id user.e_mail user.password position %}" >log out</a><br> <a href = "{% url 'engineerhome' user.id  %}">back</a></span><br><hr>
 
-<hr>
-{{result}}
-<hr>
-<br>
+<!-- info or error message during registration -->
+{% if message or warning%}{{message}} <i ><span style = 'color:red';>{{warning}}</span></i>
+{% else %}
 
-<!-- form to upload image for a give water point-->
-<form action = "{% url 'waterpointPhotos'%}" method = "POST">
+<!-- header of registration form-->
+Fill the form below, inorder to uploaad image
+{% endif %}
+<form action = "{% url 'waterpointPhotos' user.id %}" method = "POST" enctype = 'multipart/form-data'>
 {% csrf_token %}
 <table align = "center">
-<tr>
-<td style ="padding-right:5px;">
-Image:
-</td>
-
-<td style ="padding-left:5px;"><input type = "file" name = "image"></td>
-</tr>
+{{form.as_table}}
 </table>
 <br>
-<td><input type = "submit" value = "save" name = "submit"></td>
-<td><input type = "reset" value = "cancel" name = "reset"></td>
+<input type = "submit" value = "Upload" name = "submit">&#160;&#160;
+<input type = "reset" value = "Cancel" name = "reset">
 </form>
-
 
 </div>
 </div>
