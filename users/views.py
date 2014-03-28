@@ -60,7 +60,13 @@ def authorize(request):
 	#cheking if user is cowso chairperson
 	for chairperson in chairpersonlist:
 		if chairperson.e_mail == username and chairperson.password == password:
-			p=chairperson.physical_location_name
+			user_location=chairperson.physical_location_name
+			
+			#taaking water point to be updated
+			waterpoint_update = []
+			for waterpoint in waterpointslist:
+				if  waterpoint.physical_location_name == user_location:
+					waterpoint_update.append(waterpoint)
 			position = 'cowso chairperson'
 			chairperson.login_status = 'log_in'
 			chairperson.save()
@@ -78,7 +84,7 @@ def authorize(request):
 	elif position == 'cowso chairperson':
 		welcome_info = 'Welcome'
 		
-		context={'p':p,'position':'cowso','welcome_info':welcome_info,'user':user, 'waterpointslist':waterpointslist}
+		context={'user_location':user_location,'position':'cowso','welcome_info':welcome_info,'user':user, 'waterpoint_update':waterpoint_update}
 		return render(request, 'chairperson.html',context)
 	else:
 		message = 'Incorrect username or password'
