@@ -18,7 +18,6 @@ text-align:justify;
 }
 #field_name{
 text-align:justify;
-color:;
 text-transform:capitalize;
 }
 .title_of_site{
@@ -30,3 +29,19 @@ text-transform:capitalize;
 font: 15px bold italic tohama;
 color:#000000;
 }
+.detail_on_engineer_ui{
+text-align:justify;
+}
+.detail_on_engineer_ui p{
+color:#4D4D4D;
+font-size:18px;
+}
+.detail_on_engineer_ui li{
+font-style:italic;
+color:#4D4D4D;
+}
+
+
+
+
+
