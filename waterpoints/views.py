@@ -29,9 +29,9 @@ def waterpointDetail(request,user_id):
 			context = {'message':message,'position':'engineer','user':user,'welcome_info':welcome_info}
 			return render (request, 'engineer.html',context)
 		else:
-			warning = "Please fill all information below, for successfull create ner water point"	
+			message = "Please fill all information below, for successfull create new water point"	
 			form = WaterpointRegistration()
-			context = {'form':form,'warning':warning,'position':'engineer', 'user':user,'welcome_info':welcome_info}
+			context = {'form':form,'message':message,'position':'engineer', 'user':user,'welcome_info':welcome_info}
 			return render(request,'waterpointdescription.html',context)
 		    
 # images for water points
@@ -51,7 +51,7 @@ def waterpointPhotos(request, user_id):
 		if request.method == 'POST':
 					
 		#taking bounded form
-			form = form = Upload_waterpoint_photos(request.POST, request.FILES)
+			form = Upload_waterpoint_photos(request.POST, request.FILES)
 			
 			if form.is_valid():
 				#save the form and return successfull upload message if the form is completely filled
