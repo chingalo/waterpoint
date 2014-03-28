@@ -13,6 +13,9 @@ th{
 color:#4D4D4D;
 text-transform:capitalize;
 }
+td{
+text-align:justify;
+}
 #field_name{
 text-align:justify;
 color:;
