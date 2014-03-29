@@ -62,7 +62,7 @@ def authorize(request):
 		if chairperson.e_mail == username and chairperson.password == password:
 			user_location=chairperson.physical_location_name
 			
-			#taaking water point to be updated
+			#taking water point to be updated
 			waterpoint_update = []
 			for waterpoint in waterpointslist:
 				if  waterpoint.physical_location_name == user_location:

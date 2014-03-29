@@ -4,14 +4,15 @@
 <!-- information about current user and logout option -->
 <span class ='pull-right welcomeinfo'>{{welcome_info}} <i>,&#160;{{user.cowso_chairperson_name}}.</i>&#160;&#160;<a href = "{% url 'log_out' user.id user.e_mail user.password position %}" >log out</a></span><hr><br>
 {% if waterpoint_update %}
-{{waterpoint_update}}
+
 <!-- update form for water point status-->
-<form action = "{% url 'update_waterpoint' user.id user_location %}" method = "">
+<form action = "{% url 'update_waterpoint' user.id user_location %}" method = "POST">
+{% csrf_token %}
 <!-- checking and display all water point for a particular COWSO chairperson-->	
 {% for waterpoint in waterpoint_update %}
 {{waterpoint}}
 <!-- status choices -->
-<select name = "status_list">
+<select name = "status">
 <option value = "">---------</option>
 <option value = "functioning" name = "status" > functioning </option>
 <option value = "non-functioning" name = "status" > non-functioning </option>

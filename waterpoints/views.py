@@ -76,9 +76,21 @@ def waterpointPhotos(request, user_id):
 			
 		
 #update water point status
-def update_waterpoint(request, user_id, user_location):
+def update_waterpoint(request, user_id, user_location):	
+	#taking query dictionary having list of status
+	form = request.POST
 	
-	context = {'user_id':user_id, 'user_location':user_location, 'form':'not yet defined'}	
+	#extract list of status from a form posted
+	statuslist = form.getlist('status')
+	 
+	#taking water point to be uploaded:
+	waterpointslist = Waterpoint.objects.all()
+	waterpoint_update = []
+	for waterpoint in waterpointslist:
+		if  waterpoint.physical_location_name == user_location:
+			waterpoint_update.append(waterpoint) 		
+	
+	context = {'user_id':user_id, 'user_location':user_location, 'form':form,'statuslist':statuslist,'new_list':waterpoint_update}	
 	return render (request, 'test.html', context)	
 		
 	
