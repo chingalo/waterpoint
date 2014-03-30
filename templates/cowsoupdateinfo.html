@@ -1,0 +1,12 @@
+{% extends "base.html" %}
+{% load cms_tags menu_tags %}
+<!-- contents for the login templates-->
+{% block page_contents %}
+
+name:{{user}}<br>
+email:{{user.e_mail}}<br>
+password:{{user.password}}<br>
+id: {{user.id}}<br>
+position:{{position}}
+
+{% endblock %}

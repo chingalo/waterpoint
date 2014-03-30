@@ -78,9 +78,8 @@ def waterpointPhotos(request, user_id):
 #update water point status
 def update_waterpoint(request, user_id, user_location):	
 	waterpointslist = Waterpoint.objects.all()
-	message = 'Please select new status for each water point'
 	list_empty = False
-	
+	value = 0;	
 	#taking user and check if he or she authorized user in the system
 	user = Chairperson()
 	user = Chairperson.objects.get(id = user_id)
@@ -91,7 +90,7 @@ def update_waterpoint(request, user_id, user_location):
 	#extract list of status from a form posted
 	statuslist = form.getlist('status')
 	
-	#cheking if all waterpoint has not been filled and return new form for updating status:	
+#cheking if all waterpoint has not been filled and return new form for updating status:	
 	for x in range(len(statuslist)):
 		if statuslist[x] == '':
 			list_empty = True
@@ -104,29 +103,22 @@ def update_waterpoint(request, user_id, user_location):
 				waterpoint_update.append(waterpoint)
 		warning = 'Please make sure you have selected new status for each water point!'
 		welcome_info = 'Welcome'
-		context={'user_location':user_location,'message':message,'position':'cowso','welcome_info':welcome_info,'user':user, 'waterpoint_update':waterpoint_update}
+		context={'user_location':user_location,'warning':warning,'position':'cowso','welcome_info':welcome_info,'user':user, 'waterpoint_update':waterpoint_update}
 		return render(request, 'chairperson.html',context)
 	else:
 		#taking water points from database which have to be updated its status:
 		waterpoint_update = []
 		status = []
-		value = 0;	
+		
 		for waterpoint in waterpointslist:
 			if  waterpoint.physical_location_name == user_location and statuslist[value] != '' :
 				#save the status
-				status.append(statuslist[value])
+				waterpoint.status = statuslist[value]
+				waterpoint.save()
 				waterpoint_update.append(waterpoint)			 
 				value = value + 1		
 			else:
 				value = value + 1
 			
-		context = {'user_id':user_id, 'user_location':user_location, 'form':message,'statuslist':len(statuslist),'new_list':waterpoint_update,'new_status':status}	
-		return render (request, 'test.html', context)	
-		
-	
-	
-	
-	
-			
-			
-
+		context = {'position':'cowso','user':user,}	
+		return render (request, 'cowsoupdateinfo.html', context)
