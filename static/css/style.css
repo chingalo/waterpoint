@@ -9,7 +9,6 @@ text-align:center;
 color:#1E90FF;
 
 }
-
 th{
 color:#4D4D4D;
 text-transform:capitalize;
@@ -18,12 +17,14 @@ td{
 text-align:justify;
 }
 .datails_in_admin_ui{
+text-align:justify;
 color:#4D4D4D;
+}
+.datails_in_admin_ui p{
 font-size:17px;
 }
 .datails_in_admin_ui li{
 font-style:italic;
-color:#4D4D4D;
 }
 #field_name{
 text-align:justify;
