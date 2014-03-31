@@ -9,9 +9,9 @@
 <span style = "color:#7F7F7F"><i>{{message}}</i></span><hr>
 <!--links to the forms for add new waterpoint -->
 <div class = 'row-fluid'>
-<div class = "span1"></div>	
+
 <!-- water point details -->	
-<div class = "span5 detail_on_engineer_ui">
+<div class = "span4 detail_on_engineer_ui">
 <p>
 To register new water point
 </p>
@@ -24,7 +24,7 @@ To register new water point
 </div>
 
 <!-- water point images upload -->
-<div class = "span5 detail_on_engineer_ui">
+<div class = "span4 detail_on_engineer_ui">
 <p>
 To upload image for a given water point:
 </p>
@@ -33,12 +33,15 @@ To upload image for a given water point:
 <li>Click on "Upload photos for a given water point", below</li>
 <li>Fill all fields, to upload image for a given water point</li>
 <li>Click on "Upload" buttom to upload image or "Cancel" buttom to reset the form</li>
-</ul>
-	
+</ul>	
 <a href = "{% url 'waterpointPhotos' user.id %}">Upload photos for a given water point</a><br><br>
-
 </div>	
-<div class = "span1"></div>
+
+<!-- reports in district water engineer interface -->
+<div class = "span4 detail_on_engineer_ui">
+<p>Reports</p>	
+
+</div>
 </div>
 
 {% endblock %}

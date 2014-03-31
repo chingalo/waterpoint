@@ -6,19 +6,9 @@
 
 <!--display options on admin userinterface-->
 
-<table class = 'table' style = ''>
-<thead>
-<tr>
-<!-- header in admin intaerface -->
-<th>District water Engineer </th>
-<th>COWSO chairperson</th>
-<th>useful links</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<!-- details about respectively header-->
-<td class = 'datails_in_admin_ui'>
+<div class = 'row-fluid'>
+<div class = 'span4 datails_in_admin_ui'>
+<p>District water Engineer</p>
 District water Engineer is one involving to add static infromation.<br>	
 To add successful register new District water Engineer in the system :<br>
 <ul>
@@ -27,8 +17,10 @@ To add successful register new District water Engineer in the system :<br>
 <li>click "Register user" buttom to register new user or cancel to reset the form</li>
 </ul>
 <a href = "{% url 'createEngineer' user.id %}">Register new District water Engineer</a>
-</td>
-<td class = 'datails_in_admin_ui'>
+</div>	
+
+<div class = 'span4 datails_in_admin_ui'>
+<p>COWSO chairperson</p>
 COWSO chairperson is one involving to add dynamic infromation.<br>	
 To add successful register new District water Engineer in the system :<br>
 <ul>
@@ -37,15 +29,13 @@ To add successful register new District water Engineer in the system :<br>
 <li>click "Register user" buttom to register new user or "Cancel" to reset the form</li>
 </ul>
 <a href = "{% url 'createChairperson' user.id %}">Register new COWSO chairperson</a>
-</td>
-<td>
-<!-- useful links and report's links -->
-hhdfhdfhfhfdh;f;fjjsjj;sjf;sofjlsjfjsofsjf
-</td>
+</div>	
 
-</tr>
-</tbody>
+<div class = 'span4 datails_in_admin_ui'>
+<p>Reports</p>
+still it is under development
+</div>	
+</div>	
 
-</table>
 
 {% endblock %}
