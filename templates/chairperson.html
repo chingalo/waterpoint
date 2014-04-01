@@ -7,10 +7,8 @@
 <!-- info or error message during registration -->
 <h4>{% if message or warning%}{{message}} <i ><span style = 'color:red';>{{warning}}</span></i></h4>
 {% endif %}<br>
-<!-- update form for water point status 
-action = "{% url 'update_waterpoint' user.id user_location %}" method = "POST"
--->
-<form >
+<!-- update form for water point status -->
+<form action = "{% url 'update_waterpoint' user.id user_location %}" method = "POST" >
 {% csrf_token %}
 <!-- checking and display all water point for a particular COWSO chairperson-->	
 {% for waterpoint in waterpoint_update %}
