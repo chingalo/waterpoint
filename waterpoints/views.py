@@ -89,36 +89,21 @@ def update_waterpoint(request, user_id, user_location):
 	
 	#extract list of status from a form posted
 	statuslist = form.getlist('status')
-	
-#cheking if all waterpoint has not been filled and return new form for updating status:	
-	for x in range(len(statuslist)):
-		if statuslist[x] == '':
-			list_empty = True
-			break
-	#prepare and send new form	
-	if list_empty == True:
-		waterpoint_update = []
-		for waterpoint in waterpointslist:
-			if  waterpoint.physical_location_name == user_location :
-				waterpoint_update.append(waterpoint)
-		warning = 'Please make sure you have selected new status for each water point!'
-		welcome_info = 'Welcome'
-		context={'user_location':user_location,'warning':warning,'position':'cowso','welcome_info':welcome_info,'user':user, 'waterpoint_update':waterpoint_update}
-		return render(request, 'chairperson.html',context)
-	else:
-		#taking water points from database which have to be updated its status:
-		waterpoint_update = []
-		status = []
-		
-		for waterpoint in waterpointslist:
-			if  waterpoint.physical_location_name == user_location and statuslist[value] != '' :
-				#save the status
-				waterpoint.status = statuslist[value]
-				waterpoint.save()
-				waterpoint_update.append(waterpoint)			 
-				value = value + 1		
+	status_list_length = len(statuslist)
+	waterpoint_update = []
+	status = []
+	for waterpoint in waterpointslist:
+		for status_update in statuslist:
+			if  status_update == '':
+				statuslist.remove(status_update)
 			else:
-				value = value + 1
-			
-		context = {'position':'cowso','user':user,}	
-		return render (request, 'cowsoupdateinfo.html', context)
+				if  waterpoint.physical_location_name == user_location:
+					waterpoint_update.append(waterpoint)
+					status.append(status_update)						
+					statuslist.remove(status_update)
+	if len(waterpoint_update) == status_list_length:
+		message = 'updated'				
+	else:
+		message = 'not updated'		
+	context = {'message':message,'waterpoint_update':waterpoint_update,'user':user,'status':status}	
+	return render (request, 'test.html', context)
