@@ -92,6 +92,8 @@ def update_waterpoint(request, user_id, user_location):
 	status_list_length = len(statuslist)
 	waterpoint_update = []
 	status = []
+	
+	#taking list of ststus and correspond status to be updated
 	for waterpoint in waterpointslist:
 		for status_update in statuslist:
 			if  status_update == '':
@@ -101,9 +103,19 @@ def update_waterpoint(request, user_id, user_location):
 					waterpoint_update.append(waterpoint)
 					status.append(status_update)						
 					statuslist.remove(status_update)
+	
+	#checking if all water point having status and if so save it				
 	if len(waterpoint_update) == status_list_length:
-		message = 'updated'				
+		message = 'updated'
+		for w in waterpoint_update:
+			updated = status[0]
+			w.status = updated
+			status.remove(status[0])
+			w.save()
+			
+		context = {'message':message,'waterpoint_update':waterpoint_update,'user':user,'status':status}	
+		return render (request, 'test.html', context)				
 	else:
 		message = 'not updated'		
-	context = {'message':message,'waterpoint_update':waterpoint_update,'user':user,'status':status}	
-	return render (request, 'test.html', context)
+		context = {'message':message,'waterpoint_update':waterpoint_update,'user':user,'status':status}	
+		return render (request, 'test.html', context)
