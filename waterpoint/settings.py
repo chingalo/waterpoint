@@ -16,7 +16,7 @@ MANAGERS = ADMINS
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'waterpointproject',
+        'NAME': 'waterpointproject2',
         'HOST': 'localhost',
         'PASSWORD':'111987',
         'PORT':'5432',
