@@ -107,15 +107,21 @@ def update_waterpoint(request, user_id, user_location):
 	#checking if all water point having status and if so save it				
 	if len(waterpoint_update) == status_list_length:
 		message = 'updated'
-		for w in waterpoint_update:
+		for waterpoint_updated in waterpoint_update:
 			updated = status[0]
-			w.status = updated
-			status.remove(status[0])
-			w.save()
-			
-		context = {'message':message,'waterpoint_update':waterpoint_update,'user':user,'status':status}	
-		return render (request, 'test.html', context)				
+			waterpoint_updated.status = updated
+			waterpoint_updated.save()
+			status.remove(status[0])		
+		context = {'position':'cowso','user':user,}	
+		return render (request, 'cowsoupdateinfo.html', context)
+	
 	else:
-		message = 'not updated'		
-		context = {'message':message,'waterpoint_update':waterpoint_update,'user':user,'status':status}	
-		return render (request, 'test.html', context)
+		#return empty form when no status is supplied
+		waterpoint_update = []
+		for waterpoint in waterpointslist:
+			if  waterpoint.physical_location_name == user_location :
+				waterpoint_update.append(waterpoint)
+		warning = 'Please make sure you have selected new status for each water point!'
+		welcome_info = 'Welcome'
+		context={'user_location':user_location,'warning':warning,'position':'cowso','welcome_info':welcome_info,'user':user, 'waterpoint_update':waterpoint_update}
+		return render(request, 'chairperson.html',context)
