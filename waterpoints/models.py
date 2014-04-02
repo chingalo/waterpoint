@@ -25,7 +25,7 @@ class Waterpoint(models.Model):
 
 class Waterpoint_photos(models.Model):
 	photos = models.ForeignKey('Waterpoint', on_delete=models.CASCADE)
-	image = models.ImageField(upload_to = "waterpoint")
+	image = models.ImageField(upload_to = "waterpoint" )
 	image_title = models.CharField(max_length = 200)
 	
 	def __unicode__(self): #for pyhton 3 : def __str__(self):

@@ -6,7 +6,6 @@ from users.models import *
 from waterpoints.forms import *
 from waterpoints.models import *
 
-
 #description of waterpoints
 		
 def waterpointDetail(request,user_id):
@@ -83,45 +82,49 @@ def update_waterpoint(request, user_id, user_location):
 	#taking user and check if he or she authorized user in the system
 	user = Chairperson()
 	user = Chairperson.objects.get(id = user_id)
-	
-	#taking query dictionary having list of status
-	form = request.POST
-	
-	#extract list of status from a form posted
-	statuslist = form.getlist('status')
-	status_list_length = len(statuslist)
-	waterpoint_update = []
-	status = []
-	
-	#taking list of ststus and correspond status to be updated
-	for waterpoint in waterpointslist:
-		for status_update in statuslist:
-			if  status_update == '':
-				statuslist.remove(status_update)
-			else:
-				if  waterpoint.physical_location_name == user_location:
-					waterpoint_update.append(waterpoint)
-					status.append(status_update)						
-					statuslist.remove(status_update)
-	
-	#checking if all water point having status and if so save it				
-	if len(waterpoint_update) == status_list_length:
-		message = 'updated'
-		for waterpoint_updated in waterpoint_update:
-			updated = status[0]
-			waterpoint_updated.status = updated
-			waterpoint_updated.save()
-			status.remove(status[0])		
-		context = {'position':'cowso','user':user,}	
-		return render (request, 'cowsoupdateinfo.html', context)
-	
+	if user.login_status == 'log_out':
+		message = 'Sorry! Currently you are not log in into this System.'
+		context = {'message':message}
+		return render(request, 'notlogin.html', context)
 	else:
-		#return empty form when no status is supplied
+		#taking query dictionary having list of status
+		form = request.POST
+	
+		#extract list of status from a form posted
+		statuslist = form.getlist('status')
+		status_list_length = len(statuslist)
 		waterpoint_update = []
+		status = []
+	
+		#taking list of ststus and correspond status to be updated
 		for waterpoint in waterpointslist:
-			if  waterpoint.physical_location_name == user_location :
-				waterpoint_update.append(waterpoint)
-		warning = 'Please make sure you have selected new status for each water point!'
-		welcome_info = 'Welcome'
-		context={'user_location':user_location,'warning':warning,'position':'cowso','welcome_info':welcome_info,'user':user, 'waterpoint_update':waterpoint_update}
-		return render(request, 'chairperson.html',context)
+			for status_update in statuslist:
+				if  status_update == '':
+					statuslist.remove(status_update)
+				else:
+					if  waterpoint.physical_location_name == user_location:
+						waterpoint_update.append(waterpoint)
+						status.append(status_update)						
+						statuslist.remove(status_update)
+	
+		#checking if all water point having status and if so save it				
+		if len(waterpoint_update) == status_list_length:
+			message = 'updated'
+			for waterpoint_updated in waterpoint_update:
+				updated = status[0]
+				waterpoint_updated.status = updated
+				waterpoint_updated.save()
+				status.remove(status[0])		
+			context = {'position':'cowso','user':user,}	
+			return render (request, 'cowsoupdateinfo.html', context)
+	
+		else:
+			#return empty form when no status is supplied
+			waterpoint_update = []
+			for waterpoint in waterpointslist:
+				if  waterpoint.physical_location_name == user_location :
+					waterpoint_update.append(waterpoint)
+			warning = 'Please make sure you have selected new status for each water point!'
+			welcome_info = 'Welcome'
+			context={'user_location':user_location,'warning':warning,'position':'cowso','welcome_info':welcome_info,'user':user, 'waterpoint_update':waterpoint_update}
+			return render(request, 'chairperson.html',context)
