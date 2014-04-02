@@ -1,12 +1,12 @@
 {% extends "base.html" %}
 {% load cms_tags menu_tags %}
-<!-- contents for the login templates-->
+<!-- contents for info after update water points templates-->
 {% block page_contents %}
-
-name:{{user}}<br>
-email:{{user.e_mail}}<br>
-password:{{user.password}}<br>
-id: {{user.id}}<br>
-position:{{position}}
+<hr>
+<!-- thanx message and log out  link -->
+<p>Tou have successfull update all water points. </p>
+<p>Thank you very much for your cooperation</p>
+<p>click <a href = "{% url 'log_out' user.id user.e_mail user.password position %}" >here</a> to log out</p>
+<hr>
 
 {% endblock %}
