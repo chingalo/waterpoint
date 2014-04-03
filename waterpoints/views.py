@@ -24,11 +24,11 @@ def waterpointDetail(request,user_id):
 		#checking if form is completed or not, and taking the action
 		if form.is_valid():
 			form.save()
-			message = "You  have successfull create new water point"
+			message = "You  have successfull create new water supply connection"
 			context = {'message':message,'position':'engineer','user':user,'welcome_info':welcome_info}
 			return render (request, 'engineer.html',context)
 		else:
-			message = "Please fill all information below, for successfull create new water point"	
+			message = "Please fill all information below, for successfull create new water supply connection"	
 			form = WaterpointRegistration()
 			context = {'form':form,'message':message,'position':'engineer', 'user':user,'welcome_info':welcome_info}
 			return render(request,'waterpointdescription.html',context)
@@ -109,11 +109,15 @@ def update_waterpoint(request, user_id, user_location):
 	
 		#checking if all water point having status and if so save it				
 		if len(waterpoint_update) == status_list_length:
-			message = 'updated'
+			#new object to create new status for a given water point			
+			new_waterpoint_status = Waterpoint_status()
+			
 			for waterpoint_updated in waterpoint_update:
 				updated = status[0]
-				waterpoint_updated.status = updated
-				waterpoint_updated.save()
+				#saving status
+				new_waterpoint_status.waterpoint = waterpoint_updated
+				new_waterpoint_status.status = updated
+				new_waterpoint_status.save()
 				status.remove(status[0])		
 			context = {'position':'cowso','user':user,}	
 			return render (request, 'cowsoupdateinfo.html', context)
