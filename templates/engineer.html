@@ -4,37 +4,37 @@
 <!-- information about current user and logout option -->	
 <span class ='pull-right welcomeinfo'>{{welcome_info}}<i>,&#160;{{user.engineer_name}}<b>&#160;.</b></i>&#160;&#160;<a href = "{% url 'log_out' user.id user.e_mail user.password position %}">log out</a></span><br><br>
 
-<!-- info for success full register new water point -->
+<!-- info for success full register new water supply connection -->
 
 <span style = "color:#7F7F7F"><i>{{message}}</i></span><hr>
-<!--links to the forms for add new waterpoint -->
+<!--links to the forms for add new water supply connection -->
 <div class = 'row-fluid'>
 
-<!-- water point details -->	
+<!-- water supply connection details -->	
 <div class = "span4 detail_on_engineer_ui">
 <p>
-To register new water point
+To register new water supply connection
 </p>
 <ul>
-<li>Click on "Register new water point", below</li>
+<li>Click on "Register new water supply connection", below</li>
 <li>Fill the provided form, to register new water point</li>
-<li>click "Register" buttom to register new water point or "Cancel" buttom to reset the form</li>
+<li>click "Register" buttom to register new water supply connection or "Cancel" buttom to reset the form</li>
 </ul>	
-<a href = "{% url 'waterpointDetail' user.id %}">Register new water point</a><br><br>
+<a href = "{% url 'waterpointDetail' user.id %}">Register new water supply connection</a><br><br>
 </div>
 
-<!-- water point images upload -->
+<!-- water supply connection images upload -->
 <div class = "span4 detail_on_engineer_ui">
 <p>
-To upload image for a given water point:
+To upload image for a given water supply connection:
 </p>
 <ul>
-<li>Make sure you have register a given water point</li>
-<li>Click on "Upload photos for a given water point", below</li>
-<li>Fill all fields, to upload image for a given water point</li>
+<li>Make sure you have register a given water supply connection</li>
+<li>Click on "Upload photos for a given water supply connection", below</li>
+<li>Fill all fields, to upload image for a given supply connection</li>
 <li>Click on "Upload" buttom to upload image or "Cancel" buttom to reset the form</li>
 </ul>	
-<a href = "{% url 'waterpointPhotos' user.id %}">Upload photos for a given water point</a><br><br>
+<a href = "{% url 'waterpointPhotos' user.id %}">Upload photos for a given water supply connection</a><br><br>
 </div>	
 
 <!-- reports in district water engineer interface -->
