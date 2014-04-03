@@ -110,12 +110,13 @@ def update_waterpoint(request, user_id, user_location):
 		#checking if all water point having status and if so save it				
 		if len(waterpoint_update) == status_list_length:
 			#new object to create new status for a given water point			
-			new_waterpoint_status = Waterpoint_status()
+			
 			
 			for waterpoint_updated in waterpoint_update:
 				updated = status[0]
 				#saving status
-				new_waterpoint_status.waterpoint = waterpoint_updated
+				new_waterpoint_status = Waterpoint_status()
+				new_waterpoint_status.name = waterpoint_updated
 				new_waterpoint_status.status = updated
 				new_waterpoint_status.save()
 				status.remove(status[0])		
