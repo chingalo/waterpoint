@@ -25,7 +25,7 @@ class Waterpoint(models.Model):
 	sponsor = models.CharField(max_length = 200)
 		
 	def __unicode__(self): #for pyhton 3 : def __str__(self):
-		return self.water_point_name
+		return self.name
 		
 #model for photos upload
 class Waterpoint_photos(models.Model):
@@ -38,7 +38,7 @@ class Waterpoint_photos(models.Model):
 
 #model for status of a given water point		
 class Waterpoint_status(models.Model):
-	waterpoint = models.ForeignKey('Waterpoint', on_delete=models.CASCADE)
+	name = models.ForeignKey('Waterpoint', on_delete=models.CASCADE)
 	status = models.CharField(max_length = 200)
 	status_date_update = models.DateTimeField(default=timezone.now)
 	
