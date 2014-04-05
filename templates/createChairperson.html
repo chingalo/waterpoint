@@ -1,7 +1,10 @@
 {% extends "base.html" %}
 {% load cms_tags menu_tags %}
-{% block page_contents %}
 
+<!-- titlte -->
+{% block tilte %}Registration{% endblock%}
+
+{% block page_contents %}
 <!-- back to admin home page-->
 <span class ='pull-right welcomeinfo'>{{welcome_info}},<i>&#160;{{user.admin_name}}.</i>&#160;&#160;<a href = "{% url 'log_out' user.id user.e_mail user.password position  %}" >log out</a><br><a href = "{% url 'adminhome' user.id %}">back</a></span><br>
 <hr>

@@ -1,5 +1,8 @@
 {% extends "base.html" %}
 {% load cms_tags menu_tags %}
+<!-- titlte -->
+{% block tilte %}COWSO Chairperson{% endblock%}
+
 {% block page_contents %}
 <!-- information about current user and logout option -->
 <span class ='pull-right welcomeinfo'>{{welcome_info}} <i>,&#160;{{user.cowso_chairperson_name}}.</i>&#160;&#160;<a href = "{% url 'log_out' user.id user.e_mail user.password position %}" >log out</a></span><hr><br>

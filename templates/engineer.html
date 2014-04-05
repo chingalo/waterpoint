@@ -1,5 +1,9 @@
 {% extends "base.html" %}
 {% load cms_tags menu_tags %}
+
+<!-- titlte -->
+{% block tilte %}District water Engineer{% endblock%}
+
 {% block page_contents %}
 <!-- information about current user and logout option -->	
 <span class ='pull-right welcomeinfo'>{{welcome_info}}<i>,&#160;{{user.engineer_name}}<b>&#160;.</b></i>&#160;&#160;<a href = "{% url 'log_out' user.id user.e_mail user.password position %}">log out</a></span><br><br>
@@ -39,7 +43,16 @@ To upload image for a given water supply connection:
 
 <!-- reports in district water engineer interface -->
 <div class = "span4 detail_on_engineer_ui">
-<p>Reports</p>	
+<ul class ="nav nav-list">
+<li class "nav-header"><b>Useful Links</b></li>
+<li>still under develepment</li>
+
+<li class "nav-header"><b>Reports and Summary</b></li>
+<li><a href = "" >Summary</a></li>
+<li><a href = "">Water connections</a></li>
+<li><a href = "">COWSO Chairperson</a></li>
+
+</ul>
 
 </div>
 </div>

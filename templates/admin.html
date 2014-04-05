@@ -1,5 +1,9 @@
 {% extends "base.html" %}
 {% load cms_tags menu_tags %}
+
+<!-- titlte -->
+{% block tilte %}System adminstrator{% endblock%}
+
 {% block page_contents %}
 <!-- information about current user and logout option -->	
 <span class ='pull-right welcomeinfo'>{{welcome_info}},<i>&#160;{{user.admin_name}}.</i>&#160;&#160;<a href = "{% url 'log_out'  user.id user.e_mail user.password position %}" >log out</a></span><hr><br>
@@ -31,10 +35,19 @@ To add successful register new District water Engineer in the system :<br>
 <a href = "{% url 'createChairperson' user.id %}">Register new COWSO chairperson</a>
 </div>	
 
-<div class = 'span4 datails_in_admin_ui'>
-<p>Reports</p>
-still it is under development
-</div>	
+
+
+<div class = "span4 detail_on_engineer_ui">
+<ul class ="nav nav-list">
+<li class "nav-header"><b>Useful Links</b></li>
+<li>still under develepment</li>
+
+<li class "nav-header"><b>Reports and Summary</b></li>
+<li><a href = "">Water connections</a></li>
+<li><a href = "">COWSO Chairperson</a></li>
+<li><a href = "">Distsric Water Engineer</a></li>
+
+</ul>	
 </div>	
 
 
