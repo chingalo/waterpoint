@@ -48,9 +48,9 @@ To upload image for a given water supply connection:
 <li>still under develepment</li>
 
 <li class "nav-header"><b>Reports and Summary</b></li>
-<li><a href = "" >Summary</a></li>
-<li><a href = "">Water connections</a></li>
-<li><a href = "">COWSO Chairperson</a></li>
+<li><a href = "{% url 'report_summary_engineer' user.id %}" >Summary</a></li>
+<li><a href = "{% url 'water_connection_summary_engineer' user.id %}">Water connections</a></li>
+<li><a href = "{% url 'cowso_summary_engineer' user.id %}">COWSO Chairperson</a></li>
 
 </ul>
 
