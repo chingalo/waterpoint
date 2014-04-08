@@ -322,7 +322,9 @@ def log_out(request,user_id,user_e_mail,user_password,user_position):
 		message = ''		
 	
 	return HttpResponseRedirect('/')
-	
+
+
+#report & summary : summary part in District water engineer interface	
 def report_summary_engineer(request, user_id):
 	interface = 'engineerSummary'
 	#taking current user of system
@@ -333,9 +335,10 @@ def report_summary_engineer(request, user_id):
 	welcome_info = 'Welcome'
 	context = {'interface':interface,'position':'engineer','welcome_info':welcome_info,'user':user}
 	return render (request, 'reports.html' ,context)	
-	
+
+#report & summary : COWSO chairperson part in District water engineer interface	
 def cowso_summary_engineer(request, user_id):
-	interface = 'cowsoSummary'
+	interface = 'cowsoSummaryEngineer'
 	#taking current user of system
 	user = Engineer()
 	user = Engineer.objects.get(id = user_id)
@@ -344,12 +347,36 @@ def cowso_summary_engineer(request, user_id):
 	welcome_info = 'Welcome'
 	context = {'interface':interface,'position':'engineer','welcome_info':welcome_info,'user':user}
 	return render (request, 'reports.html' ,context)	
-	
-	
-	
 
+	
+#report & summary : COWSO chairperson part in District System admin interface	
+def cowso_summary_Admin(request, user_id):
+	interface = 'cowsoSummaryAdmin'
+	#taking current user of system
+	user = Administrator()
+	user = Administrator.objects.get(id = user_id)
+	
+	#return values
+	welcome_info = 'Welcome'
+	context = {'interface':interface,'position':'admin','welcome_info':welcome_info,'user':user}
+	return render (request, 'reports.html' ,context)
+
+
+#report & summary : COWSO chairperson part in System admin interface		
+def engineer_summary_Admin(request, user_id):
+	interface = 'engineerSummaryAdmin'
+	#taking current user of system
+	user = Administrator()
+	user = Administrator.objects.get(id = user_id)
+	
+	#return values
+	welcome_info = 'Welcome'
+	context = {'interface':interface,'position':'admin','welcome_info':welcome_info,'user':user}
+	return render (request, 'reports.html' ,context)
  
 
 
 
+	
+	
 	

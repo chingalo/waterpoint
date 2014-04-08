@@ -134,6 +134,8 @@ def update_waterpoint(request, user_id, user_location):
 			context={'user_location':user_location,'warning':warning,'position':'cowso','welcome_info':welcome_info,'user':user, 'waterpoint_update':waterpoint_update}
 			return render(request, 'chairperson.html',context)
 
+
+#report & summary : water connection part in District water engineer interface
 def water_connection_summary_engineer(request, user_id):
 	interface = 'engineerWaterConections'
 	#taking current user of system
@@ -145,7 +147,19 @@ def water_connection_summary_engineer(request, user_id):
 	context = {'interface':interface,'position':'engineer','welcome_info':welcome_info,'user':user}
 	return render (request, 'reports.html' ,context)
 	
+
+
+#report & summary : water connection part in System admin interface
+def water_connection_summary_admin(request, user_id):
+	interface = 'engineerSummaryAdmin'
+	#taking current user of system
+	user = Administrator()
+	user = Administrator.objects.get(id = user_id)
 	
+	#return values
+	welcome_info = 'Welcome'
+	context = {'interface':interface,'position':'admin','welcome_info':welcome_info,'user':user}
+	return render (request, 'reports.html' ,context)	
 	
 	
 	
