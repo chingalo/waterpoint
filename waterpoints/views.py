@@ -133,3 +133,20 @@ def update_waterpoint(request, user_id, user_location):
 			welcome_info = 'Welcome'
 			context={'user_location':user_location,'warning':warning,'position':'cowso','welcome_info':welcome_info,'user':user, 'waterpoint_update':waterpoint_update}
 			return render(request, 'chairperson.html',context)
+
+def water_connection_summary_engineer(request, user_id):
+	interface = 'engineerWaterConections'
+	#taking current user of system
+	user = Engineer()
+	user = Engineer.objects.get(id = user_id)
+	
+	#return values
+	welcome_info = 'Welcome'
+	context = {'interface':interface,'position':'engineer','welcome_info':welcome_info,'user':user}
+	return render (request, 'reports.html' ,context)
+	
+	
+	
+	
+	
+				

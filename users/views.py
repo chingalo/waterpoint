@@ -323,9 +323,27 @@ def log_out(request,user_id,user_e_mail,user_password,user_position):
 	
 	return HttpResponseRedirect('/')
 	
+def report_summary_engineer(request, user_id):
+	interface = 'engineerSummary'
+	#taking current user of system
+	user = Engineer()
+	user = Engineer.objects.get(id = user_id)
 	
+	#return values
+	welcome_info = 'Welcome'
+	context = {'interface':interface,'position':'engineer','welcome_info':welcome_info,'user':user}
+	return render (request, 'reports.html' ,context)	
 	
+def cowso_summary_engineer(request, user_id):
+	interface = 'cowsoSummary'
+	#taking current user of system
+	user = Engineer()
+	user = Engineer.objects.get(id = user_id)
 	
+	#return values
+	welcome_info = 'Welcome'
+	context = {'interface':interface,'position':'engineer','welcome_info':welcome_info,'user':user}
+	return render (request, 'reports.html' ,context)	
 	
 	
 	
