@@ -1,0 +1,55 @@
+{% extends "base.html" %}
+{% load cms_tags menu_tags %}
+<!-- titlte -->
+{% block tilte %}Reports{% endblock%}
+
+<!-- report page -->
+{% block page_contents %}
+
+<!-- report : summary for District water engineer -->
+{% if interface == 'engineerSummary' %}
+<!-- information about current user and logout option -->	
+<span class ='pull-right welcomeinfo'>{{welcome_info}}<i>,&#160;{{user.engineer_name}}<b>&#160;.</b></i>&#160;&#160;<a href = "{% url 'log_out' user.id user.e_mail user.password position %}" >log out</a><br> <a href = "{% url 'engineerhome' user.id %}">back</a></span><br><hr>
+<!-- summary interface on Engineer -->
+ok summary report<br>
+still under development
+
+{% endif %}
+
+<!-- report : water connections for District water engineer -->
+{% if interface == 'engineerWaterConections' %}
+<!-- information about current user and logout option -->	
+<span class ='pull-right welcomeinfo'>{{welcome_info}}<i>,&#160;{{user.engineer_name}}<b>&#160;.</b></i>&#160;&#160;<a href = "{% url 'log_out' user.id user.e_mail user.password position %}" >log out</a><br> <a href = "{% url 'engineerhome' user.id %}">back</a></span><br><hr>
+<!-- waterconnection interface on Engineer -->
+ok water connection report<br>
+still under development
+
+{% endif %}
+
+<!-- report : COWSO Chairpersons for District water engineer -->
+{% if interface == 'cowsoSummary' %}
+<!-- information about current user and logout option -->	
+<span class ='pull-right welcomeinfo'>{{welcome_info}}<i>,&#160;{{user.engineer_name}}<b>&#160;.</b></i>&#160;&#160;<a href = "{% url 'log_out' user.id user.e_mail user.password position %}" >log out</a><br> <a href = "{% url 'engineerhome' user.id %}">back</a></span><br><hr>
+<!-- COWSO chaiperson interface on Engineer -->
+ok cowso report<br>
+still under development
+
+{% endif %}
+
+
+<!-- report : water connections for System Administrator -->
+{% if interface == '' %}
+
+{% endif %}
+
+<!-- report : COWSO Chairperson for System Administrator -->
+{% if interface == '' %}
+
+{% endif %}
+
+<!-- report : District water Engineer for System Administrator -->
+{% if interface == '' %}
+
+{% endif %}
+
+{% endblock%}
