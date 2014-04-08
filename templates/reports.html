@@ -12,7 +12,7 @@
 <span class ='pull-right welcomeinfo'>{{welcome_info}}<i>,&#160;{{user.engineer_name}}<b>&#160;.</b></i>&#160;&#160;<a href = "{% url 'log_out' user.id user.e_mail user.password position %}" >log out</a><br> <a href = "{% url 'engineerhome' user.id %}">back</a></span><br><hr>
 <!-- summary interface on Engineer -->
 ok summary report<br>
-still under development
+still under development - District water engineer part
 
 {% endif %}
 
@@ -22,7 +22,7 @@ still under development
 <span class ='pull-right welcomeinfo'>{{welcome_info}}<i>,&#160;{{user.engineer_name}}<b>&#160;.</b></i>&#160;&#160;<a href = "{% url 'log_out' user.id user.e_mail user.password position %}" >log out</a><br> <a href = "{% url 'engineerhome' user.id %}">back</a></span><br><hr>
 <!-- waterconnection interface on Engineer -->
 ok water connection report<br>
-still under development
+still under development - District water engineer part
 
 {% endif %}
 
@@ -32,23 +32,37 @@ still under development
 <span class ='pull-right welcomeinfo'>{{welcome_info}}<i>,&#160;{{user.engineer_name}}<b>&#160;.</b></i>&#160;&#160;<a href = "{% url 'log_out' user.id user.e_mail user.password position %}" >log out</a><br> <a href = "{% url 'engineerhome' user.id %}">back</a></span><br><hr>
 <!-- COWSO chaiperson interface on Engineer -->
 ok cowso report<br>
-still under development
+still under development - District water engineer part
 
 {% endif %}
 
 
 <!-- report : water connections for System Administrator -->
 {% if interface == '' %}
-
+<!-- information about current user and logout option -->
+<span class ='pull-right welcomeinfo'>{{welcome_info}},<i>&#160;{{user.admin_name}}.</i>&#160;&#160;<a href = "{% url 'log_out'  user.id user.e_mail user.password position %}" >log out</a><br><a href = "{% url 'adminhome' user.id %}">back</a></span><br>
+<hr>
+ok water connection report<br>
+still under development - System admin 
 {% endif %}
 
 <!-- report : COWSO Chairperson for System Administrator -->
-{% if interface == '' %}
+{% if interface == 'cowsoSummaryAdmin' %}
+<!-- information about current user and logout option -->
+<span class ='pull-right welcomeinfo'>{{welcome_info}},<i>&#160;{{user.admin_name}}.</i>&#160;&#160;<a href = "{% url 'log_out'  user.id user.e_mail user.password position %}" >log out</a><br><a href = "{% url 'adminhome' user.id %}">back</a></span><br>
+<hr>
+ok cowso report<br>
+still under development - System admin 
 
 {% endif %}
 
 <!-- report : District water Engineer for System Administrator -->
-{% if interface == '' %}
+{% if interface == 'engineerSummaryAdmin' %}
+<!-- information about current user and logout option -->
+<span class ='pull-right welcomeinfo'>{{welcome_info}},<i>&#160;{{user.admin_name}}.</i>&#160;&#160;<a href = "{% url 'log_out'  user.id user.e_mail user.password position %}" >log out</a><br><a href = "{% url 'adminhome' user.id %}">back</a></span><br>
+<hr>
+ok engineer report<br>
+still under development - System admin 
 
 {% endif %}
 
