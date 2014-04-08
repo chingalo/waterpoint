@@ -151,7 +151,7 @@ def water_connection_summary_engineer(request, user_id):
 
 #report & summary : water connection part in System admin interface
 def water_connection_summary_admin(request, user_id):
-	interface = 'engineerSummaryAdmin'
+	interface = 'waterconnectionSummaryAdmin'
 	#taking current user of system
 	user = Administrator()
 	user = Administrator.objects.get(id = user_id)

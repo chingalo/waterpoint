@@ -27,7 +27,7 @@ still under development - District water engineer part
 {% endif %}
 
 <!-- report : COWSO Chairpersons for District water engineer -->
-{% if interface == 'cowsoSummary' %}
+{% if interface == 'cowsoSummaryEngineer' %}
 <!-- information about current user and logout option -->	
 <span class ='pull-right welcomeinfo'>{{welcome_info}}<i>,&#160;{{user.engineer_name}}<b>&#160;.</b></i>&#160;&#160;<a href = "{% url 'log_out' user.id user.e_mail user.password position %}" >log out</a><br> <a href = "{% url 'engineerhome' user.id %}">back</a></span><br><hr>
 <!-- COWSO chaiperson interface on Engineer -->
@@ -38,7 +38,7 @@ still under development - District water engineer part
 
 
 <!-- report : water connections for System Administrator -->
-{% if interface == '' %}
+{% if interface == 'waterconnectionSummaryAdmin' %}
 <!-- information about current user and logout option -->
 <span class ='pull-right welcomeinfo'>{{welcome_info}},<i>&#160;{{user.admin_name}}.</i>&#160;&#160;<a href = "{% url 'log_out'  user.id user.e_mail user.password position %}" >log out</a><br><a href = "{% url 'adminhome' user.id %}">back</a></span><br>
 <hr>
