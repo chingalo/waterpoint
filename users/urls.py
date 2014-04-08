@@ -9,7 +9,9 @@ urlpatterns = patterns('',
     url(r'^(?P<user_id>\d+)/adminHome/$', views.adminHome, name='adminhome'),
     url(r'^(?P<user_id>\d+)/enginerHome/$', views.enginerHome, name='engineerhome'),
     url(r'^(?P<user_id>\d+)/(?P<user_e_mail>\S+)/(?P<user_password>\S+)/(?P<user_position>\S+)/logout/$', views.log_out, name='log_out'),
-    url(r'^reportSummary/(?P<user_id>\d+)/$', views.report_summary_engineer, name='report_summary_engineer'),
-    url(r'^cowsoSummary/(?P<user_id>\d+)/$', views.cowso_summary_engineer, name='cowso_summary_engineer'),
+    url(r'^reportSummaryEngineer/(?P<user_id>\d+)/$', views.report_summary_engineer, name='report_summary_engineer'),
+    url(r'^cowsoSummaryEngineer/(?P<user_id>\d+)/$', views.cowso_summary_engineer, name='cowso_summary_engineer'),
+    url(r'^cowsoSummaryAdmin/(?P<user_id>\d+)/$', views.cowso_summary_Admin, name='cowso_summary_admin'),
+    url(r'^engineerSummaryAdmin/(?P<user_id>\d+)/$', views.engineer_summary_Admin, name='engineer_summary_admin'),
    
 )
