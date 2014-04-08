@@ -43,9 +43,9 @@ To add successful register new District water Engineer in the system :<br>
 <li>still under develepment</li>
 
 <li class "nav-header"><b>Reports and Summary</b></li>
-<li><a href = "">Water connections</a></li>
-<li><a href = "">COWSO Chairperson</a></li>
-<li><a href = "">Distsric Water Engineer</a></li>
+<li><a href = "{% url 'water_connection_summary_admin' user.id %}">Water connections</a></li>
+<li><a href = "{% url 'cowso_summary_admin' user.id %}">COWSO Chairperson</a></li>
+<li><a href = "{% url 'engineer_summary_admin' user.id %}">Distsrict Water Engineer</a></li>
 
 </ul>	
 </div>	
