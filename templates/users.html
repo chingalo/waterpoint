@@ -5,12 +5,12 @@
 
 {% block page_contents %}
 
-<!-- admin -->
+<!-- System administrator interface -->
 {% if position == 'admin' %}
 <!-- information about current user and logout option -->	
-<span class ='pull-right welcomeinfo'>{{welcome_info}},<i>&#160;{{user.admin_name}}.</i>&#160;&#160;<a href = "{% url 'log_out'  user.id user.e_mail user.password position %}" >log out</a></span><hr><br>
+<span class ='pull-right welcomeinfo'>{{welcome_info}},<i>&#160;{{user.admin_name}}.</i>&#160;&#160;<a href = "{% url 'log_out'  user.id user.e_mail user.password position %}" >log out</a></span><br><hr>
 
-<!--display options on admin userinterface-->
+<!--display options on admin user interface-->
 
 <div class = 'row-fluid'>
 <div class = 'span4 datails_in_admin_ui'>
@@ -57,7 +57,7 @@ To add successful register new District water Engineer in the system :<br>
 <!-- engineer -->
 {% if position == 'engineer' %}
 <!-- information about current user and logout option -->	
-<span class ='pull-right welcomeinfo'>{{welcome_info}}<i>,&#160;{{user.engineer_name}}<b>&#160;.</b></i>&#160;&#160;<a href = "{% url 'log_out' user.id user.e_mail user.password position %}">log out</a></span><br><br>
+<span class ='pull-right welcomeinfo'>{{welcome_info}}<i>,&#160;{{user.engineer_name}}<b>&#160;.</b></i>&#160;&#160;<a href = "{% url 'log_out' user.id user.e_mail user.password position %}">log out</a></span><br>
 
 <!-- info for success full register new water supply connection -->
 
