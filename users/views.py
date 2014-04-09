@@ -367,11 +367,29 @@ def report_summary_engineer(request, user_id):
 	business_connection = []
 	institutional_connection = []
 	industrial_connection = []
+	for waterconnection in waterconnectionlist:
+		if waterconnection.supply_connection == 'waterpoint':
+			waterpoint_connection.append(waterconnection)
+		elif waterconnection.supply_connection == 'domestic':
+			domestic_connection.append(waterconnection)
+		elif waterconnection.supply_connection == 'business':
+			business_connection.append(waterconnection)
+		elif waterconnection.supply_connection == 'institutional':
+			institutional_connection.append(waterconnection)
+		elif waterconnection.supply_connection == 'industrial':
+			industrial_connection.append(waterconnection)
+	#count number for water connections		
+	waterpoint_connection_no = len(waterpoint_connection)
+	domestic_connection_no = len(domestic_connection)
+	business_connection_no = len(business_connection)
+	institutional_connection_no = len(institutional_connection)	
+	industrial_connection_no = len(industrial_connection)
+	water_connections_total = len(waterconnectionlist)
 	
-				
+			
 	#return values
 	welcome_info = 'Welcome'
-	context = {'interface':interface,'institutional_connection':institutional_connection,'industrial_connection':industrial_connection,'business_connection':business_connection,'domestic_connection':domestic_connection,'waterpoint_connection':waterpoint_connection,'total_cowso':total_cowso,'femalecowso_number':femalecowso_number,'malecowso_number':malecowso_number,'cowsofemalelist':cowsofemalelist,'cowsomalelist':cowsomalelist,'position':'engineer','welcome_info':welcome_info,'user':user,"waterconnectionlist":waterconnectionlist,"cowsolist":cowsolist}
+	context = {'interface':interface,'water_connections_total':water_connections_total,'industrial_connection_no':industrial_connection_no,'institutional_connection_no':institutional_connection_no,'business_connection_no':business_connection_no,'domestic_connection_no':domestic_connection_no,'waterpoint_connection_no':waterpoint_connection_no,'institutional_connection':institutional_connection,'industrial_connection':industrial_connection,'business_connection':business_connection,'domestic_connection':domestic_connection,'waterpoint_connection':waterpoint_connection,'total_cowso':total_cowso,'femalecowso_number':femalecowso_number,'malecowso_number':malecowso_number,'cowsofemalelist':cowsofemalelist,'cowsomalelist':cowsomalelist,'position':'engineer','welcome_info':welcome_info,'user':user,"waterconnectionlist":waterconnectionlist,"cowsolist":cowsolist}
 	return render (request, 'reports.html' ,context)	
 
 #report & summary : COWSO chairperson part in District water engineer interface	
