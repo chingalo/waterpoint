@@ -76,16 +76,17 @@ def authorize(request):
 	if position == 'admin':
 		welcome_info = 'Welcome'
 		context={'position':'admin','welcome_info':welcome_info,'user':user}
-		return render(request, 'admin.html',context)
+		return render(request, 'users.html' , context)
 	elif position == 'engineer':
 		welcome_info = 'Welcome'
 		context={'position':'engineer','welcome_info':welcome_info,'user':user}
-		return render(request, 'engineer.html',context)
+		return render(request, 'users.html' , context)
 	elif position == 'cowso chairperson':
 		welcome_info = 'Welcome'
 		message = 'Please select new status for each water point'
 		context={'user_location':user_location,'message':message,'position':'cowso','welcome_info':welcome_info,'user':user, 'waterpoint_update':waterpoint_update}
-		return render(request, 'chairperson.html',context)
+		#return render(request, 'chairperson.html',context)
+		return render(request, 'users.html' , context)
 	else:
 		message = 'Incorrect username or password'
 		context={'message':message,}
@@ -275,7 +276,7 @@ def adminHome(request, user_id):
 	else:
 		welcome_info = "Welcome"
 		context = {'user':user,'welcome_info':welcome_info,'position':'admin'}
-		return render(request,'admin.html',context)
+		return render(request, 'users.html' , context)
 	
 #back to District water engineer home page
 def enginerHome(request, user_id):
@@ -289,7 +290,7 @@ def enginerHome(request, user_id):
 	else:
 		welcome_info = "Welcome"
 		context = {'welcome_info':welcome_info,'position':'engineer' , 'user':user}
-		return render(request, 'engineer.html',context)
+		return render(request, 'users.html' , context)
 
 #thank word for cowso chairperson after updating water point status
 
