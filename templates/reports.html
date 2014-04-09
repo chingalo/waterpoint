@@ -106,7 +106,13 @@
 <span class ='pull-right welcomeinfo'>{{welcome_info}}<i>,&#160;{{user.engineer_name}}<b>&#160;.</b></i>&#160;&#160;<a href = "{% url 'log_out' user.id user.e_mail user.password position %}" >log out</a><br> <a href = "{% url 'engineerhome' user.id %}">back</a></span><br><hr>
 <!-- waterconnection interface on Engineer -->
 ok water connection report<br>
-still under development - District water engineer part
+still under development - District water engineer part<br>
+*****************************************<br>
+waterpoint_connection: {{waterpoint_connection}}<br>
+domestic_connection:{{domestic_connection}}<br>
+business_connection:{{business_connection}}<br>
+institutional_connection:{{institutional_connection}}<br>
+industrial_connection:{{industrial_connection}}
 
 {% endif %}
 
@@ -121,6 +127,7 @@ still under development - District water engineer part<br>
 cowsolist :{{cowsolist}}<br>
 cowsofemalelist : {{cowsofemalelist}}<br>
 cowsomalelist :{{cowsomalelist}}
+
 
 {% endif %}
 
