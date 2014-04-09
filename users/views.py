@@ -389,19 +389,36 @@ def report_summary_engineer(request, user_id):
 			
 	#return values
 	welcome_info = 'Welcome'
-	context = {'interface':interface,'water_connections_total':water_connections_total,'industrial_connection_no':industrial_connection_no,'institutional_connection_no':institutional_connection_no,'business_connection_no':business_connection_no,'domestic_connection_no':domestic_connection_no,'waterpoint_connection_no':waterpoint_connection_no,'institutional_connection':institutional_connection,'industrial_connection':industrial_connection,'business_connection':business_connection,'domestic_connection':domestic_connection,'waterpoint_connection':waterpoint_connection,'total_cowso':total_cowso,'femalecowso_number':femalecowso_number,'malecowso_number':malecowso_number,'cowsofemalelist':cowsofemalelist,'cowsomalelist':cowsomalelist,'position':'engineer','welcome_info':welcome_info,'user':user,"waterconnectionlist":waterconnectionlist,"cowsolist":cowsolist}
+	context = {'interface':interface,'water_connections_total':water_connections_total,'industrial_connection_no':industrial_connection_no,'institutional_connection_no':institutional_connection_no,'business_connection_no':business_connection_no,'domestic_connection_no':domestic_connection_no,'waterpoint_connection_no':waterpoint_connection_no,'total_cowso':total_cowso,'femalecowso_number':femalecowso_number,'malecowso_number':malecowso_number,'position':'engineer','welcome_info':welcome_info,'user':user,}
 	return render (request, 'reports.html' ,context)	
 
 #report & summary : COWSO chairperson part in District water engineer interface	
 def cowso_summary_engineer(request, user_id):
 	interface = 'cowsoSummaryEngineer'
+	cowsolist = []
+	cowsofemalelist = []
+	cowsomalelist = []
+	
 	#taking current user of system
 	user = Engineer()
 	user = Engineer.objects.get(id = user_id)
 	
+	#taking all COWSO from database
+	cowsolist_database = Chairperson.objects.all()
+	
+	# cowso in given district
+	for cowso in cowsolist_database:
+		if cowso.district == user.district:
+			cowsolist.append(cowso)
+	for cowso in cowsolist:
+		if cowso.sex == 'male':
+			cowsomalelist.append(cowso)
+		elif cowso.sex == 'female':
+			cowsofemalelist.append(cowso)
+	
 	#return values
 	welcome_info = 'Welcome'
-	context = {'interface':interface,'position':'engineer','welcome_info':welcome_info,'user':user}
+	context = {'interface':interface,'cowsomalelist':cowsomalelist ,'cowsofemalelist':cowsofemalelist,'cowsolist':cowsolist,'position':'engineer','welcome_info':welcome_info,'user':user}
 	return render (request, 'reports.html' ,context)	
 
 	
