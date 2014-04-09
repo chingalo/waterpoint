@@ -60,7 +60,11 @@ color:#4D4D4D;
 text-align:justify;
 font-size:17px;
 }
-
-
+.uppercase{
+text-transform:uppercase;
+}
+td{
+text-transform:capitalize
+}
 
 
