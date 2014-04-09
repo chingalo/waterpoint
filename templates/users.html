@@ -1,0 +1,144 @@
+{% extends "base.html" %}
+{% load cms_tags menu_tags %}
+<!-- titlte -->
+{% block tilte %}System users{% endblock%}
+
+{% block page_contents %}
+
+<!-- admin -->
+{% if position == 'admin' %}
+<!-- information about current user and logout option -->	
+<span class ='pull-right welcomeinfo'>{{welcome_info}},<i>&#160;{{user.admin_name}}.</i>&#160;&#160;<a href = "{% url 'log_out'  user.id user.e_mail user.password position %}" >log out</a></span><hr><br>
+
+<!--display options on admin userinterface-->
+
+<div class = 'row-fluid'>
+<div class = 'span4 datails_in_admin_ui'>
+<p>District water Engineer</p>
+District water Engineer is one involving to add static infromation.<br>	
+To add successful register new District water Engineer in the system :<br>
+<ul>
+<li>click link on "Register new District water Engineer" ,below</li>
+<li>ill all information on the provided form</li>
+<li>click "Register user" buttom to register new user or cancel to reset the form</li>
+</ul>
+<a href = "{% url 'createEngineer' user.id %}">Register new District water Engineer</a>
+</div>	
+
+<div class = 'span4 datails_in_admin_ui'>
+<p>COWSO chairperson</p>
+COWSO chairperson is one involving to add dynamic infromation.<br>	
+To add successful register new District water Engineer in the system :<br>
+<ul>
+<li>click link on "Register new COWSO chairperson", below</li>
+<li>fill all information on the provided form</li>
+<li>click "Register user" buttom to register new user or "Cancel" to reset the form</li>
+</ul>
+<a href = "{% url 'createChairperson' user.id %}">Register new COWSO chairperson</a>
+</div>	
+
+
+
+<div class = "span4 detail_on_engineer_ui">
+<ul class ="nav nav-list">
+<li class "nav-header"><b>Useful Links</b></li>
+<li>{% placeholder userful_links %}</li>
+
+<li class "nav-header"><b>Reports and Summary</b></li>
+<li><a href = "{% url 'water_connection_summary_admin' user.id %}">Water connections</a></li>
+<li><a href = "{% url 'cowso_summary_admin' user.id %}">COWSO Chairperson</a></li>
+<li><a href = "{% url 'engineer_summary_admin' user.id %}">Distsrict Water Engineer</a></li>
+
+</ul>	
+</div>
+
+{% endif %}
+
+<!-- engineer -->
+{% if position == 'engineer' %}
+<!-- information about current user and logout option -->	
+<span class ='pull-right welcomeinfo'>{{welcome_info}}<i>,&#160;{{user.engineer_name}}<b>&#160;.</b></i>&#160;&#160;<a href = "{% url 'log_out' user.id user.e_mail user.password position %}">log out</a></span><br><br>
+
+<!-- info for success full register new water supply connection -->
+
+<span style = "color:#7F7F7F"><i>{{message}}</i></span><hr>
+<!--links to the forms for add new water supply connection -->
+<div class = 'row-fluid'>
+
+<!-- water supply connection details -->	
+<div class = "span4 detail_on_engineer_ui">
+<p>
+To register new water supply connection
+</p>
+<ul>
+<li>Click on "Register new water supply connection", below</li>
+<li>Fill the provided form, to register new water point</li>
+<li>click "Register" buttom to register new water supply connection or "Cancel" buttom to reset the form</li>
+</ul>	
+<a href = "{% url 'waterpointDetail' user.id %}">Register new water supply connection</a><br><br>
+</div>
+
+<!-- water supply connection images upload -->
+<div class = "span4 detail_on_engineer_ui">
+<p>
+To upload image for a given water supply connection:
+</p>
+<ul>
+<li>Make sure you have register a given water supply connection</li>
+<li>Click on "Upload photos for a given water supply connection", below</li>
+<li>Fill all fields, to upload image for a given supply connection</li>
+<li>Click on "Upload" buttom to upload image or "Cancel" buttom to reset the form</li>
+</ul>	
+<a href = "{% url 'waterpointPhotos' user.id %}">Upload photos for a given water supply connection</a><br><br>
+</div>	
+
+<!-- reports in district water engineer interface -->
+<div class = "span4 detail_on_engineer_ui">
+<ul class ="nav nav-list">
+<li class "nav-header"><b>Useful Links</b></li>
+<li>{% placeholder userful_links %}</li>
+
+<li class "nav-header"><b>Reports and Summary</b></li>
+<li><a href = "{% url 'report_summary_engineer' user.id %}" >Summary</a></li>
+<li><a href = "{% url 'water_connection_summary_engineer' user.id %}">Water connections</a></li>
+<li><a href = "{% url 'cowso_summary_engineer' user.id %}">COWSO Chairperson</a></li>
+
+</ul>
+
+</div>
+</div>
+
+{% endif %}
+
+<!-- coswso -->
+{% if position == 'cowso' %}
+<!-- information about current user and logout option -->
+<span class ='pull-right welcomeinfo'>{{welcome_info}} <i>,&#160;{{user.cowso_chairperson_name}}.</i>&#160;&#160;<a href = "{% url 'log_out' user.id user.e_mail user.password position %}" >log out</a></span><hr><br>
+{% if waterpoint_update %}
+<!-- info or error message during registration -->
+<h4>{% if message or warning%}{{message}} <i ><span style = 'color:red';>{{warning}}</span></i></h4>
+{% endif %}<br>
+<!-- update form for water point status -->
+<form action = "{% url 'update_waterpoint' user.id user_location %}" method = "POST" >
+{% csrf_token %}
+<!-- checking and display all water point for a particular COWSO chairperson-->	
+{% for waterpoint in waterpoint_update %}
+{{waterpoint}}&#160;&#160;
+<!-- status choices -->
+<select name = "status">
+<option value = "">---------</option>
+<option value = "functioning" name = "status" > functioning </option>
+<option value = "non-functioning" name = "status" > non-functioning </option>
+<option value = "need to repair" name = "status" > need to repair </option>
+</select>
+<br>
+{% endfor %}
+<input type = "submit" value = "update" name "update" />
+<input type = "reset" value = "cancel" name "cancel" />
+</form>
+{% else %}
+no water point to update
+{% endif %}
+{% endif %}
+
+{% endblock %}
