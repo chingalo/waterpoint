@@ -11,9 +11,7 @@
 <!-- information about current user and logout option -->	
 <span class ='pull-right welcomeinfo'>{{welcome_info}}<i>,&#160;{{user.engineer_name}}<b>&#160;.</b></i>&#160;&#160;<a href = "{% url 'log_out' user.id user.e_mail user.password position %}" >log out</a><br> <a href = "{% url 'engineerhome' user.id %}">back</a></span><br><hr>
 <!-- summary interface on Engineer -->
-ok summary report<br>
-still under development - District water engineer part<br>
-*******************************************************<br>
+
 <div class ="tabbable  ">
 
 <ul class = "nav nav-tabs" id ="tabs_header">
@@ -23,37 +21,79 @@ still under development - District water engineer part<br>
 </ul>
 <div class = "tab-content">
 <div class = "tab-pane  active" id = "tab1">
-================ test values for water connection ==============<br>
-waterconnections:{{waterconnectionlist}}<br>
-water point_connection or kiosk:{{waterpoint_connection}}<br>
-no : {{waterpoint_connection_no}}<br>
- ===========================<br>
-domestic_connection:{{domestic_connection}} <br>
-no :{{domestic_connection_no}} <br>
- ===========================<br>
- business_connection:{{business_connection}}<br>
- no :{{business_connection_no}} <br>
- ===========================<br> 
- institutional_connection:{{institutional_connection}}<br>
-  no :{{institutional_connection_no}} <br>
- ===========================<br>
- industrial_connection:{{industrial_connection}}<br>
- no :{{industrial_connection_no}} <br>
- total : {{water_connections_total}}
+<p class = 'uppercase'><u>Water connection summary in {{user.district}} district:</u></p>
+<p>In {{user.district}}, there are the following water connection types together with their corresponding number:-</p><br>
+<!--waterconnections:{{waterconnectionlist}}<br>-->
+<table class="table table-striped">
+<tr>
+<th>Water Connection category</th>
+<th>&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;</th>
+<th>Number of water connections available</th>
+</tr>
+<tr>
+<td>water point or kiosk</td>
+<td>&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;</td>
+<td>{{waterpoint_connection_no}}</td>
+</tr>
+<tr>
+<td>domestic connection</td>
+<td>&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;</td>
+<td>{{domestic_connection_no}}</td>
+</tr>
+<tr>
+<td>business connection</td>
+<td>&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;</td>
+<td>{{business_connection_no}} </td>
+</tr>
+<tr>
+<td>institutional connection</td>
+<td>&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;</td>
+<td>{{institutional_connection_no}}</td>
+</tr>
+<tr>
+<td>industrial connection</td>
+<td>&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;</td>
+<td>{{industrial_connection_no}}</td>
+</tr>
+<tr>
+<td><b>total water connections</b></td>
+<td>&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;</td>
+<td><b>{{water_connections_total}}</b></td>
+</tr>
+</table class="table table-striped">
+
 </div>
 <div class = "tab-pane " id = "tab2">
-================ test values for cowso  ==============<br>
-cowso list:{{cowsolist}}<br>
- ===========================<br>
-male cowso:{{cowsomalelist}}<br>
-no_male: {{malecowso_number}}<br>
- ===========================<br>
-femele cowso :{{cowsofemalelist}}<br>
-no_female : {{femalecowso_number}}<br>
-total : {{total_cowso}}<br>
+<p class = 'uppercase'><u>cowso chairperson summary in {{user.district}} district:</u></p>
+<p>In {{user.district}}, depend on sex there are the following:-</p><br>
+<table class="table table-striped">
+<thead>
+<th>Sex or Gender</th>
+<th>&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;</th>
+<th>Number of COWSO chaiperson</th>
+</tr>
+<tr>
+</thead>
+
+<tbody>	
+<tr>
+<td>Male</td>
+<td>&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;</td>
+<td>{{malecowso_number}}</td>
+</tr>
+<tr>
+<td>Female</td>
+<td>&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;</td>
+<td>{{femalecowso_number}}</td>
+</tr>
+<tr>
+<td><b>Total</b></td>
+<td>&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;</td>
+<td><b>{{total_cowso}}</b></td>
+</tr>
+</tbody>
+</table>
 </div>
-
-
 </div>
 </div>
 
@@ -76,7 +116,11 @@ still under development - District water engineer part
 <span class ='pull-right welcomeinfo'>{{welcome_info}}<i>,&#160;{{user.engineer_name}}<b>&#160;.</b></i>&#160;&#160;<a href = "{% url 'log_out' user.id user.e_mail user.password position %}" >log out</a><br> <a href = "{% url 'engineerhome' user.id %}">back</a></span><br><hr>
 <!-- COWSO chaiperson interface on Engineer -->
 ok cowso report<br>
-still under development - District water engineer part
+still under development - District water engineer part<br>
+****************************************<br>
+cowsolist :{{cowsolist}}<br>
+cowsofemalelist : {{cowsofemalelist}}<br>
+cowsomalelist :{{cowsomalelist}}
 
 {% endif %}
 
