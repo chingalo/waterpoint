@@ -138,13 +138,41 @@ def update_waterpoint(request, user_id, user_location):
 #report & summary : water connection part in District water engineer interface
 def water_connection_summary_engineer(request, user_id):
 	interface = 'engineerWaterConections'
+	waterconnectionlist = []
+	
 	#taking current user of system
 	user = Engineer()
 	user = Engineer.objects.get(id = user_id)
 	
+	#taking all water connections from database
+	waterpointlist_database = Waterpoint.objects.all()
+	
+	#select all water connections in a given district
+	for waterpoint in waterpointlist_database:
+		if waterpoint.district == user.district:
+			waterconnectionlist.append(waterpoint)
+	
+	#separate water connection in their categories
+	waterpoint_connection = []
+	domestic_connection = []
+	business_connection = []
+	institutional_connection = []
+	industrial_connection = []
+	for waterconnection in waterconnectionlist:
+		if waterconnection.supply_connection == 'waterpoint':
+			waterpoint_connection.append(waterconnection)
+		elif waterconnection.supply_connection == 'domestic':
+			domestic_connection.append(waterconnection)
+		elif waterconnection.supply_connection == 'business':
+			business_connection.append(waterconnection)
+		elif waterconnection.supply_connection == 'institutional':
+			institutional_connection.append(waterconnection)
+		elif waterconnection.supply_connection == 'industrial':
+			industrial_connection.append(waterconnection)
+	
 	#return values
 	welcome_info = 'Welcome'
-	context = {'interface':interface,'position':'engineer','welcome_info':welcome_info,'user':user}
+	context = {'interface':interface,'industrial_connection':industrial_connection,'institutional_connection':institutional_connection,'business_connection':business_connection,'domestic_connection':domestic_connection,'waterpoint_connection':waterpoint_connection,'position':'engineer','welcome_info':welcome_info,'user':user}
 	return render (request, 'reports.html' ,context)
 	
 
