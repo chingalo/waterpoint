@@ -12,7 +12,51 @@
 <span class ='pull-right welcomeinfo'>{{welcome_info}}<i>,&#160;{{user.engineer_name}}<b>&#160;.</b></i>&#160;&#160;<a href = "{% url 'log_out' user.id user.e_mail user.password position %}" >log out</a><br> <a href = "{% url 'engineerhome' user.id %}">back</a></span><br><hr>
 <!-- summary interface on Engineer -->
 ok summary report<br>
-still under development - District water engineer part
+still under development - District water engineer part<br>
+*******************************************************<br>
+<div class ="tabbable  ">
+
+<ul class = "nav nav-tabs" id ="tabs_header">
+
+<li class = "span4 active" ><a href = "#tab1" data-toggle = "tab">Water Connections</a></li>
+<li class = "span4" ><a href = "#tab2" data-toggle = "tab">COWSO Chairperson</a></li>
+</ul>
+<div class = "tab-content">
+<div class = "tab-pane  active" id = "tab1">
+================ test values for water connection ==============<br>
+waterconnections:{{waterconnectionlist}}<br>
+water point_connection or kiosk:{{waterpoint_connection}}<br>
+no : {{waterpoint_connection_no}}<br>
+ ===========================<br>
+domestic_connection:{{domestic_connection}} <br>
+no :{{domestic_connection_no}} <br>
+ ===========================<br>
+ business_connection:{{business_connection}}<br>
+ no :{{business_connection_no}} <br>
+ ===========================<br> 
+ institutional_connection:{{institutional_connection}}<br>
+  no :{{institutional_connection_no}} <br>
+ ===========================<br>
+ industrial_connection:{{industrial_connection}}<br>
+ no :{{industrial_connection_no}} <br>
+ total : {{water_connections_total}}
+</div>
+<div class = "tab-pane " id = "tab2">
+================ test values for cowso  ==============<br>
+cowso list:{{cowsolist}}<br>
+ ===========================<br>
+male cowso:{{cowsomalelist}}<br>
+no_male: {{malecowso_number}}<br>
+ ===========================<br>
+femele cowso :{{cowsofemalelist}}<br>
+no_female : {{femalecowso_number}}<br>
+total : {{total_cowso}}<br>
+</div>
+
+
+</div>
+</div>
+
 
 {% endif %}
 
