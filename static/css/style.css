@@ -50,7 +50,16 @@ font-size:18px;
 font-style:italic;
 color:#4D4D4D;
 }
-
+#tabs_header{
+text-align:justify;
+font-size:18px;
+}
+.tab-content{
+font-style:italic;
+color:#4D4D4D;
+text-align:justify;
+font-size:17px;
+}
 
 
 
