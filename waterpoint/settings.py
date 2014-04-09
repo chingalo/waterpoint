@@ -197,7 +197,8 @@ LANGUAGES = [
     ('en', 'English'),
 ]
 CMS_TEMPLATES = ( 
-	('login.html', gettext('login')),
+	('login.html', gettext('log in template')),
+	('users.html', gettext('users template')),
 	           
    )
 
