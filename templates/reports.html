@@ -224,8 +224,16 @@ cowsolist :{{cowsolist}}<br>
 <!-- information about current user and logout option -->
 <span class ='pull-right welcomeinfo'>{{welcome_info}},<i>&#160;{{user.admin_name}}.</i>&#160;&#160;<a href = "{% url 'log_out'  user.id user.e_mail user.password position %}" >log out</a><br><a href = "{% url 'adminhome' user.id %}">back</a></span><br>
 <hr>
-ok water connection report<br>
-still under development - System admin 
+
+waterpoint_connection_no: {{waterpoint_connection_no}}<br>
+domestic_connection_no:{{domestic_connection_no}}<br>
+business_connection_no:{{business_connection_no}}<br>
+institutional_connection_no:{{institutional_connection_no}}<br>
+industrial_connection_no:{{industrial_connection_no}}<br>
+water_connections_total:{{water_connections_total}}
+
+<hr>
+<p>This part is still under develepment.....</p>
 {% endif %}
 
 <!-- report : COWSO Chairperson for System Administrator -->
@@ -233,9 +241,10 @@ still under development - System admin
 <!-- information about current user and logout option -->
 <span class ='pull-right welcomeinfo'>{{welcome_info}},<i>&#160;{{user.admin_name}}.</i>&#160;&#160;<a href = "{% url 'log_out'  user.id user.e_mail user.password position %}" >log out</a><br><a href = "{% url 'adminhome' user.id %}">back</a></span><br>
 <hr>
-ok cowso report<br>
-still under development - System admin 
+ 
 
+<hr>
+<p>This part is still under develepment.....</p>
 {% endif %}
 
 <!-- report : District water Engineer for System Administrator -->
@@ -243,9 +252,11 @@ still under development - System admin
 <!-- information about current user and logout option -->
 <span class ='pull-right welcomeinfo'>{{welcome_info}},<i>&#160;{{user.admin_name}}.</i>&#160;&#160;<a href = "{% url 'log_out'  user.id user.e_mail user.password position %}" >log out</a><br><a href = "{% url 'adminhome' user.id %}">back</a></span><br>
 <hr>
-ok engineer report<br>
-still under development - System admin 
-
+ engineeermale_no:{{engineeermale_no}}<br>
+engineeerfemale_no:{{engineeerfemale_no}}<br>
+engineeer_total:{{engineeer_total}}<br>
+<hr>
+<p>This part is still under develepment.....</p>
 {% endif %}
 </div>
 {% endblock%}
