@@ -147,33 +147,39 @@ def water_connection_summary_engineer(request, user_id):
 	#taking all water connections from database
 	waterpointlist_database = Waterpoint.objects.all()
 	
-	#select all water connections in a given district
-	for waterpoint in waterpointlist_database:
-		if waterpoint.district == user.district:
-			waterconnectionlist.append(waterpoint)
+	#cheching is current user has logged in in the system
+	if user.login_status == 'log_out':
+		message = 'Sorry! Currently you are not log in into this System.'
+		context = {'message':message}
+		return render(request, 'notlogin.html', context)
+	else:
+		#select all water connections in a given district
+		for waterpoint in waterpointlist_database:
+			if waterpoint.district == user.district:
+				waterconnectionlist.append(waterpoint)
 	
-	#separate water connection in their categories
-	waterpoint_connection = []
-	domestic_connection = []
-	business_connection = []
-	institutional_connection = []
-	industrial_connection = []
-	for waterconnection in waterconnectionlist:
-		if waterconnection.supply_connection == 'waterpoint':
-			waterpoint_connection.append(waterconnection)
-		elif waterconnection.supply_connection == 'domestic':
-			domestic_connection.append(waterconnection)
-		elif waterconnection.supply_connection == 'business':
-			business_connection.append(waterconnection)
-		elif waterconnection.supply_connection == 'institutional':
-			institutional_connection.append(waterconnection)
-		elif waterconnection.supply_connection == 'industrial':
-			industrial_connection.append(waterconnection)
+		#separate water connection in their categories
+		waterpoint_connection = []
+		domestic_connection = []
+		business_connection = []
+		institutional_connection = []
+		industrial_connection = []
+		for waterconnection in waterconnectionlist:
+			if waterconnection.supply_connection == 'waterpoint':
+				waterpoint_connection.append(waterconnection)
+			elif waterconnection.supply_connection == 'domestic':
+				domestic_connection.append(waterconnection)
+			elif waterconnection.supply_connection == 'business':
+				business_connection.append(waterconnection)
+			elif waterconnection.supply_connection == 'institutional':
+				institutional_connection.append(waterconnection)
+			elif waterconnection.supply_connection == 'industrial':
+				industrial_connection.append(waterconnection)
 	
-	#return values
-	welcome_info = 'Welcome'
-	context = {'interface':interface,'industrial_connection':industrial_connection,'institutional_connection':institutional_connection,'business_connection':business_connection,'domestic_connection':domestic_connection,'waterpoint_connection':waterpoint_connection,'position':'engineer','welcome_info':welcome_info,'user':user}
-	return render (request, 'reports.html' ,context)
+		#return values
+		welcome_info = 'Welcome'
+		context = {'interface':interface,'industrial_connection':industrial_connection,'institutional_connection':institutional_connection,'business_connection':business_connection,'domestic_connection':domestic_connection,'waterpoint_connection':waterpoint_connection,'position':'engineer','welcome_info':welcome_info,'user':user}
+		return render (request, 'reports.html' ,context)
 	
 
 
@@ -183,6 +189,9 @@ def water_connection_summary_admin(request, user_id):
 	#taking current user of system
 	user = Administrator()
 	user = Administrator.objects.get(id = user_id)
+	
+	#taking all water point from the system:
+	waterpointlist_database = Waterpoint.objects.all()
 	
 	#return values
 	welcome_info = 'Welcome'

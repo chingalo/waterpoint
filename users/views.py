@@ -341,56 +341,62 @@ def report_summary_engineer(request, user_id):
 	waterpointlist_database = Waterpoint.objects.all()
 	cowsolist_database = Chairperson.objects.all()
 	
-	# cowso in given district
-	for cowso in cowsolist_database:
-		if cowso.district == user.district:
-			cowsolist.append(cowso)
-	for cowso in cowsolist:
-		if cowso.sex == 'male':
-			cowsomalelist.append(cowso)
-		elif cowso.sex == 'female':
-			cowsofemalelist.append(cowso)	
+	#cheching is current user has logged in in the system
+	if user.login_status == 'log_out':
+		message = 'Sorry! Currently you are not log in into this System.'
+		context = {'message':message}
+		return render(request, 'notlogin.html', context)
+	else:
+		# cowso in given district
+		for cowso in cowsolist_database:
+			if cowso.district == user.district:
+				cowsolist.append(cowso)
+		for cowso in cowsolist:
+			if cowso.sex == 'male':
+				cowsomalelist.append(cowso)
+			elif cowso.sex == 'female':
+				cowsofemalelist.append(cowso)	
 			
 	#count number of male and female in given district
-	malecowso_number = len(cowsomalelist)
-	femalecowso_number = len(cowsofemalelist)
-	total_cowso = len(cowsolist)
+		malecowso_number = len(cowsomalelist)
+		femalecowso_number = len(cowsofemalelist)
+		total_cowso = len(cowsolist)
 	
-	#water connections in given district
-	for waterpoint in waterpointlist_database:
-		if waterpoint.district == user.district:
-			waterconnectionlist.append(waterpoint)
+		#water connections in given district
+		for waterpoint in waterpointlist_database:
+			if waterpoint.district == user.district:
+				waterconnectionlist.append(waterpoint)
 	
-	#separate water connection in their categories
-	waterpoint_connection = []
-	domestic_connection = []
-	business_connection = []
-	institutional_connection = []
-	industrial_connection = []
-	for waterconnection in waterconnectionlist:
-		if waterconnection.supply_connection == 'waterpoint':
-			waterpoint_connection.append(waterconnection)
-		elif waterconnection.supply_connection == 'domestic':
-			domestic_connection.append(waterconnection)
-		elif waterconnection.supply_connection == 'business':
-			business_connection.append(waterconnection)
-		elif waterconnection.supply_connection == 'institutional':
-			institutional_connection.append(waterconnection)
-		elif waterconnection.supply_connection == 'industrial':
-			industrial_connection.append(waterconnection)
-	#count number for water connections		
-	waterpoint_connection_no = len(waterpoint_connection)
-	domestic_connection_no = len(domestic_connection)
-	business_connection_no = len(business_connection)
-	institutional_connection_no = len(institutional_connection)	
-	industrial_connection_no = len(industrial_connection)
-	water_connections_total = len(waterconnectionlist)
+		#separate water connection in their categories
+		waterpoint_connection = []
+		domestic_connection = []
+		business_connection = []
+		institutional_connection = []
+		industrial_connection = []
+		for waterconnection in waterconnectionlist:
+			if waterconnection.supply_connection == 'waterpoint':
+				waterpoint_connection.append(waterconnection)
+			elif waterconnection.supply_connection == 'domestic':
+				domestic_connection.append(waterconnection)
+			elif waterconnection.supply_connection == 'business':
+				business_connection.append(waterconnection)
+			elif waterconnection.supply_connection == 'institutional':
+				institutional_connection.append(waterconnection)
+			elif waterconnection.supply_connection == 'industrial':
+				industrial_connection.append(waterconnection)
+		#count number for water connections		
+		waterpoint_connection_no = len(waterpoint_connection)
+		domestic_connection_no = len(domestic_connection)
+		business_connection_no = len(business_connection)
+		institutional_connection_no = len(institutional_connection)	
+		industrial_connection_no = len(industrial_connection)
+		water_connections_total = len(waterconnectionlist)
 	
 			
-	#return values
-	welcome_info = 'Welcome'
-	context = {'interface':interface,'water_connections_total':water_connections_total,'industrial_connection_no':industrial_connection_no,'institutional_connection_no':institutional_connection_no,'business_connection_no':business_connection_no,'domestic_connection_no':domestic_connection_no,'waterpoint_connection_no':waterpoint_connection_no,'total_cowso':total_cowso,'femalecowso_number':femalecowso_number,'malecowso_number':malecowso_number,'position':'engineer','welcome_info':welcome_info,'user':user,}
-	return render (request, 'reports.html' ,context)	
+		#return values
+		welcome_info = 'Welcome'
+		context = {'interface':interface,'water_connections_total':water_connections_total,'industrial_connection_no':industrial_connection_no,'institutional_connection_no':institutional_connection_no,'business_connection_no':business_connection_no,'domestic_connection_no':domestic_connection_no,'waterpoint_connection_no':waterpoint_connection_no,'total_cowso':total_cowso,'femalecowso_number':femalecowso_number,'malecowso_number':malecowso_number,'position':'engineer','welcome_info':welcome_info,'user':user,}
+		return render (request, 'reports.html' ,context)	
 
 #report & summary : COWSO chairperson part in District water engineer interface	
 def cowso_summary_engineer(request, user_id):
@@ -403,23 +409,29 @@ def cowso_summary_engineer(request, user_id):
 	user = Engineer()
 	user = Engineer.objects.get(id = user_id)
 	
-	#taking all COWSO from database
-	cowsolist_database = Chairperson.objects.all()
+	#cheching is current user has logged in in the system
+	if user.login_status == 'log_out':
+		message = 'Sorry! Currently you are not log in into this System.'
+		context = {'message':message}
+		return render(request, 'notlogin.html', context)
+	else:	
+		#taking all COWSO from database
+		cowsolist_database = Chairperson.objects.all()
 	
-	# cowso in given district
-	for cowso in cowsolist_database:
-		if cowso.district == user.district:
-			cowsolist.append(cowso)
-	for cowso in cowsolist:
-		if cowso.sex == 'male':
-			cowsomalelist.append(cowso)
-		elif cowso.sex == 'female':
-			cowsofemalelist.append(cowso)
+		# cowso in given district
+		for cowso in cowsolist_database:
+			if cowso.district == user.district:
+				cowsolist.append(cowso)
+		for cowso in cowsolist:
+			if cowso.sex == 'male':
+				cowsomalelist.append(cowso)
+			elif cowso.sex == 'female':
+				cowsofemalelist.append(cowso)
 	
-	#return values
-	welcome_info = 'Welcome'
-	context = {'interface':interface,'cowsomalelist':cowsomalelist ,'cowsofemalelist':cowsofemalelist,'cowsolist':cowsolist,'position':'engineer','welcome_info':welcome_info,'user':user}
-	return render (request, 'reports.html' ,context)	
+		#return values
+		welcome_info = 'Welcome'
+		context = {'interface':interface,'cowsomalelist':cowsomalelist ,'cowsofemalelist':cowsofemalelist,'cowsolist':cowsolist,'position':'engineer','welcome_info':welcome_info,'user':user}
+		return render (request, 'reports.html' ,context)	
 
 	
 #report & summary : COWSO chairperson part in District System admin interface	
