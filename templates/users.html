@@ -41,9 +41,10 @@ To add successful register new District water Engineer in the system :<br>
 
 <div class = "span4 detail_on_engineer_ui">
 <ul class ="nav nav-list">
+<!-- 
 <li class "nav-header"><b>Useful Links</b></li>
 <li>{% placeholder userful_links %}</li>
-
+-->
 <li class "nav-header"><b>Reports and Summary</b></li>
 <li><a href = "{% url 'water_connection_summary_admin' user.id %}">Water connections</a></li>
 <li><a href = "{% url 'cowso_summary_admin' user.id %}">COWSO Chairperson</a></li>
@@ -95,9 +96,10 @@ To upload image for a given water supply connection:
 <!-- reports in district water engineer interface -->
 <div class = "span4 detail_on_engineer_ui">
 <ul class ="nav nav-list">
+<!-- 
 <li class "nav-header"><b>Useful Links</b></li>
 <li>{% placeholder userful_links %}</li>
-
+-->	
 <li class "nav-header"><b>Reports and Summary</b></li>
 <li><a href = "{% url 'report_summary_engineer' user.id %}" >Summary</a></li>
 <li><a href = "{% url 'water_connection_summary_engineer' user.id %}">Water connections</a></li>
