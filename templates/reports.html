@@ -107,12 +107,60 @@
 <!-- waterconnection interface on Engineer -->
 ok water connection report<br>
 still under development - District water engineer part<br>
-*****************************************<br>
-waterpoint_connection: {{waterpoint_connection}}<br>
-domestic_connection:{{domestic_connection}}<br>
-business_connection:{{business_connection}}<br>
-institutional_connection:{{institutional_connection}}<br>
-industrial_connection:{{industrial_connection}}
+<br>
+<div class ="tabbable  ">
+<ul class = "nav nav-tabs">
+
+<li class = "span3 active" ><a href = "#tab1" data-toggle = "tab">water point or kiosk</a></li>
+<li class = "span2" ><a href = "#tab2" data-toggle = "tab">domestic connection</a></li>
+<li class = "span2"><a href = "#tab3" data-toggle = "tab">business connection</a></li>
+<li class = "span3" ><a href = "#tab4" data-toggle = "tab">institutional connection</a></li>
+<li class = "span2"><a href = "#tab5" data-toggle = "tab">industrial connection</a></li>
+</ul>
+<div class = "tab-content">
+	
+<div class = "tab-pane  active" id = "tab1">
+{%if waterpoint_connection %}
+{{waterpoint_connection}}
+{% else %}
+<p>Not yet added</p>
+{% endif %}
+</div>
+
+<div class = "tab-pane " id = "tab2">
+{%if domestic_connection %}
+{{domestic_connection}}
+{% else %}
+<p>Not yet added</p>
+{% endif %}	
+</div>
+
+<div class = "tab-pane" id = "tab3">
+{%if business_connection %}
+{{business_connection}}
+{% else %}
+<p>Not yet added</p>
+{% endif %}
+</div>
+
+<div class = "tab-pane " id = "tab4">
+{%if institutional_connection %}
+{{institutional_connection}}
+{% else %}
+<p>Not yet added</p>
+{% endif %}		
+</div>
+
+<div class = "tab-pane" id = "tab5">
+{%if industrial_connection %}
+{{industrial_connection}}
+{% else %}
+<p>Not yet added</p>
+{% endif %}	
+</div>
+
+</div>
+</div>
 
 {% endif %}
 
