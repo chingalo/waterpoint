@@ -441,26 +441,32 @@ def cowso_summary_Admin(request, user_id):
 	user = Administrator()
 	user = Administrator.objects.get(id = user_id)
 	
-	#taking all COWSO chaiperson from database
-	cowsolist =Chairperson.objects.all();
+	#cheching is current user has logged in in the system
+	if user.login_status == 'log_out':
+		message = 'Sorry! Currently you are not log in into this System.'
+		context = {'message':message}
+		return render(request, 'notlogin.html', context)
+	else:
+		#taking all COWSO chaiperson from database
+		cowsolist =Chairperson.objects.all();
 	
-	#separete COWSO chairperson depend on their gender or sex
-	cowsomalelist = []
-	cowsofemalelist = []
-	for cowso in cowsolist:
-		if cowso.sex == 'male':
-			cowsomalelist.append(cowso)
-		else:
-			cowsofemalelist.append(cowso)	
-	#counting COWSO chairperson
-	cowsomale_no = len(cowsomalelist)
-	cowsofemale_no = len(cowsofemalelist)
-	cowso_total = len(cowsolist)
+		#separete COWSO chairperson depend on their gender or sex
+		cowsomalelist = []
+		cowsofemalelist = []
+		for cowso in cowsolist:
+			if cowso.sex == 'male':
+				cowsomalelist.append(cowso)
+			else:
+				cowsofemalelist.append(cowso)	
+		#counting COWSO chairperson
+		cowsomale_no = len(cowsomalelist)
+		cowsofemale_no = len(cowsofemalelist)
+		cowso_total = len(cowsolist)
 	 
-	#return values
-	welcome_info = 'Welcome'
-	context = {'interface':interface,'cowso_total':cowso_total,'cowsofemale_no':cowsofemale_no,'cowsomale_no':cowsomale_no,'position':'admin','welcome_info':welcome_info,'user':user}
-	return render (request, 'reports.html' ,context)
+		#return values
+		welcome_info = 'Welcome'
+		context = {'interface':interface,'cowso_total':cowso_total,'cowsofemale_no':cowsofemale_no,'cowsomale_no':cowsomale_no,'position':'admin','welcome_info':welcome_info,'user':user}
+		return render (request, 'reports.html' ,context)
 
 
 #report & summary : COWSO chairperson part in System admin interface		
