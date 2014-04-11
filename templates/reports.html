@@ -65,8 +65,8 @@
 
 </div>
 <div class = "tab-pane " id = "tab2">
-<p class = 'uppercase'><u>summary for cowso chairperson in {{user.district}} district:</u></p>
-<p>In {{user.district}}, depend on sex there are the following:-</p><hr>
+<p class = 'uppercase'><u>summary for cowso chairpersons in {{user.district}} district:</u></p>
+<p>In {{user.district}}, depend on sex there are the following are statistics for COWSO chairpesons:-</p><hr>
 <table class="table table-striped">
 <thead>
 <th>Sex or Gender</th>
@@ -183,8 +183,8 @@
 <!-- information about current user and logout option -->	
 <span class ='pull-right welcomeinfo'>{{welcome_info}}<i>,&#160;{{user.engineer_name}}<b>&#160;.</b></i>&#160;&#160;<a href = "{% url 'log_out' user.id user.e_mail user.password position %}" >log out</a><br> <a href = "{% url 'engineerhome' user.id %}">back</a></span><br><hr>
 <!-- COWSO chaiperson interface on Engineer -->
-<p class = 'uppercase'><u>COWSO Chaiperson in {{user.district}} district:</u></p>
-<p style = 'text-align:justify;'>The following are lists all COWSO chairperson in {{user.district}} district, categorized depend on their gender or sex:-</p>
+<p class = 'uppercase'><u>COWSO Chaipersons in {{user.district}} district:</u></p>
+<p style = 'text-align:justify;'>The following are lists all COWSO chairpersons in {{user.district}} district, categorized depend on their gender or sex:-</p>
 <hr>
 <div class ="tabbable tabs-left ">
 <ul class = "nav nav-tabs" >
@@ -283,8 +283,8 @@ cowsolist :{{cowsolist}}<br>
 <!-- information about current user and logout option -->
 <span class = 'pull-right welcomeinfo'>{{welcome_info}},<i>&#160;{{user.admin_name}}.</i>&#160;&#160;<a href = "{% url 'log_out'  user.id user.e_mail user.password position %}" >log out</a><br><a href = "{% url 'adminhome' user.id %}">back</a></span><br>
 <hr>
-<p class = 'uppercase'><u>summary for cowso chairperson in the united republic of tanzania:</u></p>
-<p style = 'text-align:justify;'>In summary, in <span style='text-transform:capitalize;'><b>the united republic of tanzania</b></span>, the following is statistics about all COWSO chairperson categorized dpending on sex or gender.
+<p class = 'uppercase'><u>summary for cowso chairpersons in the united republic of tanzania:</u></p>
+<p style = 'text-align:justify;'>In summary, in <span style='text-transform:capitalize;'><b>the united republic of tanzania</b></span>, the following is statistics about all COWSO chairpersons categorized dpending on sex or gender.
 They responsible for update all water connections status in their particular street or village</p>
 <hr>
 <table class="table table-striped">
