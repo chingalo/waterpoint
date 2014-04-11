@@ -13,5 +13,8 @@ urlpatterns = patterns('',
     url(r'^cowsoSummaryEngineer/(?P<user_id>\d+)/$', views.cowso_summary_engineer, name='cowso_summary_engineer'),
     url(r'^cowsoSummaryAdmin/(?P<user_id>\d+)/$', views.cowso_summary_Admin, name='cowso_summary_admin'),
     url(r'^engineerSummaryAdmin/(?P<user_id>\d+)/$', views.engineer_summary_Admin, name='engineer_summary_admin'),
+    url(r'^cowsoDetails/(?P<user_id>\d+)/(?P<cowso_id>\d+)/$', views.cowso_DetailsFromEngineer, name='cowso_details_from_enginer'),
+    url(r'^cowsoDetails/(?P<user_id>\d+)/(?P<cowso_id>\d+)/$', views.cowso_DetailsFromAdmin, name='cowso_details_from_admin'),
+    url(r'^cowsoDetails/(?P<user_id>\d+)/(?P<engineer_id>\d+)/$', views.engineer_DetailsFromAdmin, name='engineer_details_from_admin'),
    
 )
