@@ -5,7 +5,7 @@
 
 <!-- report page -->
 {% block page_contents %}
-
+<div class = "report">
 <!-- report : summary for District water engineer -->
 {% if interface == 'engineerSummary' %}
 <!-- information about current user and logout option -->	
@@ -108,7 +108,7 @@
 <p class = 'uppercase'><u>Water connections in {{user.district}} district:</u></p>
 <p style = 'text-align:justify;'>The following are list of names of all water connections in {{user.district}} district, depend on their connection category:-</p><hr>
 <div class ="tabbable  ">
-<ul class = "nav nav-tabs">
+<ul class = "nav nav-tabs" >
 
 <li class = "span3 active" ><a href = "#tab1" data-toggle = "tab">water point or kiosk connection</a></li>
 <li class = "span2" ><a href = "#tab2" data-toggle = "tab">domestic connection</a></li>
@@ -121,50 +121,50 @@
 <div class = "tab-pane  active" id = "tab1">
 {%if waterpoint_connection %}
 {% for kiosk in waterpoint_connection%}
-{{kiosk}}
+&#160;&#160;&#160;{{kiosk}}
 {% endfor %}
 {% else %}
-<p>In {{user.district}} district, there  is no water connection of water point or kiosk connection category</p>
+<p>&#160;&#160;&#160;In {{user.district}} district, there  is no water connection of water point or kiosk connection category</p>
 {% endif %}
 </div>
 
 <div class = "tab-pane " id = "tab2">
 {%if domestic_connection %}
 {% for domestic in domestic_connection%}
-{{domestic}}
+&#160;&#160;&#160;{{domestic}}
 {% endfor %}
 {% else %}
-<p>In {{user.district}} district, there  is no water connection of domestic connection category </p>
+<p>&#160;&#160;&#160;In {{user.district}} district, there  is no water connection of domestic connection category </p>
 {% endif %}	
 </div>
 
 <div class = "tab-pane" id = "tab3">
 {%if business_connection %}
 {% for business in business_connection%}
-{{business}}
+&#160;&#160;&#160;{{business}}
 {% endfor %}
 {% else %}
-<p>In {{user.district}} district, there  is no water connection of business connection category </p>
+<p>&#160;&#160;&#160;In {{user.district}} district, there  is no water connection of business connection category </p>
 {% endif %}
 </div>
 
 <div class = "tab-pane " id = "tab4">
 {%if institutional_connection %}
 {% for institutional in institutional_connection%}
-{{institutional}}
+&#160;&#160;&#160;{{institutional}}
 {% endfor %}
 {% else %}
-<p>In {{user.district}} district, there  is no water connection of institutional connection category </p>
+<p>&#160;&#160;&#160;In {{user.district}} district, there  is no water connection of institutional connection category </p>
 {% endif %}		
 </div>
 
 <div class = "tab-pane" id = "tab5">
 {%if industrial_connection %}
 {% for industrial in industrial_connection%}
-{{industrial}}
+&#160;&#160;&#160;{{industrial}}
 {% endfor %}
 {% else %}
-<p>In {{user.district}} district, there  is no water connection of industrial connection category</p>
+<p>&#160;&#160;&#160;In {{user.district}} district, there  is no water connection of industrial connection category</p>
 {% endif %}	
 </div>
 
@@ -183,7 +183,7 @@
 <p style = 'text-align:justify;'>The following are lists all COWSO chairperson in {{user.district}} district, depend on their gender or sex:-</p>
 <hr>
 <div class ="tabbable tabs-left ">
-<ul class = "nav nav-tabs">
+<ul class = "nav nav-tabs" >
 
 <li class = "span4 active" ><a href = "#tab1" data-toggle = "tab">Male</a></li>
 <li class = "span4" ><a href = "#tab2" data-toggle = "tab">Female</a></li>
@@ -193,7 +193,7 @@
 <div class = "tab-pane  active" id = "tab1">
 {%if cowsomalelist %}
 {% for cowso  in cowsomalelist %}
-{{cowso}}<br>
+&#160;&#160;&#160;{{cowso}}<br>
 {% endfor %}
 {% else %}
 <p>In {{user.district}} district, there  is no male COWSO chairperson</p>
@@ -203,7 +203,7 @@
 <div class = "tab-pane " id = "tab2">
 {%if cowsofemalelist %}
 {% for cowso  in cowsofemalelist %}
-{{cowso}}<br>
+&#160;&#160;&#160;{{cowso}}<br>
 {% endfor %}
 {% else %}
 <p>In {{user.district}} district, there  is no female COWSO chairperson</p>
@@ -247,5 +247,5 @@ ok engineer report<br>
 still under development - System admin 
 
 {% endif %}
-
+</div>
 {% endblock%}
