@@ -22,7 +22,7 @@
 </ul>
 <div class = "tab-content">
 <div class = "tab-pane  active" id = "tab1">
-<p class = 'uppercase'><u>Water connection summary in {{user.district}} district:</u></p>
+<p class = 'uppercase'><u>summary for Water connection in {{user.district}} district:</u></p>
 <p>In {{user.district}}, there are the following water connection types together with their corresponding number:-</p><hr>
 <!--waterconnections:{{waterconnectionlist}}<br>-->
 <table class="table table-striped">
@@ -65,7 +65,7 @@
 
 </div>
 <div class = "tab-pane " id = "tab2">
-<p class = 'uppercase'><u>cowso chairperson summary in {{user.district}} district:</u></p>
+<p class = 'uppercase'><u>summary for cowso chairperson in {{user.district}} district:</u></p>
 <p>In {{user.district}}, depend on sex there are the following:-</p><hr>
 <table class="table table-striped">
 <thead>
@@ -284,7 +284,8 @@ cowsolist :{{cowsolist}}<br>
 <!-- information about current user and logout option -->
 <span class = 'pull-right welcomeinfo'>{{welcome_info}},<i>&#160;{{user.admin_name}}.</i>&#160;&#160;<a href = "{% url 'log_out'  user.id user.e_mail user.password position %}" >log out</a><br><a href = "{% url 'adminhome' user.id %}">back</a></span><br>
 <hr>
-<p style = 'text-align:justify;'>In summary, in <span style='text-transform:capitalize;'><b>the united republic of tanzania</b></span>, the following is statistics about all COWSO chairperson.
+<p class = 'uppercase'><u>summary for cowso chairperson in the united republic of tanzania:</u></p>
+<p style = 'text-align:justify;'>In summary, in <span style='text-transform:capitalize;'><b>the united republic of tanzania</b></span>, the following is statistics about all COWSO chairperson categorized dpending on sex or gender.
 They responsible for update all water connections status in their particular street or village</p>
 <hr>
 <table class="table table-striped">
@@ -327,6 +328,7 @@ They responsible for update all water connections status in their particular str
 <!-- information about current user and logout option -->
 <span class ='pull-right welcomeinfo'>{{welcome_info}},<i>&#160;{{user.admin_name}}.</i>&#160;&#160;<a href = "{% url 'log_out'  user.id user.e_mail user.password position %}" >log out</a><br><a href = "{% url 'adminhome' user.id %}">back</a></span><br>
 <hr>
+<p class = 'uppercase'><u>summary for dostrict water engineer in the united republic of tanzania:</u></p>
 <p style = 'text-align:justify;'>In summary, in <span style ='text-transform:capitalize;'><b>the united republic of tanzania</b></span>, the following is statistics about all District Water Engineer.
 They responsible for register water connections depend on its category in their respective district including uploading photo or images for a given water connection.
 The category of water connection can water point/kiosk or business or institutional or industrial or domestic connections.
