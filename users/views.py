@@ -454,9 +454,26 @@ def engineer_summary_Admin(request, user_id):
 	user = Administrator()
 	user = Administrator.objects.get(id = user_id)
 	
+	#taking list of all District Water Engineer From database
+	engineerlist = Engineer.objects.all();
+	
+	#separete engineeer depend on gender or sex
+	engineermalelist = []
+	engineeerfemalelist = []
+	for engineer in engineerlist:
+		if engineer.sex == 'male':
+			engineermalelist.append(engineer)
+		else:
+			engineeerfemalelist.append(engineer)
+	
+	#counting engineers
+	engineeermale_no = len(engineermalelist)
+	engineeerfemale_no = len(engineeerfemalelist)
+	engineeer_total = len(engineerlist)		
+				
 	#return values
 	welcome_info = 'Welcome'
-	context = {'interface':interface,'position':'admin','welcome_info':welcome_info,'user':user}
+	context = {'interface':interface,'engineeer_total':engineeer_total,'engineeerfemale_no':engineeerfemale_no,'engineeermale_no':engineeermale_no,'position':'admin','welcome_info':welcome_info,'user':user}
 	return render (request, 'reports.html' ,context)
  
 
