@@ -105,57 +105,66 @@
 <!-- information about current user and logout option -->	
 <span class ='pull-right welcomeinfo'>{{welcome_info}}<i>,&#160;{{user.engineer_name}}<b>&#160;.</b></i>&#160;&#160;<a href = "{% url 'log_out' user.id user.e_mail user.password position %}" >log out</a><br> <a href = "{% url 'engineerhome' user.id %}">back</a></span><br><hr>
 <!-- waterconnection interface on Engineer -->
-ok water connection report<br>
-still under development - District water engineer part<br>
-<br>
+<p class = 'uppercase'><u>Water connections in {{user.district}} district:</u></p>
+<p style = 'text-align:justify;'>The following are lists all water connections in {{user.district}} district, depend on their connection category:-</p><br>
 <div class ="tabbable  ">
 <ul class = "nav nav-tabs">
 
-<li class = "span3 active" ><a href = "#tab1" data-toggle = "tab">water point or kiosk</a></li>
+<li class = "span3 active" ><a href = "#tab1" data-toggle = "tab">water point or kiosk connection</a></li>
 <li class = "span2" ><a href = "#tab2" data-toggle = "tab">domestic connection</a></li>
 <li class = "span2"><a href = "#tab3" data-toggle = "tab">business connection</a></li>
-<li class = "span3" ><a href = "#tab4" data-toggle = "tab">institutional connection</a></li>
+<li class = "span2" ><a href = "#tab4" data-toggle = "tab">institutional connection</a></li>
 <li class = "span2"><a href = "#tab5" data-toggle = "tab">industrial connection</a></li>
 </ul>
 <div class = "tab-content">
 	
 <div class = "tab-pane  active" id = "tab1">
 {%if waterpoint_connection %}
-{{waterpoint_connection}}
+{% for kiosk in waterpoint_connection%}
+{{kiosk}}
+{% endfor %}
 {% else %}
-<p>Not yet added</p>
+<p>In {{user.district}} district, there  are no water connection of water point or kiosk connection category</p>
 {% endif %}
 </div>
 
 <div class = "tab-pane " id = "tab2">
 {%if domestic_connection %}
-{{domestic_connection}}
+{% for domestic in domestic_connection%}
+{{domestic}}
+{% endfor %}
 {% else %}
-<p>Not yet added</p>
+<p>In {{user.district}} district, there  are no water connection of domestic connection category </p>
 {% endif %}	
 </div>
 
 <div class = "tab-pane" id = "tab3">
 {%if business_connection %}
-{{business_connection}}
+{% for business in business_connection%}
+{{business}}
+{% endfor %}
 {% else %}
-<p>Not yet added</p>
+<p>In {{user.district}} district, there  are no water connection of business connection category </p>
 {% endif %}
 </div>
 
 <div class = "tab-pane " id = "tab4">
 {%if institutional_connection %}
-{{institutional_connection}}
+{% for institutional in institutional_connection%}
+{{institutional}}
+{% endfor %}
 {% else %}
-<p>Not yet added</p>
+<p>In {{user.district}} district, there  are no water connection of institutional connection category </p>
 {% endif %}		
 </div>
 
 <div class = "tab-pane" id = "tab5">
 {%if industrial_connection %}
-{{industrial_connection}}
+{% for industrial in industrial_connection%}
+{{industrial}}
+{% endfor %}
 {% else %}
-<p>Not yet added</p>
+<p>In {{user.district}} district, there  are no water connection of industrial connection category</p>
 {% endif %}	
 </div>
 
