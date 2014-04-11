@@ -453,28 +453,33 @@ def engineer_summary_Admin(request, user_id):
 	#taking current user of system
 	user = Administrator()
 	user = Administrator.objects.get(id = user_id)
+	#cheching is current user has logged in in the system
+	if user.login_status == 'log_out':
+		message = 'Sorry! Currently you are not log in into this System.'
+		context = {'message':message}
+		return render(request, 'notlogin.html', context)
+	else:
+		#taking list of all District Water Engineer From database
+		engineerlist = Engineer.objects.all();
 	
-	#taking list of all District Water Engineer From database
-	engineerlist = Engineer.objects.all();
+		#separete engineeer depend on gender or sex
+		engineermalelist = []
+		engineeerfemalelist = []
+		for engineer in engineerlist:
+			if engineer.sex == 'male':
+				engineermalelist.append(engineer)
+			else:
+				engineeerfemalelist.append(engineer)
 	
-	#separete engineeer depend on gender or sex
-	engineermalelist = []
-	engineeerfemalelist = []
-	for engineer in engineerlist:
-		if engineer.sex == 'male':
-			engineermalelist.append(engineer)
-		else:
-			engineeerfemalelist.append(engineer)
-	
-	#counting engineers
-	engineeermale_no = len(engineermalelist)
-	engineeerfemale_no = len(engineeerfemalelist)
-	engineeer_total = len(engineerlist)		
+		#counting engineers
+		engineeermale_no = len(engineermalelist)
+		engineeerfemale_no = len(engineeerfemalelist)
+		engineeer_total = len(engineerlist)		
 				
-	#return values
-	welcome_info = 'Welcome'
-	context = {'interface':interface,'engineeer_total':engineeer_total,'engineeerfemale_no':engineeerfemale_no,'engineeermale_no':engineeermale_no,'position':'admin','welcome_info':welcome_info,'user':user}
-	return render (request, 'reports.html' ,context)
+		#return values
+		welcome_info = 'Welcome'
+		context = {'interface':interface,'engineeer_total':engineeer_total,'engineeerfemale_no':engineeerfemale_no,'engineeermale_no':engineeermale_no,'position':'admin','welcome_info':welcome_info,'user':user}
+		return render (request, 'reports.html' ,context)
  
 
 
