@@ -509,11 +509,19 @@ def engineer_summary_Admin(request, user_id):
 
 #to view all details for a given COWSO chairperson if query is from District water Engineer
 def cowso_DetailsFromEngineer(request, user_id,cowso_id):
+	#taking current user of the system
+	user = Engineer()
+	user = Engineer.objects.get(id = user_id)
+	
+	#taking requested cowso from database
+	cowso = Chairperson()
+	cowso = Chairperson.objects.get(id = cowso_id)
 	
 	#return values
 	welcome_info = "Welcome"
-	context = {'position':'engineer','welcome_info':welcome_info,'user':user}
-	return render(request, '',context)
+	detail = 'cowso_engineer'
+	context = {'detail':detail,'position':'engineer','welcome_info':welcome_info,'user':user,'cowso':cowso}
+	return render(request, 'moredetails.html',context)
 
 
 
@@ -522,7 +530,7 @@ def engineer_DetailsFromAdmin(request, user_id,engineer_id):
 	
 	#return values
 	welcome_info = "Welcome"
-	context = {'position':'engineer','welcome_info':welcome_info,'user':user}
+	context = {'position':'admin','welcome_info':welcome_info,'user':user}
 	return render(request, '',context)
 
 #to view all details for a given COWSO chairperson if query is from admin
@@ -530,7 +538,7 @@ def cowso_DetailsFromAdmin(request, user_id,engineer_id):
 	
 	#return values
 	welcome_info = "Welcome"
-	context = {'position':'engineer','welcome_info':welcome_info,'user':user}
+	context = {'position':'admin','welcome_info':welcome_info,'user':user}
 	return render(request, '',context)
 
 
