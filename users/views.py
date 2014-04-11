@@ -433,6 +433,8 @@ def cowso_summary_engineer(request, user_id):
 		context = {'interface':interface,'cowsomalelist':cowsomalelist ,'cowsofemalelist':cowsofemalelist,'cowsolist':cowsolist,'position':'engineer','welcome_info':welcome_info,'user':user}
 		return render (request, 'reports.html' ,context)	
 
+
+
 	
 #report & summary : COWSO chairperson part in District System admin interface	
 def cowso_summary_Admin(request, user_id):
@@ -503,6 +505,46 @@ def engineer_summary_Admin(request, user_id):
 		context = {'interface':interface,'engineeer_total':engineeer_total,'engineeerfemale_no':engineeerfemale_no,'engineeermale_no':engineeermale_no,'position':'admin','welcome_info':welcome_info,'user':user}
 		return render (request, 'reports.html' ,context)
  
+
+
+#to view all details for a given COWSO chairperson if query is from District water Engineer
+def cowso_DetailsFromEngineer(request, user_id,cowso_id):
+	
+	#return values
+	welcome_info = "Welcome"
+	context = {'position':'engineer','welcome_info':welcome_info,'user':user}
+	return render(request, '',context)
+
+
+
+#To view all details for a given District water engineer 
+def engineer_DetailsFromAdmin(request, user_id,engineer_id):
+	
+	#return values
+	welcome_info = "Welcome"
+	context = {'position':'engineer','welcome_info':welcome_info,'user':user}
+	return render(request, '',context)
+
+#to view all details for a given COWSO chairperson if query is from admin
+def cowso_DetailsFromAdmin(request, user_id,engineer_id):
+	
+	#return values
+	welcome_info = "Welcome"
+	context = {'position':'engineer','welcome_info':welcome_info,'user':user}
+	return render(request, '',context)
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
