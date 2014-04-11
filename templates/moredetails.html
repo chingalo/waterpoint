@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+{% load cms_tags menu_tags %}
+{% block tilte %}More details{% endblock%}
+
+{% block page_contents %}
+<!-- view details for COWSO chaiperson Water connection if request is from District water engineer -->
+{% if position == 'engineer'%}
+<!-- detail about current engineer -->
+<span class ='pull-right welcomeinfo'>{{welcome_info}}<i>,&#160;{{user.engineer_name}}<b>&#160;.</b></i>&#160;&#160;<a href = "{% url 'log_out' user.id user.e_mail user.password position %}" >log out</a><br> <a href = "{% url 'engineerhome' user.id %}">back to home</a></span><br><hr>
+
+<!-- cowso chairperson details -->
+{% if detail == 'cowso_engineer' %}
+requested cowso : {{cowso}}<br>
+{% endif %}
+
+<!-- water connection details -->
+{% if detail == 'water_connection_engineer' %}
+requested waterconnection : {{water_connection}}
+{% endif %}
+
+{% endif %}
+
+<!------------------ end for requests from the district water engineer -------------------->
+
+<!-- view details for COWSO chaiperson Water connection if request is from the system administrator -->
+{% if position == 'admin' %}
+
+
+{% endif %}
+{% endblock %}
