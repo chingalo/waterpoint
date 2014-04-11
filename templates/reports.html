@@ -184,7 +184,7 @@
 <span class ='pull-right welcomeinfo'>{{welcome_info}}<i>,&#160;{{user.engineer_name}}<b>&#160;.</b></i>&#160;&#160;<a href = "{% url 'log_out' user.id user.e_mail user.password position %}" >log out</a><br> <a href = "{% url 'engineerhome' user.id %}">back</a></span><br><hr>
 <!-- COWSO chaiperson interface on Engineer -->
 <p class = 'uppercase'><u>COWSO Chaiperson in {{user.district}} district:</u></p>
-<p style = 'text-align:justify;'>The following are lists all COWSO chairperson in {{user.district}} district, depend on their gender or sex:-</p>
+<p style = 'text-align:justify;'>The following are lists all COWSO chairperson in {{user.district}} district, categorized depend on their gender or sex:-</p>
 <hr>
 <div class ="tabbable tabs-left ">
 <ul class = "nav nav-tabs" >
@@ -200,7 +200,7 @@
 &#160;&#160;&#160;{{cowso}}<br>
 {% endfor %}
 {% else %}
-<p>In {{user.district}} district, there  is no male COWSO chairperson</p>
+<p>In {{user.district}} district, there  is no male COWSO chairperson registered for update status of any water connection</p>
 {% endif %}	
 </div>
 
@@ -210,7 +210,7 @@
 &#160;&#160;&#160;{{cowso}}<br>
 {% endfor %}
 {% else %}
-<p>In {{user.district}} district, there  is no female COWSO chairperson</p>
+<p>In {{user.district}} district, there  is no female COWSO chairperson registered for update status of any water connection</p>
 {% endif %}		
 </div>
 
@@ -233,7 +233,6 @@ cowsolist :{{cowsolist}}<br>
 <p style = 'text-align:justify;'>In summary, In summary, in <span style ='text-transform:capitalize;'><b>the united republic of tanzania</b></span>, there are the following water connections in statistics depening on their water connection category
 
  </p><hr>
-<hr>
 <table class="table table-striped">
 <tr>
 <th>Water Connection category</th>
