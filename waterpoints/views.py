@@ -57,7 +57,7 @@ def waterpointPhotos(request, user_id):
 				message = 'successfull upload'
 				context = {'message':message,'welcome_info':welcome_info,'position':'engineer', 'user':user,}
 				form.save()
-				return render(request,'engineer.html',context)	
+				return render(request,'users.html',context)	
 							
 			else:
 				#return new form to user if any field is empty
@@ -231,5 +231,38 @@ def water_connection_summary_admin(request, user_id):
 		return render (request, 'reports.html' ,context)	
 	
 	
+# to view all detail concerned a given water connection
+def water_connection_DetailsFromEngineer(request, user_id,water_connection_id):
+	#taking current user of the system
+	user = Engineer()
+	user = Engineer.objects.get(id = user_id)
 	
+	#taking queried water connetion form data base
+	water_connection = Waterpoint()
+	water_connection = Waterpoint.objects.get(id = water_connection_id)
+	
+	#taking all images from database
+	imagelist_database = Waterpoint_photos.objects.all()
+	
+	#select images for a given water point
+	imagelist = []
+	for image in imagelist_database:
+		if image.photos == water_connection:
+			imagelist.append(image)
+	
+	
+	#taking all status form database
+	statuslist_database = Waterpoint_status.objects.all()
+	
+	#taking status for a given water point
+	statuslist = []
+	for status in statuslist_database:
+		if status.name == water_connection:
+			statuslist.append(status)
+	
+	#return values
+	welcome_info = "Welcome"
+	detail = 'water_connection_engineer'
+	context = {'detail':detail,'imagelist':imagelist,'statuslist':statuslist,'water_connection':water_connection,'position':'engineer','welcome_info':welcome_info,'user':user,}
+	return render(request, 'moredetails.html',context)	
 				

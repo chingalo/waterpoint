@@ -531,7 +531,7 @@ def engineer_DetailsFromAdmin(request, user_id,engineer_id):
 	#return values
 	welcome_info = "Welcome"
 	context = {'position':'admin','welcome_info':welcome_info,'user':user}
-	return render(request, '',context)
+	return render(request, 'moredetails.html',context)
 
 #to view all details for a given COWSO chairperson if query is from admin
 def cowso_DetailsFromAdmin(request, user_id,engineer_id):
@@ -539,7 +539,7 @@ def cowso_DetailsFromAdmin(request, user_id,engineer_id):
 	#return values
 	welcome_info = "Welcome"
 	context = {'position':'admin','welcome_info':welcome_info,'user':user}
-	return render(request, '',context)
+	return render(request, 'moredetails.html',context)
 
 
 
