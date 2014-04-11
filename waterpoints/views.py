@@ -190,13 +190,45 @@ def water_connection_summary_admin(request, user_id):
 	user = Administrator()
 	user = Administrator.objects.get(id = user_id)
 	
-	#taking all water point from the system:
-	waterpointlist_database = Waterpoint.objects.all()
+	#cheching is current user has logged in in the system
+	if user.login_status == 'log_out':
+		message = 'Sorry! Currently you are not log in into this System.'
+		context = {'message':message}
+		return render(request, 'notlogin.html', context)
+	else:
 	
-	#return values
-	welcome_info = 'Welcome'
-	context = {'interface':interface,'position':'admin','welcome_info':welcome_info,'user':user}
-	return render (request, 'reports.html' ,context)	
+		#taking all water point from the system:
+		waterpointlist_database = Waterpoint.objects.all()
+		#separate water connection in their categories
+		waterpoint_connection = []
+		domestic_connection = []
+		business_connection = []
+		institutional_connection = []
+		industrial_connection = []
+		for waterconnection in waterpointlist_database:
+			if waterconnection.supply_connection == 'waterpoint':
+				waterpoint_connection.append(waterconnection)
+			elif waterconnection.supply_connection == 'domestic':
+				domestic_connection.append(waterconnection)
+			elif waterconnection.supply_connection == 'business':
+				business_connection.append(waterconnection)
+			elif waterconnection.supply_connection == 'institutional':
+				institutional_connection.append(waterconnection)
+			elif waterconnection.supply_connection == 'industrial':
+				industrial_connection.append(waterconnection)
+		
+		#count number for water connections		
+		waterpoint_connection_no = len(waterpoint_connection)
+		domestic_connection_no = len(domestic_connection)
+		business_connection_no = len(business_connection)
+		institutional_connection_no = len(institutional_connection)	
+		industrial_connection_no = len(industrial_connection)
+		water_connections_total = len(waterpointlist_database)
+		
+		#return values
+		welcome_info = 'Welcome'
+		context = {'interface':interface,'water_connections_total':water_connections_total,'industrial_connection_no':industrial_connection_no,'institutional_connection_no':institutional_connection_no,'business_connection_no':business_connection_no,'domestic_connection_no':domestic_connection_no,'waterpoint_connection_no':waterpoint_connection_no,'position':'admin','welcome_info':welcome_info,'user':user}
+		return render (request, 'reports.html' ,context)	
 	
 	
 	
