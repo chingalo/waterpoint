@@ -22,7 +22,7 @@
 <div class = "tab-content">
 <div class = "tab-pane  active" id = "tab1">
 <p class = 'uppercase'><u>Water connection summary in {{user.district}} district:</u></p>
-<p>In {{user.district}}, there are the following water connection types together with their corresponding number:-</p><br>
+<p>In {{user.district}}, there are the following water connection types together with their corresponding number:-</p><hr>
 <!--waterconnections:{{waterconnectionlist}}<br>-->
 <table class="table table-striped">
 <tr>
@@ -65,7 +65,7 @@
 </div>
 <div class = "tab-pane " id = "tab2">
 <p class = 'uppercase'><u>cowso chairperson summary in {{user.district}} district:</u></p>
-<p>In {{user.district}}, depend on sex there are the following:-</p><br>
+<p>In {{user.district}}, depend on sex there are the following:-</p><hr>
 <table class="table table-striped">
 <thead>
 <th>Sex or Gender</th>
@@ -106,7 +106,7 @@
 <span class ='pull-right welcomeinfo'>{{welcome_info}}<i>,&#160;{{user.engineer_name}}<b>&#160;.</b></i>&#160;&#160;<a href = "{% url 'log_out' user.id user.e_mail user.password position %}" >log out</a><br> <a href = "{% url 'engineerhome' user.id %}">back</a></span><br><hr>
 <!-- waterconnection interface on Engineer -->
 <p class = 'uppercase'><u>Water connections in {{user.district}} district:</u></p>
-<p style = 'text-align:justify;'>The following are lists all water connections in {{user.district}} district, depend on their connection category:-</p><br>
+<p style = 'text-align:justify;'>The following are list of names of all water connections in {{user.district}} district, depend on their connection category:-</p><hr>
 <div class ="tabbable  ">
 <ul class = "nav nav-tabs">
 
@@ -124,7 +124,7 @@
 {{kiosk}}
 {% endfor %}
 {% else %}
-<p>In {{user.district}} district, there  are no water connection of water point or kiosk connection category</p>
+<p>In {{user.district}} district, there  is no water connection of water point or kiosk connection category</p>
 {% endif %}
 </div>
 
@@ -134,7 +134,7 @@
 {{domestic}}
 {% endfor %}
 {% else %}
-<p>In {{user.district}} district, there  are no water connection of domestic connection category </p>
+<p>In {{user.district}} district, there  is no water connection of domestic connection category </p>
 {% endif %}	
 </div>
 
@@ -144,7 +144,7 @@
 {{business}}
 {% endfor %}
 {% else %}
-<p>In {{user.district}} district, there  are no water connection of business connection category </p>
+<p>In {{user.district}} district, there  is no water connection of business connection category </p>
 {% endif %}
 </div>
 
@@ -154,7 +154,7 @@
 {{institutional}}
 {% endfor %}
 {% else %}
-<p>In {{user.district}} district, there  are no water connection of institutional connection category </p>
+<p>In {{user.district}} district, there  is no water connection of institutional connection category </p>
 {% endif %}		
 </div>
 
@@ -164,13 +164,14 @@
 {{industrial}}
 {% endfor %}
 {% else %}
-<p>In {{user.district}} district, there  are no water connection of industrial connection category</p>
+<p>In {{user.district}} district, there  is no water connection of industrial connection category</p>
 {% endif %}	
 </div>
 
 </div>
 </div>
-
+<hr>
+<p>This part is still under develepment.....</p>
 {% endif %}
 
 <!-- report : COWSO Chairpersons for District water engineer -->
@@ -178,14 +179,43 @@
 <!-- information about current user and logout option -->	
 <span class ='pull-right welcomeinfo'>{{welcome_info}}<i>,&#160;{{user.engineer_name}}<b>&#160;.</b></i>&#160;&#160;<a href = "{% url 'log_out' user.id user.e_mail user.password position %}" >log out</a><br> <a href = "{% url 'engineerhome' user.id %}">back</a></span><br><hr>
 <!-- COWSO chaiperson interface on Engineer -->
-ok cowso report<br>
-still under development - District water engineer part<br>
-****************************************<br>
+<p class = 'uppercase'><u>COWSO Chaiperson in {{user.district}} district:</u></p>
+<p style = 'text-align:justify;'>The following are lists all COWSO chairperson in {{user.district}} district, depend on their gender or sex:-</p>
+<hr>
+<div class ="tabbable tabs-left ">
+<ul class = "nav nav-tabs">
+
+<li class = "span4 active" ><a href = "#tab1" data-toggle = "tab">Male</a></li>
+<li class = "span4" ><a href = "#tab2" data-toggle = "tab">Female</a></li>
+</ul>
+<div class = "tab-content">
+	
+<div class = "tab-pane  active" id = "tab1">
+{%if cowsomalelist %}
+{% for cowso  in cowsomalelist %}
+{{cowso}}<br>
+{% endfor %}
+{% else %}
+<p>In {{user.district}} district, there  is no male COWSO chairperson</p>
+{% endif %}	
+</div>
+
+<div class = "tab-pane " id = "tab2">
+{%if cowsofemalelist %}
+{% for cowso  in cowsofemalelist %}
+{{cowso}}<br>
+{% endfor %}
+{% else %}
+<p>In {{user.district}} district, there  is no female COWSO chairperson</p>
+{% endif %}		
+</div>
+
+</div>
+</div>
+<!--
 cowsolist :{{cowsolist}}<br>
-cowsofemalelist : {{cowsofemalelist}}<br>
-cowsomalelist :{{cowsomalelist}}
-
-
+-->
+<p>This part is still under develepment.....</p>
 {% endif %}
 
 
