@@ -197,7 +197,7 @@
 <div class = "tab-pane  active" id = "tab1">
 {%if cowsomalelist %}
 {% for cowso  in cowsomalelist %}
-&#160;&#160;&#160;<a href ="">{{cowso}}<br></a>
+&#160;&#160;&#160;<a href ="{% url 'cowso_details_from_engineer' user.id   cowso.id %}">{{cowso}}<br></a>
 {% endfor %}
 {% else %}
 <p>In {{user.district}} district, there  is no male COWSO chairperson registered for update status of any water connection</p>
@@ -207,7 +207,7 @@
 <div class = "tab-pane " id = "tab2">
 {%if cowsofemalelist %}
 {% for cowso  in cowsofemalelist %}
-&#160;&#160;&#160;<a href ="">{{cowso}}<br></a>
+&#160;&#160;&#160;<a href ="{% url 'cowso_details_from_engineer' user.id cowso.id %}">{{cowso}}<br></a>
 {% endfor %}
 {% else %}
 <p>In {{user.district}} district, there  is no female COWSO chairperson registered for update status of any water connection</p>
