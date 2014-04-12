@@ -64,9 +64,12 @@ font-size:17px;
 text-transform:uppercase;
 }
 td{
-text-transform:capitalize
+text-transform:capitalize;
 }
 .report{
+color:#4D4D4D;
+}
+.more_information{
 color:#4D4D4D;
 }
 
