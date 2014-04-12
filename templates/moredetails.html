@@ -3,6 +3,7 @@
 {% block tilte %}More details{% endblock%}
 
 {% block page_contents %}
+<div class = "more_information">
 <!-- view details for COWSO chaiperson Water connection if request is from District water engineer -->
 {% if position == 'engineer'%}
 <!-- detail about current engineer -->
@@ -10,31 +11,20 @@
 
 <!-- cowso chairperson details -->
 {% if detail == 'cowso_engineer' %}
-
-<table class = "" align="center">
+<p style = 'text-align:justify'>The followings are the static information or details concerned '{{cowso.cowso_chairperson_name}}', COWSO Chairperson</p><hr>
+<table class = "table">
 <tbody>	
 <tr>
-<td>cowso_id</td>
+<td>COWSO id</td>
 <td>&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;</td>
 <td>{{cowso.id}}</td>
 </tr>
 <tr>
-<td>cowso_chairperson_name</td>
+<td>COWSO chairperson name</td>
 <td>&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;</td>
 <td>{{cowso.cowso_chairperson_name}}</td>
 </tr>
-<tr>
-<td>password</td>
-<td>&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;</td>
-<td>{{cowso.password}}</td>
-</tr>
-<tr>
-<td>e_mail</td>
-<td>&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;</td>
-<td>{{cowso.e_mail}}</td>
-</tr>
-<tr>
-<td>telphone_number</td>
+<td>telphone or mobile number</td>
 <td>&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;</td>
 <td>{{cowso.telphone_number}}</td>
 </tr>
@@ -54,7 +44,7 @@
 <td>{{cowso.region}}</td>
 </tr>
 <tr>
-<td>physical_location_name</td>
+<td>village or street</td>
 <td>&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;</td>
 <td>{{cowso.physical_location_name}}</td>
 </tr>
@@ -215,4 +205,5 @@
 
 
 {% endif %}
+</div>
 {% endblock %}
