@@ -513,15 +513,21 @@ def cowso_DetailsFromEngineer(request, user_id,cowso_id):
 	user = Engineer()
 	user = Engineer.objects.get(id = user_id)
 	
-	#taking requested cowso from database
-	cowso = Chairperson()
-	cowso = Chairperson.objects.get(id = cowso_id)
+	#cheching is current user has logged in in the system
+	if user.login_status == 'log_out':
+		message = 'Sorry! Currently you are not log in into this System.'
+		context = {'message':message}
+		return render(request, 'notlogin.html', context)
+	else:
+		#taking requested cowso from database
+		cowso = Chairperson()
+		cowso = Chairperson.objects.get(id = cowso_id)
 	
-	#return values
-	welcome_info = "Welcome"
-	detail = 'cowso_engineer'
-	context = {'detail':detail,'position':'engineer','welcome_info':welcome_info,'user':user,'cowso':cowso}
-	return render(request, 'moredetails.html',context)
+		#return values
+		welcome_info = "Welcome"
+		detail = 'cowso_engineer'
+		context = {'detail':detail,'position':'engineer','welcome_info':welcome_info,'user':user,'cowso':cowso}
+		return render(request, 'moredetails.html',context)
 
 
 

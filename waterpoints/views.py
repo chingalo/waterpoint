@@ -236,33 +236,39 @@ def water_connection_DetailsFromEngineer(request, user_id,water_connection_id):
 	#taking current user of the system
 	user = Engineer()
 	user = Engineer.objects.get(id = user_id)
+	#cheching is current user has logged in in the system
+	if user.login_status == 'log_out':
+		message = 'Sorry! Currently you are not log in into this System.'
+		context = {'message':message}
+		return render(request, 'notlogin.html', context)
+	else:	
+
+		#taking queried water connetion form data base
+		water_connection = Waterpoint()
+		water_connection = Waterpoint.objects.get(id = water_connection_id)
 	
-	#taking queried water connetion form data base
-	water_connection = Waterpoint()
-	water_connection = Waterpoint.objects.get(id = water_connection_id)
+		#taking all images from database
+		imagelist_database = Waterpoint_photos.objects.all()
 	
-	#taking all images from database
-	imagelist_database = Waterpoint_photos.objects.all()
-	
-	#select images for a given water point
-	imagelist = []
-	for image in imagelist_database:
-		if image.photos == water_connection:
-			imagelist.append(image)
+		#select images for a given water point
+		imagelist = []
+		for image in imagelist_database:
+			if image.photos == water_connection:
+				imagelist.append(image)
 	
 	
-	#taking all status form database
-	statuslist_database = Waterpoint_status.objects.all()
+		#taking all status form database
+		statuslist_database = Waterpoint_status.objects.all()
 	
-	#taking status for a given water point
-	statuslist = []
-	for status in statuslist_database:
-		if status.name == water_connection:
-			statuslist.append(status)
+		#taking status for a given water point
+		statuslist = []
+		for status in statuslist_database:
+			if status.name == water_connection:
+				statuslist.append(status)
 	
-	#return values
-	welcome_info = "Welcome"
-	detail = 'water_connection_engineer'
-	context = {'detail':detail,'water_connection':water_connection,'imagelist':imagelist,'statuslist':statuslist,'water_connection':water_connection,'position':'engineer','welcome_info':welcome_info,'user':user,}
-	return render(request, 'moredetails.html',context)	
+		#return values
+		welcome_info = "Welcome"
+		detail = 'water_connection_engineer'
+		context = {'detail':detail,'water_connection':water_connection,'imagelist':imagelist,'statuslist':statuslist,'water_connection':water_connection,'position':'engineer','welcome_info':welcome_info,'user':user,}
+		return render(request, 'moredetails.html',context)	
 				
