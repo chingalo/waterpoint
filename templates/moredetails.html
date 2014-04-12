@@ -72,6 +72,7 @@
 
 <!-- water connection details -->
 {% if detail == 'water_connection_engineer' %}
+<!-- display static information for a given waterpoint -->
 <p style = 'text-align:justify'></p>
 
 <div class ="tabbable  ">
@@ -86,22 +87,22 @@
 <table class = "">
 <tbody>	
 <tr>
-<td>code_number</td>
+<td>water connction code number</td>
 <td>&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;</td>
 <td>{{water_connection.code_number}}</td>
 </tr>
 <tr>
-<td>name</td>
+<td>water connection name</td>
 <td>&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;</td>
 <td>{{water_connection.name}}</td>
 </tr>
 <tr>
-<td>source_name</td>
+<td>source name</td>
 <td>&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;</td>
 <td>{{water_connection.source_name}}</td>
 </tr>
 <tr>
-<td>supply_connection</td>
+<td>supply connection category</td>
 <td>&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;</td>
 <td>{{water_connection.supply_connection}}</td>
 </tr>
@@ -115,7 +116,7 @@
 <td>{{water_connection.region}}</td>
 </tr>
 <tr>
-<td>physical_location_name</td>
+<td>village or street</td>
 <td>&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;</td>
 <td>{{water_connection.physical_location_name}}</td>
 </tr>
@@ -145,11 +146,12 @@
 <tr>			
 </tbody>
 
-</table>	
-	
-
+</table>
 </div>
+
+<!-- displsy history of all status for a given waterpoint -->
 <div class = "tab-pane " id = "tab2">
+<p style = 'text-align:justify'></p>	
 {%if statuslist %}
 {% for status in statuslist %}
 {{status}}<br>
@@ -159,10 +161,16 @@
 {% endif %}		
 
 </div>
+<!-- display images or photos for a given water point -->
 <div class = "tab-pane" id = "tab3">
+<p style = 'text-align:justify'></p>	
 {%if imagelist %}
 {% for image  in imagelist%}
-{{image}}<br>
+<div class = "span3" >
+{{image.image_title}}<br>
+<img src="{{ image.image.url }}" alt="" style=""><br><br>
+</div>
+
 {% endfor %}
 {% else %}
 nkfkdj
