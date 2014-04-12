@@ -84,66 +84,75 @@
 </ul>
 <div class = "tab-content">
 <div class = "tab-pane  active" id = "tab1">
-<table class = "">
+<p style = 'text-align:justify'>The followings are the static information or details concerned '{{water_connection}}' water connection</p><hr>
+<table class = "table table-striped">
 <tbody>	
 <tr>
+<td>&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;</td>	
 <td>water connction code number</td>
-<td>&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;</td>
 <td>{{water_connection.code_number}}</td>
+<td>&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;</td>
 </tr>
 <tr>
+<td>&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;</td>	
 <td>water connection name</td>
-<td>&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;</td>
 <td>{{water_connection.name}}</td>
+<td>&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;</td>
 </tr>
 <tr>
+<td>&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;</td>	
 <td>source name</td>
-<td>&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;</td>
 <td>{{water_connection.source_name}}</td>
+<td>&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;</td>
 </tr>
 <tr>
+<td>&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;</td>	
 <td>supply connection category</td>
-<td>&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;</td>
 <td>{{water_connection.supply_connection}}</td>
+<td>&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;</td>
 </tr>
+<tr>
+<td>&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;</td>
 <td>district</td>
-<td>&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;</td>
 <td>{{water_connection.district}}</td>
+<td>&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;</td>
 </tr>
 <tr>
+<td>&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;</td>	
 <td>region</td>
-<td>&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;</td>
 <td>{{water_connection.region}}</td>
+<td>&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;</td>
 </tr>
 <tr>
+<td>&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;</td>
 <td>village or street</td>
-<td>&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;</td>
 <td>{{water_connection.physical_location_name}}</td>
+<td>&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;</td>
 </tr>
 <tr>
+<td>&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;</td>	
 <td>latitude</td>
-<td>&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;</td>
 <td>{{water_connection.latitude}}</td>
+<td>&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;</td>
 </tr>
 <tr>
-<tr>
+<td>&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;</td>	
 <td>longitude</td>
-<td>&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;</td>
 <td>{{water_connection.sex}}</td>
+<td>&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;</td>
 </tr>
 <tr>
-<tr>
+<td>&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;</td>	
 <td>fund</td>
-<td>&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;</td>
 <td>{{water_connection.fund}}</td>
-</tr>
-<tr>
-<tr>
-<td>sponsor</td>
 <td>&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;</td>
-<td>{{water_connection.sponsor}}</td>
 </tr>
-<tr>			
+<tr>
+<td>&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;</td>	
+<td>sponsor</td>
+<td>{{water_connection.sponsor}}</td>
+<td>&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;</td>
+</tr>	
 </tbody>
 
 </table>
@@ -151,11 +160,27 @@
 
 <!-- displsy history of all status for a given waterpoint -->
 <div class = "tab-pane " id = "tab2">
-<p style = 'text-align:justify'></p>	
+<p style = 'text-align:justify'>This is the history background for status upadted for '{{water_connection}}' water connection</p><hr>	
 {%if statuslist %}
+<table class = "table table-striped">
+<tbody>
+<thead>
+<tr>	
+<th>Status for water connection</th>
+<th>&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;</th>
+<th>Date and Time for status update</th>
+</tr>
+</thead>	
 {% for status in statuslist %}
-{{status}}<br>
+<tr>
+<td>{{status}}</td>
+<td>&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;</td>
+<td>{{status.status_date_update}}</td>
+</tr>
 {% endfor %}
+</tbody>
+</table>
+<br>
 {% else %}
 <p>Currently this water connection has not been updated</p>
 {% endif %}		
@@ -163,17 +188,17 @@
 </div>
 <!-- display images or photos for a given water point -->
 <div class = "tab-pane" id = "tab3">
-<p style = 'text-align:justify'></p>	
 {%if imagelist %}
+<p style = 'text-align:justify'>The following are galllery  for '{{water_connection}}' water connection</p><hr>
 {% for image  in imagelist%}
 <div class = "span3" >
 {{image.image_title}}<br>
-<img src="{{ image.image.url }}" alt="" style=""><br><br>
+<img src="{{ image.image.url }}" alt="{{image}}" ><br><br>
 </div>
 
 {% endfor %}
 {% else %}
-nkfkdj
+<p style = 'text-align:justify'>Currently, there is no gallery for '{{water_connection}}' water connection</p>
 {% endif %}		
 </div>
 </div>

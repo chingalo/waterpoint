@@ -263,6 +263,6 @@ def water_connection_DetailsFromEngineer(request, user_id,water_connection_id):
 	#return values
 	welcome_info = "Welcome"
 	detail = 'water_connection_engineer'
-	context = {'detail':detail,'imagelist':imagelist,'statuslist':statuslist,'water_connection':water_connection,'position':'engineer','welcome_info':welcome_info,'user':user,}
+	context = {'detail':detail,'water_connection':water_connection,'imagelist':imagelist,'statuslist':statuslist,'water_connection':water_connection,'position':'engineer','welcome_info':welcome_info,'user':user,}
 	return render(request, 'moredetails.html',context)	
 				
