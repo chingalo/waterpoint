@@ -1,7 +1,15 @@
 waterpoint
 ==========
 It is python powered django cms website project.
-It aims at control and manage all water points available, through uses of static and dynamic  informations about water point.
+It aims at control and manage all water connections available in The United Republic Of Tanzania, through uses of static and dynamic  informations about these water connections.
+These water connections includes kiosk or water point connections,business connections, industrial connections, institutional connections and domestics connections.
+These system is work through full participation of user's categories, which are System Administrator, The District Water Engineer, and COWSO chairperson.
+But in order to access the system these users must have user-name and password for authentication so that only authorized users can access the system depend on their user's role in system.
+The System administrator is responsible to create, control and manage all information concerned water connection,The District Water Engineer, and COWSO chairperson.
+The District Water Engineer is responsible  for full registration of water connections and views all all informations or status of water connections in his or her district.
+Also The District Water Engineer can views information about COWSO Chairperson in his or her district.
+Lastly, COWSO chairperson is responsible to update status of all water connections in his or her village or street.
+
 
 How to install this site:
 ====================================
