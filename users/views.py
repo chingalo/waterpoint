@@ -83,9 +83,8 @@ def authorize(request):
 		return render(request, 'users.html' , context)
 	elif position == 'cowso chairperson':
 		welcome_info = 'Welcome'
-		message = 'Please select new status for each water point'
+		message = 'Please select new status for each water connection'
 		context={'user_location':user_location,'message':message,'position':'cowso','welcome_info':welcome_info,'user':user, 'waterpoint_update':waterpoint_update}
-		#return render(request, 'chairperson.html',context)
 		return render(request, 'users.html' , context)
 	else:
 		message = 'Incorrect username or password'
