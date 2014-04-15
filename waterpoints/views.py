@@ -132,7 +132,7 @@ def update_waterpoint(request, user_id, user_location):
 			warning = 'Please make sure you have selected new status for each water point!'
 			welcome_info = 'Welcome'
 			context={'user_location':user_location,'warning':warning,'position':'cowso','welcome_info':welcome_info,'user':user, 'waterpoint_update':waterpoint_update}
-			return render(request, 'chairperson.html',context)
+			return render(request, 'users.html',context)
 
 
 #report & summary : water connection part in District water engineer interface
