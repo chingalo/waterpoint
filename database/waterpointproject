@@ -1,0 +1,4407 @@
+--
+-- PostgreSQL database dump
+--
+
+-- Dumped from database version 9.1.13
+-- Dumped by pg_dump version 9.1.13
+-- Started on 2014-04-15 21:31:11 EAT
+
+SET statement_timeout = 0;
+SET client_encoding = 'UTF8';
+SET standard_conforming_strings = on;
+SET check_function_bodies = false;
+SET client_min_messages = warning;
+
+--
+-- TOC entry 231 (class 3079 OID 11679)
+-- Name: plpgsql; Type: EXTENSION; Schema: -; Owner: 
+--
+
+CREATE EXTENSION IF NOT EXISTS plpgsql WITH SCHEMA pg_catalog;
+
+
+--
+-- TOC entry 2478 (class 0 OID 0)
+-- Dependencies: 231
+-- Name: EXTENSION plpgsql; Type: COMMENT; Schema: -; Owner: 
+--
+
+COMMENT ON EXTENSION plpgsql IS 'PL/pgSQL procedural language';
+
+
+SET search_path = public, pg_catalog;
+
+SET default_tablespace = '';
+
+SET default_with_oids = false;
+
+--
+-- TOC entry 166 (class 1259 OID 29432)
+-- Dependencies: 5
+-- Name: auth_group; Type: TABLE; Schema: public; Owner: postgres; Tablespace: 
+--
+
+CREATE TABLE auth_group (
+    id integer NOT NULL,
+    name character varying(80) NOT NULL
+);
+
+
+ALTER TABLE public.auth_group OWNER TO postgres;
+
+--
+-- TOC entry 165 (class 1259 OID 29430)
+-- Dependencies: 166 5
+-- Name: auth_group_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+CREATE SEQUENCE auth_group_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.auth_group_id_seq OWNER TO postgres;
+
+--
+-- TOC entry 2479 (class 0 OID 0)
+-- Dependencies: 165
+-- Name: auth_group_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+--
+
+ALTER SEQUENCE auth_group_id_seq OWNED BY auth_group.id;
+
+
+--
+-- TOC entry 164 (class 1259 OID 29417)
+-- Dependencies: 5
+-- Name: auth_group_permissions; Type: TABLE; Schema: public; Owner: postgres; Tablespace: 
+--
+
+CREATE TABLE auth_group_permissions (
+    id integer NOT NULL,
+    group_id integer NOT NULL,
+    permission_id integer NOT NULL
+);
+
+
+ALTER TABLE public.auth_group_permissions OWNER TO postgres;
+
+--
+-- TOC entry 163 (class 1259 OID 29415)
+-- Dependencies: 164 5
+-- Name: auth_group_permissions_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+CREATE SEQUENCE auth_group_permissions_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.auth_group_permissions_id_seq OWNER TO postgres;
+
+--
+-- TOC entry 2480 (class 0 OID 0)
+-- Dependencies: 163
+-- Name: auth_group_permissions_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+--
+
+ALTER SEQUENCE auth_group_permissions_id_seq OWNED BY auth_group_permissions.id;
+
+
+--
+-- TOC entry 162 (class 1259 OID 29407)
+-- Dependencies: 5
+-- Name: auth_permission; Type: TABLE; Schema: public; Owner: postgres; Tablespace: 
+--
+
+CREATE TABLE auth_permission (
+    id integer NOT NULL,
+    name character varying(50) NOT NULL,
+    content_type_id integer NOT NULL,
+    codename character varying(100) NOT NULL
+);
+
+
+ALTER TABLE public.auth_permission OWNER TO postgres;
+
+--
+-- TOC entry 161 (class 1259 OID 29405)
+-- Dependencies: 5 162
+-- Name: auth_permission_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+CREATE SEQUENCE auth_permission_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.auth_permission_id_seq OWNER TO postgres;
+
+--
+-- TOC entry 2481 (class 0 OID 0)
+-- Dependencies: 161
+-- Name: auth_permission_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+--
+
+ALTER SEQUENCE auth_permission_id_seq OWNED BY auth_permission.id;
+
+
+--
+-- TOC entry 172 (class 1259 OID 29477)
+-- Dependencies: 5
+-- Name: auth_user; Type: TABLE; Schema: public; Owner: postgres; Tablespace: 
+--
+
+CREATE TABLE auth_user (
+    id integer NOT NULL,
+    password character varying(128) NOT NULL,
+    last_login timestamp with time zone NOT NULL,
+    is_superuser boolean NOT NULL,
+    username character varying(30) NOT NULL,
+    first_name character varying(30) NOT NULL,
+    last_name character varying(30) NOT NULL,
+    email character varying(75) NOT NULL,
+    is_staff boolean NOT NULL,
+    is_active boolean NOT NULL,
+    date_joined timestamp with time zone NOT NULL
+);
+
+
+ALTER TABLE public.auth_user OWNER TO postgres;
+
+--
+-- TOC entry 168 (class 1259 OID 29447)
+-- Dependencies: 5
+-- Name: auth_user_groups; Type: TABLE; Schema: public; Owner: postgres; Tablespace: 
+--
+
+CREATE TABLE auth_user_groups (
+    id integer NOT NULL,
+    user_id integer NOT NULL,
+    group_id integer NOT NULL
+);
+
+
+ALTER TABLE public.auth_user_groups OWNER TO postgres;
+
+--
+-- TOC entry 167 (class 1259 OID 29445)
+-- Dependencies: 168 5
+-- Name: auth_user_groups_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+CREATE SEQUENCE auth_user_groups_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.auth_user_groups_id_seq OWNER TO postgres;
+
+--
+-- TOC entry 2482 (class 0 OID 0)
+-- Dependencies: 167
+-- Name: auth_user_groups_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+--
+
+ALTER SEQUENCE auth_user_groups_id_seq OWNED BY auth_user_groups.id;
+
+
+--
+-- TOC entry 171 (class 1259 OID 29475)
+-- Dependencies: 172 5
+-- Name: auth_user_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+CREATE SEQUENCE auth_user_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.auth_user_id_seq OWNER TO postgres;
+
+--
+-- TOC entry 2483 (class 0 OID 0)
+-- Dependencies: 171
+-- Name: auth_user_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+--
+
+ALTER SEQUENCE auth_user_id_seq OWNED BY auth_user.id;
+
+
+--
+-- TOC entry 170 (class 1259 OID 29462)
+-- Dependencies: 5
+-- Name: auth_user_user_permissions; Type: TABLE; Schema: public; Owner: postgres; Tablespace: 
+--
+
+CREATE TABLE auth_user_user_permissions (
+    id integer NOT NULL,
+    user_id integer NOT NULL,
+    permission_id integer NOT NULL
+);
+
+
+ALTER TABLE public.auth_user_user_permissions OWNER TO postgres;
+
+--
+-- TOC entry 169 (class 1259 OID 29460)
+-- Dependencies: 170 5
+-- Name: auth_user_user_permissions_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+CREATE SEQUENCE auth_user_user_permissions_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.auth_user_user_permissions_id_seq OWNER TO postgres;
+
+--
+-- TOC entry 2484 (class 0 OID 0)
+-- Dependencies: 169
+-- Name: auth_user_user_permissions_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+--
+
+ALTER SEQUENCE auth_user_user_permissions_id_seq OWNED BY auth_user_user_permissions.id;
+
+
+--
+-- TOC entry 183 (class 1259 OID 29559)
+-- Dependencies: 2033 2034 2035 2036 2037 5
+-- Name: cms_cmsplugin; Type: TABLE; Schema: public; Owner: postgres; Tablespace: 
+--
+
+CREATE TABLE cms_cmsplugin (
+    id integer NOT NULL,
+    placeholder_id integer,
+    parent_id integer,
+    "position" smallint,
+    language character varying(15) NOT NULL,
+    plugin_type character varying(50) NOT NULL,
+    creation_date timestamp with time zone NOT NULL,
+    changed_date timestamp with time zone NOT NULL,
+    level integer NOT NULL,
+    lft integer NOT NULL,
+    rght integer NOT NULL,
+    tree_id integer NOT NULL,
+    CONSTRAINT cms_cmsplugin_level_check CHECK ((level >= 0)),
+    CONSTRAINT cms_cmsplugin_lft_check CHECK ((lft >= 0)),
+    CONSTRAINT cms_cmsplugin_position_check CHECK (("position" >= 0)),
+    CONSTRAINT cms_cmsplugin_rght_check CHECK ((rght >= 0)),
+    CONSTRAINT cms_cmsplugin_tree_id_check CHECK ((tree_id >= 0))
+);
+
+
+ALTER TABLE public.cms_cmsplugin OWNER TO postgres;
+
+--
+-- TOC entry 182 (class 1259 OID 29557)
+-- Dependencies: 5 183
+-- Name: cms_cmsplugin_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+CREATE SEQUENCE cms_cmsplugin_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.cms_cmsplugin_id_seq OWNER TO postgres;
+
+--
+-- TOC entry 2485 (class 0 OID 0)
+-- Dependencies: 182
+-- Name: cms_cmsplugin_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+--
+
+ALTER SEQUENCE cms_cmsplugin_id_seq OWNED BY cms_cmsplugin.id;
+
+
+--
+-- TOC entry 193 (class 1259 OID 29667)
+-- Dependencies: 5
+-- Name: cms_globalpagepermission; Type: TABLE; Schema: public; Owner: postgres; Tablespace: 
+--
+
+CREATE TABLE cms_globalpagepermission (
+    id integer NOT NULL,
+    user_id integer,
+    group_id integer,
+    can_change boolean NOT NULL,
+    can_add boolean NOT NULL,
+    can_delete boolean NOT NULL,
+    can_change_advanced_settings boolean NOT NULL,
+    can_publish boolean NOT NULL,
+    can_change_permissions boolean NOT NULL,
+    can_move_page boolean NOT NULL,
+    can_view boolean NOT NULL,
+    can_recover_page boolean NOT NULL
+);
+
+
+ALTER TABLE public.cms_globalpagepermission OWNER TO postgres;
+
+--
+-- TOC entry 192 (class 1259 OID 29665)
+-- Dependencies: 5 193
+-- Name: cms_globalpagepermission_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+CREATE SEQUENCE cms_globalpagepermission_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.cms_globalpagepermission_id_seq OWNER TO postgres;
+
+--
+-- TOC entry 2486 (class 0 OID 0)
+-- Dependencies: 192
+-- Name: cms_globalpagepermission_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+--
+
+ALTER SEQUENCE cms_globalpagepermission_id_seq OWNED BY cms_globalpagepermission.id;
+
+
+--
+-- TOC entry 191 (class 1259 OID 29652)
+-- Dependencies: 5
+-- Name: cms_globalpagepermission_sites; Type: TABLE; Schema: public; Owner: postgres; Tablespace: 
+--
+
+CREATE TABLE cms_globalpagepermission_sites (
+    id integer NOT NULL,
+    globalpagepermission_id integer NOT NULL,
+    site_id integer NOT NULL
+);
+
+
+ALTER TABLE public.cms_globalpagepermission_sites OWNER TO postgres;
+
+--
+-- TOC entry 190 (class 1259 OID 29650)
+-- Dependencies: 5 191
+-- Name: cms_globalpagepermission_sites_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+CREATE SEQUENCE cms_globalpagepermission_sites_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.cms_globalpagepermission_sites_id_seq OWNER TO postgres;
+
+--
+-- TOC entry 2487 (class 0 OID 0)
+-- Dependencies: 190
+-- Name: cms_globalpagepermission_sites_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+--
+
+ALTER SEQUENCE cms_globalpagepermission_sites_id_seq OWNED BY cms_globalpagepermission_sites.id;
+
+
+--
+-- TOC entry 187 (class 1259 OID 29597)
+-- Dependencies: 2040 2041 2042 2043 5
+-- Name: cms_page; Type: TABLE; Schema: public; Owner: postgres; Tablespace: 
+--
+
+CREATE TABLE cms_page (
+    id integer NOT NULL,
+    created_by character varying(70) NOT NULL,
+    changed_by character varying(70) NOT NULL,
+    parent_id integer,
+    creation_date timestamp with time zone NOT NULL,
+    changed_date timestamp with time zone NOT NULL,
+    publication_date timestamp with time zone,
+    publication_end_date timestamp with time zone,
+    in_navigation boolean NOT NULL,
+    soft_root boolean NOT NULL,
+    reverse_id character varying(40),
+    navigation_extenders character varying(80),
+    published boolean NOT NULL,
+    template character varying(100) NOT NULL,
+    site_id integer NOT NULL,
+    login_required boolean NOT NULL,
+    limit_visibility_in_menu smallint,
+    level integer NOT NULL,
+    lft integer NOT NULL,
+    rght integer NOT NULL,
+    tree_id integer NOT NULL,
+    publisher_is_draft boolean NOT NULL,
+    publisher_public_id integer,
+    publisher_state smallint NOT NULL,
+    CONSTRAINT cms_page_level_check CHECK ((level >= 0)),
+    CONSTRAINT cms_page_lft_check CHECK ((lft >= 0)),
+    CONSTRAINT cms_page_rght_check CHECK ((rght >= 0)),
+    CONSTRAINT cms_page_tree_id_check CHECK ((tree_id >= 0))
+);
+
+
+ALTER TABLE public.cms_page OWNER TO postgres;
+
+--
+-- TOC entry 186 (class 1259 OID 29595)
+-- Dependencies: 5 187
+-- Name: cms_page_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+CREATE SEQUENCE cms_page_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.cms_page_id_seq OWNER TO postgres;
+
+--
+-- TOC entry 2488 (class 0 OID 0)
+-- Dependencies: 186
+-- Name: cms_page_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+--
+
+ALTER SEQUENCE cms_page_id_seq OWNED BY cms_page.id;
+
+
+--
+-- TOC entry 185 (class 1259 OID 29582)
+-- Dependencies: 5
+-- Name: cms_page_placeholders; Type: TABLE; Schema: public; Owner: postgres; Tablespace: 
+--
+
+CREATE TABLE cms_page_placeholders (
+    id integer NOT NULL,
+    page_id integer NOT NULL,
+    placeholder_id integer NOT NULL
+);
+
+
+ALTER TABLE public.cms_page_placeholders OWNER TO postgres;
+
+--
+-- TOC entry 184 (class 1259 OID 29580)
+-- Dependencies: 5 185
+-- Name: cms_page_placeholders_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+CREATE SEQUENCE cms_page_placeholders_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.cms_page_placeholders_id_seq OWNER TO postgres;
+
+--
+-- TOC entry 2489 (class 0 OID 0)
+-- Dependencies: 184
+-- Name: cms_page_placeholders_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+--
+
+ALTER SEQUENCE cms_page_placeholders_id_seq OWNED BY cms_page_placeholders.id;
+
+
+--
+-- TOC entry 189 (class 1259 OID 29631)
+-- Dependencies: 5
+-- Name: cms_pagemoderatorstate; Type: TABLE; Schema: public; Owner: postgres; Tablespace: 
+--
+
+CREATE TABLE cms_pagemoderatorstate (
+    id integer NOT NULL,
+    page_id integer NOT NULL,
+    user_id integer,
+    created timestamp with time zone NOT NULL,
+    action character varying(3),
+    message text NOT NULL
+);
+
+
+ALTER TABLE public.cms_pagemoderatorstate OWNER TO postgres;
+
+--
+-- TOC entry 188 (class 1259 OID 29629)
+-- Dependencies: 5 189
+-- Name: cms_pagemoderatorstate_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+CREATE SEQUENCE cms_pagemoderatorstate_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.cms_pagemoderatorstate_id_seq OWNER TO postgres;
+
+--
+-- TOC entry 2490 (class 0 OID 0)
+-- Dependencies: 188
+-- Name: cms_pagemoderatorstate_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+--
+
+ALTER SEQUENCE cms_pagemoderatorstate_id_seq OWNED BY cms_pagemoderatorstate.id;
+
+
+--
+-- TOC entry 195 (class 1259 OID 29690)
+-- Dependencies: 5
+-- Name: cms_pagepermission; Type: TABLE; Schema: public; Owner: postgres; Tablespace: 
+--
+
+CREATE TABLE cms_pagepermission (
+    id integer NOT NULL,
+    user_id integer,
+    group_id integer,
+    can_change boolean NOT NULL,
+    can_add boolean NOT NULL,
+    can_delete boolean NOT NULL,
+    can_change_advanced_settings boolean NOT NULL,
+    can_publish boolean NOT NULL,
+    can_change_permissions boolean NOT NULL,
+    can_move_page boolean NOT NULL,
+    can_view boolean NOT NULL,
+    grant_on integer NOT NULL,
+    page_id integer
+);
+
+
+ALTER TABLE public.cms_pagepermission OWNER TO postgres;
+
+--
+-- TOC entry 194 (class 1259 OID 29688)
+-- Dependencies: 195 5
+-- Name: cms_pagepermission_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+CREATE SEQUENCE cms_pagepermission_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.cms_pagepermission_id_seq OWNER TO postgres;
+
+--
+-- TOC entry 2491 (class 0 OID 0)
+-- Dependencies: 194
+-- Name: cms_pagepermission_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+--
+
+ALTER SEQUENCE cms_pagepermission_id_seq OWNED BY cms_pagepermission.id;
+
+
+--
+-- TOC entry 196 (class 1259 OID 29711)
+-- Dependencies: 5
+-- Name: cms_pageuser; Type: TABLE; Schema: public; Owner: postgres; Tablespace: 
+--
+
+CREATE TABLE cms_pageuser (
+    user_ptr_id integer NOT NULL,
+    created_by_id integer NOT NULL
+);
+
+
+ALTER TABLE public.cms_pageuser OWNER TO postgres;
+
+--
+-- TOC entry 197 (class 1259 OID 29726)
+-- Dependencies: 5
+-- Name: cms_pageusergroup; Type: TABLE; Schema: public; Owner: postgres; Tablespace: 
+--
+
+CREATE TABLE cms_pageusergroup (
+    group_ptr_id integer NOT NULL,
+    created_by_id integer NOT NULL
+);
+
+
+ALTER TABLE public.cms_pageusergroup OWNER TO postgres;
+
+--
+-- TOC entry 181 (class 1259 OID 29550)
+-- Dependencies: 2031 5
+-- Name: cms_placeholder; Type: TABLE; Schema: public; Owner: postgres; Tablespace: 
+--
+
+CREATE TABLE cms_placeholder (
+    id integer NOT NULL,
+    slot character varying(50) NOT NULL,
+    default_width smallint,
+    CONSTRAINT cms_placeholder_default_width_check CHECK ((default_width >= 0))
+);
+
+
+ALTER TABLE public.cms_placeholder OWNER TO postgres;
+
+--
+-- TOC entry 180 (class 1259 OID 29548)
+-- Dependencies: 5 181
+-- Name: cms_placeholder_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+CREATE SEQUENCE cms_placeholder_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.cms_placeholder_id_seq OWNER TO postgres;
+
+--
+-- TOC entry 2492 (class 0 OID 0)
+-- Dependencies: 180
+-- Name: cms_placeholder_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+--
+
+ALTER SEQUENCE cms_placeholder_id_seq OWNED BY cms_placeholder.id;
+
+
+--
+-- TOC entry 218 (class 1259 OID 29950)
+-- Dependencies: 5
+-- Name: cms_redirects_cmsredirect; Type: TABLE; Schema: public; Owner: postgres; Tablespace: 
+--
+
+CREATE TABLE cms_redirects_cmsredirect (
+    id integer NOT NULL,
+    page_id integer,
+    site_id integer NOT NULL,
+    old_path character varying(200) NOT NULL,
+    new_path character varying(200) NOT NULL,
+    response_code character varying(3) NOT NULL
+);
+
+
+ALTER TABLE public.cms_redirects_cmsredirect OWNER TO postgres;
+
+--
+-- TOC entry 217 (class 1259 OID 29948)
+-- Dependencies: 5 218
+-- Name: cms_redirects_cmsredirect_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+CREATE SEQUENCE cms_redirects_cmsredirect_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.cms_redirects_cmsredirect_id_seq OWNER TO postgres;
+
+--
+-- TOC entry 2493 (class 0 OID 0)
+-- Dependencies: 217
+-- Name: cms_redirects_cmsredirect_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+--
+
+ALTER SEQUENCE cms_redirects_cmsredirect_id_seq OWNED BY cms_redirects_cmsredirect.id;
+
+
+--
+-- TOC entry 199 (class 1259 OID 29743)
+-- Dependencies: 5
+-- Name: cms_title; Type: TABLE; Schema: public; Owner: postgres; Tablespace: 
+--
+
+CREATE TABLE cms_title (
+    id integer NOT NULL,
+    language character varying(15) NOT NULL,
+    title character varying(255) NOT NULL,
+    menu_title character varying(255),
+    slug character varying(255) NOT NULL,
+    path character varying(255) NOT NULL,
+    has_url_overwrite boolean NOT NULL,
+    application_urls character varying(200),
+    redirect character varying(255),
+    meta_description text,
+    meta_keywords character varying(255),
+    page_title character varying(255),
+    page_id integer NOT NULL,
+    creation_date timestamp with time zone NOT NULL
+);
+
+
+ALTER TABLE public.cms_title OWNER TO postgres;
+
+--
+-- TOC entry 198 (class 1259 OID 29741)
+-- Dependencies: 5 199
+-- Name: cms_title_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+CREATE SEQUENCE cms_title_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.cms_title_id_seq OWNER TO postgres;
+
+--
+-- TOC entry 2494 (class 0 OID 0)
+-- Dependencies: 198
+-- Name: cms_title_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+--
+
+ALTER SEQUENCE cms_title_id_seq OWNED BY cms_title.id;
+
+
+--
+-- TOC entry 204 (class 1259 OID 29782)
+-- Dependencies: 5
+-- Name: cmsplugin_file; Type: TABLE; Schema: public; Owner: postgres; Tablespace: 
+--
+
+CREATE TABLE cmsplugin_file (
+    cmsplugin_ptr_id integer NOT NULL,
+    file character varying(100) NOT NULL,
+    title character varying(255)
+);
+
+
+ALTER TABLE public.cmsplugin_file OWNER TO postgres;
+
+--
+-- TOC entry 205 (class 1259 OID 29792)
+-- Dependencies: 5
+-- Name: cmsplugin_flash; Type: TABLE; Schema: public; Owner: postgres; Tablespace: 
+--
+
+CREATE TABLE cmsplugin_flash (
+    cmsplugin_ptr_id integer NOT NULL,
+    file character varying(100) NOT NULL,
+    width character varying(6) NOT NULL,
+    height character varying(6) NOT NULL
+);
+
+
+ALTER TABLE public.cmsplugin_flash OWNER TO postgres;
+
+--
+-- TOC entry 206 (class 1259 OID 29802)
+-- Dependencies: 2052 5
+-- Name: cmsplugin_googlemap; Type: TABLE; Schema: public; Owner: postgres; Tablespace: 
+--
+
+CREATE TABLE cmsplugin_googlemap (
+    cmsplugin_ptr_id integer NOT NULL,
+    title character varying(100),
+    address character varying(150) NOT NULL,
+    zipcode character varying(30) NOT NULL,
+    city character varying(100) NOT NULL,
+    content character varying(255) NOT NULL,
+    zoom smallint NOT NULL,
+    lat numeric(10,6),
+    lng numeric(10,6),
+    route_planer_title character varying(150),
+    route_planer boolean NOT NULL,
+    width character varying(6) NOT NULL,
+    height character varying(6) NOT NULL,
+    CONSTRAINT cmsplugin_googlemap_zoom_check CHECK ((zoom >= 0))
+);
+
+
+ALTER TABLE public.cmsplugin_googlemap OWNER TO postgres;
+
+--
+-- TOC entry 207 (class 1259 OID 29816)
+-- Dependencies: 5
+-- Name: cmsplugin_link; Type: TABLE; Schema: public; Owner: postgres; Tablespace: 
+--
+
+CREATE TABLE cmsplugin_link (
+    cmsplugin_ptr_id integer NOT NULL,
+    name character varying(256) NOT NULL,
+    url character varying(200),
+    page_link_id integer,
+    mailto character varying(75),
+    target character varying(100) NOT NULL
+);
+
+
+ALTER TABLE public.cmsplugin_link OWNER TO postgres;
+
+--
+-- TOC entry 208 (class 1259 OID 29834)
+-- Dependencies: 5
+-- Name: cmsplugin_picture; Type: TABLE; Schema: public; Owner: postgres; Tablespace: 
+--
+
+CREATE TABLE cmsplugin_picture (
+    cmsplugin_ptr_id integer NOT NULL,
+    image character varying(100) NOT NULL,
+    url character varying(255),
+    page_link_id integer,
+    alt character varying(255),
+    longdesc character varying(255),
+    "float" character varying(10)
+);
+
+
+ALTER TABLE public.cmsplugin_picture OWNER TO postgres;
+
+--
+-- TOC entry 211 (class 1259 OID 29865)
+-- Dependencies: 5
+-- Name: cmsplugin_snippetptr; Type: TABLE; Schema: public; Owner: postgres; Tablespace: 
+--
+
+CREATE TABLE cmsplugin_snippetptr (
+    cmsplugin_ptr_id integer NOT NULL,
+    snippet_id integer NOT NULL
+);
+
+
+ALTER TABLE public.cmsplugin_snippetptr OWNER TO postgres;
+
+--
+-- TOC entry 212 (class 1259 OID 29880)
+-- Dependencies: 5
+-- Name: cmsplugin_teaser; Type: TABLE; Schema: public; Owner: postgres; Tablespace: 
+--
+
+CREATE TABLE cmsplugin_teaser (
+    cmsplugin_ptr_id integer NOT NULL,
+    title character varying(255) NOT NULL,
+    image character varying(100),
+    page_link_id integer,
+    url character varying(255),
+    description text
+);
+
+
+ALTER TABLE public.cmsplugin_teaser OWNER TO postgres;
+
+--
+-- TOC entry 213 (class 1259 OID 29898)
+-- Dependencies: 5
+-- Name: cmsplugin_text; Type: TABLE; Schema: public; Owner: postgres; Tablespace: 
+--
+
+CREATE TABLE cmsplugin_text (
+    cmsplugin_ptr_id integer NOT NULL,
+    body text NOT NULL
+);
+
+
+ALTER TABLE public.cmsplugin_text OWNER TO postgres;
+
+--
+-- TOC entry 215 (class 1259 OID 29926)
+-- Dependencies: 2056 5
+-- Name: cmsplugin_twitterrecententries; Type: TABLE; Schema: public; Owner: postgres; Tablespace: 
+--
+
+CREATE TABLE cmsplugin_twitterrecententries (
+    cmsplugin_ptr_id integer NOT NULL,
+    title character varying(75) NOT NULL,
+    twitter_user character varying(75) NOT NULL,
+    count smallint NOT NULL,
+    link_hint character varying(75) NOT NULL,
+    CONSTRAINT cmsplugin_twitterrecententries_count_check CHECK ((count >= 0))
+);
+
+
+ALTER TABLE public.cmsplugin_twitterrecententries OWNER TO postgres;
+
+--
+-- TOC entry 216 (class 1259 OID 29937)
+-- Dependencies: 2057 5
+-- Name: cmsplugin_twittersearch; Type: TABLE; Schema: public; Owner: postgres; Tablespace: 
+--
+
+CREATE TABLE cmsplugin_twittersearch (
+    cmsplugin_ptr_id integer NOT NULL,
+    title character varying(75) NOT NULL,
+    query character varying(200) NOT NULL,
+    count smallint NOT NULL,
+    CONSTRAINT cmsplugin_twittersearch_count_check CHECK ((count >= 0))
+);
+
+
+ALTER TABLE public.cmsplugin_twittersearch OWNER TO postgres;
+
+--
+-- TOC entry 214 (class 1259 OID 29911)
+-- Dependencies: 2054 2055 5
+-- Name: cmsplugin_video; Type: TABLE; Schema: public; Owner: postgres; Tablespace: 
+--
+
+CREATE TABLE cmsplugin_video (
+    cmsplugin_ptr_id integer NOT NULL,
+    movie character varying(100),
+    movie_url character varying(255),
+    image character varying(100),
+    width smallint NOT NULL,
+    height smallint NOT NULL,
+    auto_play boolean NOT NULL,
+    auto_hide boolean NOT NULL,
+    fullscreen boolean NOT NULL,
+    loop boolean NOT NULL,
+    bgcolor character varying(6) NOT NULL,
+    textcolor character varying(6) NOT NULL,
+    seekbarcolor character varying(6) NOT NULL,
+    seekbarbgcolor character varying(6) NOT NULL,
+    loadingbarcolor character varying(6) NOT NULL,
+    buttonoutcolor character varying(6) NOT NULL,
+    buttonovercolor character varying(6) NOT NULL,
+    buttonhighlightcolor character varying(6) NOT NULL,
+    CONSTRAINT cmsplugin_video_height_check CHECK ((height >= 0)),
+    CONSTRAINT cmsplugin_video_width_check CHECK ((width >= 0))
+);
+
+
+ALTER TABLE public.cmsplugin_video OWNER TO postgres;
+
+--
+-- TOC entry 179 (class 1259 OID 29528)
+-- Dependencies: 2029 5
+-- Name: django_admin_log; Type: TABLE; Schema: public; Owner: postgres; Tablespace: 
+--
+
+CREATE TABLE django_admin_log (
+    id integer NOT NULL,
+    action_time timestamp with time zone NOT NULL,
+    user_id integer NOT NULL,
+    content_type_id integer,
+    object_id text,
+    object_repr character varying(200) NOT NULL,
+    action_flag smallint NOT NULL,
+    change_message text NOT NULL,
+    CONSTRAINT django_admin_log_action_flag_check CHECK ((action_flag >= 0))
+);
+
+
+ALTER TABLE public.django_admin_log OWNER TO postgres;
+
+--
+-- TOC entry 178 (class 1259 OID 29526)
+-- Dependencies: 5 179
+-- Name: django_admin_log_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+CREATE SEQUENCE django_admin_log_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.django_admin_log_id_seq OWNER TO postgres;
+
+--
+-- TOC entry 2495 (class 0 OID 0)
+-- Dependencies: 178
+-- Name: django_admin_log_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+--
+
+ALTER SEQUENCE django_admin_log_id_seq OWNED BY django_admin_log.id;
+
+
+--
+-- TOC entry 174 (class 1259 OID 29497)
+-- Dependencies: 5
+-- Name: django_content_type; Type: TABLE; Schema: public; Owner: postgres; Tablespace: 
+--
+
+CREATE TABLE django_content_type (
+    id integer NOT NULL,
+    name character varying(100) NOT NULL,
+    app_label character varying(100) NOT NULL,
+    model character varying(100) NOT NULL
+);
+
+
+ALTER TABLE public.django_content_type OWNER TO postgres;
+
+--
+-- TOC entry 173 (class 1259 OID 29495)
+-- Dependencies: 5 174
+-- Name: django_content_type_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+CREATE SEQUENCE django_content_type_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.django_content_type_id_seq OWNER TO postgres;
+
+--
+-- TOC entry 2496 (class 0 OID 0)
+-- Dependencies: 173
+-- Name: django_content_type_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+--
+
+ALTER SEQUENCE django_content_type_id_seq OWNED BY django_content_type.id;
+
+
+--
+-- TOC entry 175 (class 1259 OID 29510)
+-- Dependencies: 5
+-- Name: django_session; Type: TABLE; Schema: public; Owner: postgres; Tablespace: 
+--
+
+CREATE TABLE django_session (
+    session_key character varying(40) NOT NULL,
+    session_data text NOT NULL,
+    expire_date timestamp with time zone NOT NULL
+);
+
+
+ALTER TABLE public.django_session OWNER TO postgres;
+
+--
+-- TOC entry 177 (class 1259 OID 29520)
+-- Dependencies: 5
+-- Name: django_site; Type: TABLE; Schema: public; Owner: postgres; Tablespace: 
+--
+
+CREATE TABLE django_site (
+    id integer NOT NULL,
+    domain character varying(100) NOT NULL,
+    name character varying(50) NOT NULL
+);
+
+
+ALTER TABLE public.django_site OWNER TO postgres;
+
+--
+-- TOC entry 176 (class 1259 OID 29518)
+-- Dependencies: 5 177
+-- Name: django_site_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+CREATE SEQUENCE django_site_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.django_site_id_seq OWNER TO postgres;
+
+--
+-- TOC entry 2497 (class 0 OID 0)
+-- Dependencies: 176
+-- Name: django_site_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+--
+
+ALTER SEQUENCE django_site_id_seq OWNED BY django_site.id;
+
+
+--
+-- TOC entry 201 (class 1259 OID 29761)
+-- Dependencies: 2050 5
+-- Name: menus_cachekey; Type: TABLE; Schema: public; Owner: postgres; Tablespace: 
+--
+
+CREATE TABLE menus_cachekey (
+    id integer NOT NULL,
+    language character varying(255) NOT NULL,
+    site integer NOT NULL,
+    key character varying(255) NOT NULL,
+    CONSTRAINT menus_cachekey_site_check CHECK ((site >= 0))
+);
+
+
+ALTER TABLE public.menus_cachekey OWNER TO postgres;
+
+--
+-- TOC entry 200 (class 1259 OID 29759)
+-- Dependencies: 201 5
+-- Name: menus_cachekey_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+CREATE SEQUENCE menus_cachekey_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.menus_cachekey_id_seq OWNER TO postgres;
+
+--
+-- TOC entry 2498 (class 0 OID 0)
+-- Dependencies: 200
+-- Name: menus_cachekey_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+--
+
+ALTER SEQUENCE menus_cachekey_id_seq OWNED BY menus_cachekey.id;
+
+
+--
+-- TOC entry 210 (class 1259 OID 29854)
+-- Dependencies: 5
+-- Name: snippet_snippet; Type: TABLE; Schema: public; Owner: postgres; Tablespace: 
+--
+
+CREATE TABLE snippet_snippet (
+    id integer NOT NULL,
+    name character varying(255) NOT NULL,
+    html text NOT NULL,
+    template character varying(50) NOT NULL
+);
+
+
+ALTER TABLE public.snippet_snippet OWNER TO postgres;
+
+--
+-- TOC entry 209 (class 1259 OID 29852)
+-- Dependencies: 210 5
+-- Name: snippet_snippet_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+CREATE SEQUENCE snippet_snippet_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.snippet_snippet_id_seq OWNER TO postgres;
+
+--
+-- TOC entry 2499 (class 0 OID 0)
+-- Dependencies: 209
+-- Name: snippet_snippet_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+--
+
+ALTER SEQUENCE snippet_snippet_id_seq OWNED BY snippet_snippet.id;
+
+
+--
+-- TOC entry 203 (class 1259 OID 29773)
+-- Dependencies: 5
+-- Name: south_migrationhistory; Type: TABLE; Schema: public; Owner: postgres; Tablespace: 
+--
+
+CREATE TABLE south_migrationhistory (
+    id integer NOT NULL,
+    app_name character varying(255) NOT NULL,
+    migration character varying(255) NOT NULL,
+    applied timestamp with time zone NOT NULL
+);
+
+
+ALTER TABLE public.south_migrationhistory OWNER TO postgres;
+
+--
+-- TOC entry 202 (class 1259 OID 29771)
+-- Dependencies: 203 5
+-- Name: south_migrationhistory_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+CREATE SEQUENCE south_migrationhistory_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.south_migrationhistory_id_seq OWNER TO postgres;
+
+--
+-- TOC entry 2500 (class 0 OID 0)
+-- Dependencies: 202
+-- Name: south_migrationhistory_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+--
+
+ALTER SEQUENCE south_migrationhistory_id_seq OWNED BY south_migrationhistory.id;
+
+
+--
+-- TOC entry 226 (class 1259 OID 30007)
+-- Dependencies: 5
+-- Name: users_administrator; Type: TABLE; Schema: public; Owner: postgres; Tablespace: 
+--
+
+CREATE TABLE users_administrator (
+    id integer NOT NULL,
+    admin_id character varying(20) NOT NULL,
+    admin_name character varying(200) NOT NULL,
+    password character varying(200) NOT NULL,
+    e_mail character varying(200) NOT NULL,
+    telphone_number character varying(20) NOT NULL,
+    address character varying(200) NOT NULL,
+    district character varying(200) NOT NULL,
+    region character varying(200) NOT NULL,
+    sex character varying(6) NOT NULL,
+    login_status character varying(100) NOT NULL
+);
+
+
+ALTER TABLE public.users_administrator OWNER TO postgres;
+
+--
+-- TOC entry 225 (class 1259 OID 30005)
+-- Dependencies: 5 226
+-- Name: users_administrator_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+CREATE SEQUENCE users_administrator_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.users_administrator_id_seq OWNER TO postgres;
+
+--
+-- TOC entry 2501 (class 0 OID 0)
+-- Dependencies: 225
+-- Name: users_administrator_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+--
+
+ALTER SEQUENCE users_administrator_id_seq OWNED BY users_administrator.id;
+
+
+--
+-- TOC entry 230 (class 1259 OID 30029)
+-- Dependencies: 5
+-- Name: users_chairperson; Type: TABLE; Schema: public; Owner: postgres; Tablespace: 
+--
+
+CREATE TABLE users_chairperson (
+    id integer NOT NULL,
+    cowso_id character varying(20) NOT NULL,
+    cowso_chairperson_name character varying(200) NOT NULL,
+    password character varying(200) NOT NULL,
+    e_mail character varying(200) NOT NULL,
+    telphone_number character varying(20) NOT NULL,
+    address character varying(200) NOT NULL,
+    district character varying(200) NOT NULL,
+    region character varying(200) NOT NULL,
+    physical_location_name character varying(200) NOT NULL,
+    sex character varying(6) NOT NULL,
+    login_status character varying(100) NOT NULL
+);
+
+
+ALTER TABLE public.users_chairperson OWNER TO postgres;
+
+--
+-- TOC entry 229 (class 1259 OID 30027)
+-- Dependencies: 230 5
+-- Name: users_chairperson_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+CREATE SEQUENCE users_chairperson_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.users_chairperson_id_seq OWNER TO postgres;
+
+--
+-- TOC entry 2502 (class 0 OID 0)
+-- Dependencies: 229
+-- Name: users_chairperson_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+--
+
+ALTER SEQUENCE users_chairperson_id_seq OWNED BY users_chairperson.id;
+
+
+--
+-- TOC entry 228 (class 1259 OID 30018)
+-- Dependencies: 5
+-- Name: users_engineer; Type: TABLE; Schema: public; Owner: postgres; Tablespace: 
+--
+
+CREATE TABLE users_engineer (
+    id integer NOT NULL,
+    engineer_id character varying(20) NOT NULL,
+    engineer_name character varying(200) NOT NULL,
+    password character varying(200) NOT NULL,
+    e_mail character varying(200) NOT NULL,
+    telphone_number character varying(20) NOT NULL,
+    address character varying(200) NOT NULL,
+    district character varying(200) NOT NULL,
+    region character varying(200) NOT NULL,
+    sex character varying(6) NOT NULL,
+    login_status character varying(100) NOT NULL
+);
+
+
+ALTER TABLE public.users_engineer OWNER TO postgres;
+
+--
+-- TOC entry 227 (class 1259 OID 30016)
+-- Dependencies: 228 5
+-- Name: users_engineer_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+CREATE SEQUENCE users_engineer_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.users_engineer_id_seq OWNER TO postgres;
+
+--
+-- TOC entry 2503 (class 0 OID 0)
+-- Dependencies: 227
+-- Name: users_engineer_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+--
+
+ALTER SEQUENCE users_engineer_id_seq OWNED BY users_engineer.id;
+
+
+--
+-- TOC entry 220 (class 1259 OID 29970)
+-- Dependencies: 5
+-- Name: waterpoints_waterpoint; Type: TABLE; Schema: public; Owner: postgres; Tablespace: 
+--
+
+CREATE TABLE waterpoints_waterpoint (
+    id integer NOT NULL,
+    code_number character varying(20) NOT NULL,
+    name character varying(200) NOT NULL,
+    source_name character varying(200) NOT NULL,
+    supply_connection character varying(200) NOT NULL,
+    district character varying(200) NOT NULL,
+    region character varying(200) NOT NULL,
+    physical_location_name character varying(200) NOT NULL,
+    latitude character varying(200) NOT NULL,
+    longitude character varying(200) NOT NULL,
+    fund character varying(200) NOT NULL,
+    sponsor character varying(200) NOT NULL
+);
+
+
+ALTER TABLE public.waterpoints_waterpoint OWNER TO postgres;
+
+--
+-- TOC entry 219 (class 1259 OID 29968)
+-- Dependencies: 220 5
+-- Name: waterpoints_waterpoint_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+CREATE SEQUENCE waterpoints_waterpoint_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.waterpoints_waterpoint_id_seq OWNER TO postgres;
+
+--
+-- TOC entry 2504 (class 0 OID 0)
+-- Dependencies: 219
+-- Name: waterpoints_waterpoint_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+--
+
+ALTER SEQUENCE waterpoints_waterpoint_id_seq OWNED BY waterpoints_waterpoint.id;
+
+
+--
+-- TOC entry 222 (class 1259 OID 29981)
+-- Dependencies: 5
+-- Name: waterpoints_waterpoint_photos; Type: TABLE; Schema: public; Owner: postgres; Tablespace: 
+--
+
+CREATE TABLE waterpoints_waterpoint_photos (
+    id integer NOT NULL,
+    photos_id integer NOT NULL,
+    image character varying(100) NOT NULL,
+    image_title character varying(200) NOT NULL
+);
+
+
+ALTER TABLE public.waterpoints_waterpoint_photos OWNER TO postgres;
+
+--
+-- TOC entry 221 (class 1259 OID 29979)
+-- Dependencies: 222 5
+-- Name: waterpoints_waterpoint_photos_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+CREATE SEQUENCE waterpoints_waterpoint_photos_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.waterpoints_waterpoint_photos_id_seq OWNER TO postgres;
+
+--
+-- TOC entry 2505 (class 0 OID 0)
+-- Dependencies: 221
+-- Name: waterpoints_waterpoint_photos_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+--
+
+ALTER SEQUENCE waterpoints_waterpoint_photos_id_seq OWNED BY waterpoints_waterpoint_photos.id;
+
+
+--
+-- TOC entry 224 (class 1259 OID 29994)
+-- Dependencies: 5
+-- Name: waterpoints_waterpoint_status; Type: TABLE; Schema: public; Owner: postgres; Tablespace: 
+--
+
+CREATE TABLE waterpoints_waterpoint_status (
+    id integer NOT NULL,
+    name_id integer NOT NULL,
+    status character varying(200) NOT NULL,
+    status_date_update timestamp with time zone NOT NULL
+);
+
+
+ALTER TABLE public.waterpoints_waterpoint_status OWNER TO postgres;
+
+--
+-- TOC entry 223 (class 1259 OID 29992)
+-- Dependencies: 5 224
+-- Name: waterpoints_waterpoint_status_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+CREATE SEQUENCE waterpoints_waterpoint_status_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.waterpoints_waterpoint_status_id_seq OWNER TO postgres;
+
+--
+-- TOC entry 2506 (class 0 OID 0)
+-- Dependencies: 223
+-- Name: waterpoints_waterpoint_status_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+--
+
+ALTER SEQUENCE waterpoints_waterpoint_status_id_seq OWNED BY waterpoints_waterpoint_status.id;
+
+
+--
+-- TOC entry 2022 (class 2604 OID 29435)
+-- Dependencies: 165 166 166
+-- Name: id; Type: DEFAULT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY auth_group ALTER COLUMN id SET DEFAULT nextval('auth_group_id_seq'::regclass);
+
+
+--
+-- TOC entry 2021 (class 2604 OID 29420)
+-- Dependencies: 163 164 164
+-- Name: id; Type: DEFAULT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY auth_group_permissions ALTER COLUMN id SET DEFAULT nextval('auth_group_permissions_id_seq'::regclass);
+
+
+--
+-- TOC entry 2020 (class 2604 OID 29410)
+-- Dependencies: 162 161 162
+-- Name: id; Type: DEFAULT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY auth_permission ALTER COLUMN id SET DEFAULT nextval('auth_permission_id_seq'::regclass);
+
+
+--
+-- TOC entry 2025 (class 2604 OID 29480)
+-- Dependencies: 171 172 172
+-- Name: id; Type: DEFAULT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY auth_user ALTER COLUMN id SET DEFAULT nextval('auth_user_id_seq'::regclass);
+
+
+--
+-- TOC entry 2023 (class 2604 OID 29450)
+-- Dependencies: 167 168 168
+-- Name: id; Type: DEFAULT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY auth_user_groups ALTER COLUMN id SET DEFAULT nextval('auth_user_groups_id_seq'::regclass);
+
+
+--
+-- TOC entry 2024 (class 2604 OID 29465)
+-- Dependencies: 170 169 170
+-- Name: id; Type: DEFAULT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY auth_user_user_permissions ALTER COLUMN id SET DEFAULT nextval('auth_user_user_permissions_id_seq'::regclass);
+
+
+--
+-- TOC entry 2032 (class 2604 OID 29562)
+-- Dependencies: 182 183 183
+-- Name: id; Type: DEFAULT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY cms_cmsplugin ALTER COLUMN id SET DEFAULT nextval('cms_cmsplugin_id_seq'::regclass);
+
+
+--
+-- TOC entry 2046 (class 2604 OID 29670)
+-- Dependencies: 193 192 193
+-- Name: id; Type: DEFAULT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY cms_globalpagepermission ALTER COLUMN id SET DEFAULT nextval('cms_globalpagepermission_id_seq'::regclass);
+
+
+--
+-- TOC entry 2045 (class 2604 OID 29655)
+-- Dependencies: 191 190 191
+-- Name: id; Type: DEFAULT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY cms_globalpagepermission_sites ALTER COLUMN id SET DEFAULT nextval('cms_globalpagepermission_sites_id_seq'::regclass);
+
+
+--
+-- TOC entry 2039 (class 2604 OID 29600)
+-- Dependencies: 187 186 187
+-- Name: id; Type: DEFAULT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY cms_page ALTER COLUMN id SET DEFAULT nextval('cms_page_id_seq'::regclass);
+
+
+--
+-- TOC entry 2038 (class 2604 OID 29585)
+-- Dependencies: 185 184 185
+-- Name: id; Type: DEFAULT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY cms_page_placeholders ALTER COLUMN id SET DEFAULT nextval('cms_page_placeholders_id_seq'::regclass);
+
+
+--
+-- TOC entry 2044 (class 2604 OID 29634)
+-- Dependencies: 189 188 189
+-- Name: id; Type: DEFAULT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY cms_pagemoderatorstate ALTER COLUMN id SET DEFAULT nextval('cms_pagemoderatorstate_id_seq'::regclass);
+
+
+--
+-- TOC entry 2047 (class 2604 OID 29693)
+-- Dependencies: 194 195 195
+-- Name: id; Type: DEFAULT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY cms_pagepermission ALTER COLUMN id SET DEFAULT nextval('cms_pagepermission_id_seq'::regclass);
+
+
+--
+-- TOC entry 2030 (class 2604 OID 29553)
+-- Dependencies: 180 181 181
+-- Name: id; Type: DEFAULT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY cms_placeholder ALTER COLUMN id SET DEFAULT nextval('cms_placeholder_id_seq'::regclass);
+
+
+--
+-- TOC entry 2058 (class 2604 OID 29953)
+-- Dependencies: 218 217 218
+-- Name: id; Type: DEFAULT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY cms_redirects_cmsredirect ALTER COLUMN id SET DEFAULT nextval('cms_redirects_cmsredirect_id_seq'::regclass);
+
+
+--
+-- TOC entry 2048 (class 2604 OID 29746)
+-- Dependencies: 198 199 199
+-- Name: id; Type: DEFAULT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY cms_title ALTER COLUMN id SET DEFAULT nextval('cms_title_id_seq'::regclass);
+
+
+--
+-- TOC entry 2028 (class 2604 OID 29531)
+-- Dependencies: 179 178 179
+-- Name: id; Type: DEFAULT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY django_admin_log ALTER COLUMN id SET DEFAULT nextval('django_admin_log_id_seq'::regclass);
+
+
+--
+-- TOC entry 2026 (class 2604 OID 29500)
+-- Dependencies: 173 174 174
+-- Name: id; Type: DEFAULT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY django_content_type ALTER COLUMN id SET DEFAULT nextval('django_content_type_id_seq'::regclass);
+
+
+--
+-- TOC entry 2027 (class 2604 OID 29523)
+-- Dependencies: 177 176 177
+-- Name: id; Type: DEFAULT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY django_site ALTER COLUMN id SET DEFAULT nextval('django_site_id_seq'::regclass);
+
+
+--
+-- TOC entry 2049 (class 2604 OID 29764)
+-- Dependencies: 201 200 201
+-- Name: id; Type: DEFAULT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY menus_cachekey ALTER COLUMN id SET DEFAULT nextval('menus_cachekey_id_seq'::regclass);
+
+
+--
+-- TOC entry 2053 (class 2604 OID 29857)
+-- Dependencies: 210 209 210
+-- Name: id; Type: DEFAULT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY snippet_snippet ALTER COLUMN id SET DEFAULT nextval('snippet_snippet_id_seq'::regclass);
+
+
+--
+-- TOC entry 2051 (class 2604 OID 29776)
+-- Dependencies: 202 203 203
+-- Name: id; Type: DEFAULT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY south_migrationhistory ALTER COLUMN id SET DEFAULT nextval('south_migrationhistory_id_seq'::regclass);
+
+
+--
+-- TOC entry 2062 (class 2604 OID 30010)
+-- Dependencies: 226 225 226
+-- Name: id; Type: DEFAULT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY users_administrator ALTER COLUMN id SET DEFAULT nextval('users_administrator_id_seq'::regclass);
+
+
+--
+-- TOC entry 2064 (class 2604 OID 30032)
+-- Dependencies: 230 229 230
+-- Name: id; Type: DEFAULT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY users_chairperson ALTER COLUMN id SET DEFAULT nextval('users_chairperson_id_seq'::regclass);
+
+
+--
+-- TOC entry 2063 (class 2604 OID 30021)
+-- Dependencies: 228 227 228
+-- Name: id; Type: DEFAULT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY users_engineer ALTER COLUMN id SET DEFAULT nextval('users_engineer_id_seq'::regclass);
+
+
+--
+-- TOC entry 2059 (class 2604 OID 29973)
+-- Dependencies: 219 220 220
+-- Name: id; Type: DEFAULT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY waterpoints_waterpoint ALTER COLUMN id SET DEFAULT nextval('waterpoints_waterpoint_id_seq'::regclass);
+
+
+--
+-- TOC entry 2060 (class 2604 OID 29984)
+-- Dependencies: 221 222 222
+-- Name: id; Type: DEFAULT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY waterpoints_waterpoint_photos ALTER COLUMN id SET DEFAULT nextval('waterpoints_waterpoint_photos_id_seq'::regclass);
+
+
+--
+-- TOC entry 2061 (class 2604 OID 29997)
+-- Dependencies: 224 223 224
+-- Name: id; Type: DEFAULT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY waterpoints_waterpoint_status ALTER COLUMN id SET DEFAULT nextval('waterpoints_waterpoint_status_id_seq'::regclass);
+
+
+--
+-- TOC entry 2406 (class 0 OID 29432)
+-- Dependencies: 166 2471
+-- Data for Name: auth_group; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY auth_group (id, name) FROM stdin;
+\.
+
+
+--
+-- TOC entry 2507 (class 0 OID 0)
+-- Dependencies: 165
+-- Name: auth_group_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+--
+
+SELECT pg_catalog.setval('auth_group_id_seq', 1, false);
+
+
+--
+-- TOC entry 2404 (class 0 OID 29417)
+-- Dependencies: 164 2471
+-- Data for Name: auth_group_permissions; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY auth_group_permissions (id, group_id, permission_id) FROM stdin;
+\.
+
+
+--
+-- TOC entry 2508 (class 0 OID 0)
+-- Dependencies: 163
+-- Name: auth_group_permissions_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+--
+
+SELECT pg_catalog.setval('auth_group_permissions_id_seq', 1, false);
+
+
+--
+-- TOC entry 2402 (class 0 OID 29407)
+-- Dependencies: 162 2471
+-- Data for Name: auth_permission; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY auth_permission (id, name, content_type_id, codename) FROM stdin;
+1	Can add permission	1	add_permission
+2	Can change permission	1	change_permission
+3	Can delete permission	1	delete_permission
+4	Can add group	2	add_group
+5	Can change group	2	change_group
+6	Can delete group	2	delete_group
+7	Can add user	3	add_user
+8	Can change user	3	change_user
+9	Can delete user	3	delete_user
+10	Can add content type	4	add_contenttype
+11	Can change content type	4	change_contenttype
+12	Can delete content type	4	delete_contenttype
+13	Can add session	5	add_session
+14	Can change session	5	change_session
+15	Can delete session	5	delete_session
+16	Can add site	6	add_site
+17	Can change site	6	change_site
+18	Can delete site	6	delete_site
+19	Can add log entry	7	add_logentry
+20	Can change log entry	7	change_logentry
+21	Can delete log entry	7	delete_logentry
+22	Can add placeholder	8	add_placeholder
+23	Can change placeholder	8	change_placeholder
+24	Can delete placeholder	8	delete_placeholder
+25	Can add cms plugin	9	add_cmsplugin
+26	Can change cms plugin	9	change_cmsplugin
+27	Can delete cms plugin	9	delete_cmsplugin
+28	Can add page	10	add_page
+29	Can change page	10	change_page
+30	Can delete page	10	delete_page
+31	Can view page	10	view_page
+32	Can publish page	10	publish_page
+33	Can add Page moderator state	11	add_pagemoderatorstate
+34	Can change Page moderator state	11	change_pagemoderatorstate
+35	Can delete Page moderator state	11	delete_pagemoderatorstate
+36	Can add Page global permission	12	add_globalpagepermission
+37	Can change Page global permission	12	change_globalpagepermission
+38	Can delete Page global permission	12	delete_globalpagepermission
+39	Can add Page permission	13	add_pagepermission
+40	Can change Page permission	13	change_pagepermission
+41	Can delete Page permission	13	delete_pagepermission
+42	Can add User (page)	14	add_pageuser
+43	Can change User (page)	14	change_pageuser
+44	Can delete User (page)	14	delete_pageuser
+45	Can add User group (page)	15	add_pageusergroup
+46	Can change User group (page)	15	change_pageusergroup
+47	Can delete User group (page)	15	delete_pageusergroup
+48	Can add title	16	add_title
+49	Can change title	16	change_title
+50	Can delete title	16	delete_title
+51	Can add cache key	17	add_cachekey
+52	Can change cache key	17	change_cachekey
+53	Can delete cache key	17	delete_cachekey
+54	Can add migration history	18	add_migrationhistory
+55	Can change migration history	18	change_migrationhistory
+56	Can delete migration history	18	delete_migrationhistory
+57	Can add file	19	add_file
+58	Can change file	19	change_file
+59	Can delete file	19	delete_file
+60	Can add flash	20	add_flash
+61	Can change flash	20	change_flash
+62	Can delete flash	20	delete_flash
+63	Can add google map	21	add_googlemap
+64	Can change google map	21	change_googlemap
+65	Can delete google map	21	delete_googlemap
+66	Can add link	22	add_link
+67	Can change link	22	change_link
+68	Can delete link	22	delete_link
+69	Can add picture	23	add_picture
+70	Can change picture	23	change_picture
+71	Can delete picture	23	delete_picture
+72	Can add Snippet	24	add_snippet
+73	Can change Snippet	24	change_snippet
+74	Can delete Snippet	24	delete_snippet
+75	Can add Snippet	25	add_snippetptr
+76	Can change Snippet	25	change_snippetptr
+77	Can delete Snippet	25	delete_snippetptr
+78	Can add teaser	26	add_teaser
+79	Can change teaser	26	change_teaser
+80	Can delete teaser	26	delete_teaser
+81	Can add text	27	add_text
+82	Can change text	27	change_text
+83	Can delete text	27	delete_text
+84	Can add video	28	add_video
+85	Can change video	28	change_video
+86	Can delete video	28	delete_video
+87	Can add twitter recent entries	29	add_twitterrecententries
+88	Can change twitter recent entries	29	change_twitterrecententries
+89	Can delete twitter recent entries	29	delete_twitterrecententries
+90	Can add twitter search	30	add_twittersearch
+91	Can change twitter search	30	change_twittersearch
+92	Can delete twitter search	30	delete_twittersearch
+93	Can add CMS Redirect	31	add_cmsredirect
+94	Can change CMS Redirect	31	change_cmsredirect
+95	Can delete CMS Redirect	31	delete_cmsredirect
+96	Can add waterpoint	32	add_waterpoint
+97	Can change waterpoint	32	change_waterpoint
+98	Can delete waterpoint	32	delete_waterpoint
+99	Can add waterpoint_photos	33	add_waterpoint_photos
+100	Can change waterpoint_photos	33	change_waterpoint_photos
+101	Can delete waterpoint_photos	33	delete_waterpoint_photos
+102	Can add waterpoint_status	34	add_waterpoint_status
+103	Can change waterpoint_status	34	change_waterpoint_status
+104	Can delete waterpoint_status	34	delete_waterpoint_status
+105	Can add administrator	35	add_administrator
+106	Can change administrator	35	change_administrator
+107	Can delete administrator	35	delete_administrator
+108	Can add engineer	36	add_engineer
+109	Can change engineer	36	change_engineer
+110	Can delete engineer	36	delete_engineer
+111	Can add chairperson	37	add_chairperson
+112	Can change chairperson	37	change_chairperson
+113	Can delete chairperson	37	delete_chairperson
+\.
+
+
+--
+-- TOC entry 2509 (class 0 OID 0)
+-- Dependencies: 161
+-- Name: auth_permission_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+--
+
+SELECT pg_catalog.setval('auth_permission_id_seq', 113, true);
+
+
+--
+-- TOC entry 2412 (class 0 OID 29477)
+-- Dependencies: 172 2471
+-- Data for Name: auth_user; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY auth_user (id, password, last_login, is_superuser, username, first_name, last_name, email, is_staff, is_active, date_joined) FROM stdin;
+1	pbkdf2_sha256$10000$MxnvUmxWd25P$DzdsiBZUv9dFkvyXtM7hUsIUwaasrH1/nioCB4EqEAY=	2014-04-03 11:36:59.720197+03	t	admin				t	t	2014-04-03 07:50:26.923519+03
+\.
+
+
+--
+-- TOC entry 2408 (class 0 OID 29447)
+-- Dependencies: 168 2471
+-- Data for Name: auth_user_groups; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY auth_user_groups (id, user_id, group_id) FROM stdin;
+\.
+
+
+--
+-- TOC entry 2510 (class 0 OID 0)
+-- Dependencies: 167
+-- Name: auth_user_groups_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+--
+
+SELECT pg_catalog.setval('auth_user_groups_id_seq', 1, false);
+
+
+--
+-- TOC entry 2511 (class 0 OID 0)
+-- Dependencies: 171
+-- Name: auth_user_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+--
+
+SELECT pg_catalog.setval('auth_user_id_seq', 1, true);
+
+
+--
+-- TOC entry 2410 (class 0 OID 29462)
+-- Dependencies: 170 2471
+-- Data for Name: auth_user_user_permissions; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY auth_user_user_permissions (id, user_id, permission_id) FROM stdin;
+\.
+
+
+--
+-- TOC entry 2512 (class 0 OID 0)
+-- Dependencies: 169
+-- Name: auth_user_user_permissions_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+--
+
+SELECT pg_catalog.setval('auth_user_user_permissions_id_seq', 1, false);
+
+
+--
+-- TOC entry 2423 (class 0 OID 29559)
+-- Dependencies: 183 2471
+-- Data for Name: cms_cmsplugin; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY cms_cmsplugin (id, placeholder_id, parent_id, "position", language, plugin_type, creation_date, changed_date, level, lft, rght, tree_id) FROM stdin;
+\.
+
+
+--
+-- TOC entry 2513 (class 0 OID 0)
+-- Dependencies: 182
+-- Name: cms_cmsplugin_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+--
+
+SELECT pg_catalog.setval('cms_cmsplugin_id_seq', 2, true);
+
+
+--
+-- TOC entry 2433 (class 0 OID 29667)
+-- Dependencies: 193 2471
+-- Data for Name: cms_globalpagepermission; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY cms_globalpagepermission (id, user_id, group_id, can_change, can_add, can_delete, can_change_advanced_settings, can_publish, can_change_permissions, can_move_page, can_view, can_recover_page) FROM stdin;
+\.
+
+
+--
+-- TOC entry 2514 (class 0 OID 0)
+-- Dependencies: 192
+-- Name: cms_globalpagepermission_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+--
+
+SELECT pg_catalog.setval('cms_globalpagepermission_id_seq', 1, false);
+
+
+--
+-- TOC entry 2431 (class 0 OID 29652)
+-- Dependencies: 191 2471
+-- Data for Name: cms_globalpagepermission_sites; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY cms_globalpagepermission_sites (id, globalpagepermission_id, site_id) FROM stdin;
+\.
+
+
+--
+-- TOC entry 2515 (class 0 OID 0)
+-- Dependencies: 190
+-- Name: cms_globalpagepermission_sites_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+--
+
+SELECT pg_catalog.setval('cms_globalpagepermission_sites_id_seq', 1, false);
+
+
+--
+-- TOC entry 2427 (class 0 OID 29597)
+-- Dependencies: 187 2471
+-- Data for Name: cms_page; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY cms_page (id, created_by, changed_by, parent_id, creation_date, changed_date, publication_date, publication_end_date, in_navigation, soft_root, reverse_id, navigation_extenders, published, template, site_id, login_required, limit_visibility_in_menu, level, lft, rght, tree_id, publisher_is_draft, publisher_public_id, publisher_state) FROM stdin;
+2	admin	admin	\N	2014-04-03 07:58:52.651638+03	2014-04-03 07:58:52.651678+03	2014-04-03 07:58:47.644787+03	\N	f	f	\N		t	login.html	1	f	\N	0	1	2	2	f	1	0
+1	admin	admin	\N	2014-04-03 07:58:50.161973+03	2014-04-03 07:58:52.756979+03	2014-04-03 07:58:47.745527+03	\N	f	f	\N		t	login.html	1	f	\N	0	1	2	1	t	2	0
+\.
+
+
+--
+-- TOC entry 2516 (class 0 OID 0)
+-- Dependencies: 186
+-- Name: cms_page_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+--
+
+SELECT pg_catalog.setval('cms_page_id_seq', 4, true);
+
+
+--
+-- TOC entry 2425 (class 0 OID 29582)
+-- Dependencies: 185 2471
+-- Data for Name: cms_page_placeholders; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY cms_page_placeholders (id, page_id, placeholder_id) FROM stdin;
+\.
+
+
+--
+-- TOC entry 2517 (class 0 OID 0)
+-- Dependencies: 184
+-- Name: cms_page_placeholders_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+--
+
+SELECT pg_catalog.setval('cms_page_placeholders_id_seq', 2, true);
+
+
+--
+-- TOC entry 2429 (class 0 OID 29631)
+-- Dependencies: 189 2471
+-- Data for Name: cms_pagemoderatorstate; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY cms_pagemoderatorstate (id, page_id, user_id, created, action, message) FROM stdin;
+\.
+
+
+--
+-- TOC entry 2518 (class 0 OID 0)
+-- Dependencies: 188
+-- Name: cms_pagemoderatorstate_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+--
+
+SELECT pg_catalog.setval('cms_pagemoderatorstate_id_seq', 3, true);
+
+
+--
+-- TOC entry 2435 (class 0 OID 29690)
+-- Dependencies: 195 2471
+-- Data for Name: cms_pagepermission; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY cms_pagepermission (id, user_id, group_id, can_change, can_add, can_delete, can_change_advanced_settings, can_publish, can_change_permissions, can_move_page, can_view, grant_on, page_id) FROM stdin;
+\.
+
+
+--
+-- TOC entry 2519 (class 0 OID 0)
+-- Dependencies: 194
+-- Name: cms_pagepermission_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+--
+
+SELECT pg_catalog.setval('cms_pagepermission_id_seq', 1, false);
+
+
+--
+-- TOC entry 2436 (class 0 OID 29711)
+-- Dependencies: 196 2471
+-- Data for Name: cms_pageuser; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY cms_pageuser (user_ptr_id, created_by_id) FROM stdin;
+\.
+
+
+--
+-- TOC entry 2437 (class 0 OID 29726)
+-- Dependencies: 197 2471
+-- Data for Name: cms_pageusergroup; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY cms_pageusergroup (group_ptr_id, created_by_id) FROM stdin;
+\.
+
+
+--
+-- TOC entry 2421 (class 0 OID 29550)
+-- Dependencies: 181 2471
+-- Data for Name: cms_placeholder; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY cms_placeholder (id, slot, default_width) FROM stdin;
+2	userful_links	\N
+\.
+
+
+--
+-- TOC entry 2520 (class 0 OID 0)
+-- Dependencies: 180
+-- Name: cms_placeholder_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+--
+
+SELECT pg_catalog.setval('cms_placeholder_id_seq', 2, true);
+
+
+--
+-- TOC entry 2458 (class 0 OID 29950)
+-- Dependencies: 218 2471
+-- Data for Name: cms_redirects_cmsredirect; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY cms_redirects_cmsredirect (id, page_id, site_id, old_path, new_path, response_code) FROM stdin;
+\.
+
+
+--
+-- TOC entry 2521 (class 0 OID 0)
+-- Dependencies: 217
+-- Name: cms_redirects_cmsredirect_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+--
+
+SELECT pg_catalog.setval('cms_redirects_cmsredirect_id_seq', 1, false);
+
+
+--
+-- TOC entry 2439 (class 0 OID 29743)
+-- Dependencies: 199 2471
+-- Data for Name: cms_title; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY cms_title (id, language, title, menu_title, slug, path, has_url_overwrite, application_urls, redirect, meta_description, meta_keywords, page_title, page_id, creation_date) FROM stdin;
+2	en	login	\N	login		f	\N	\N	\N	\N	\N	2	2014-04-03 07:58:50.220881+03
+1	en	login	\N	login		f	\N	\N	\N	\N	\N	1	2014-04-03 07:58:50.220881+03
+\.
+
+
+--
+-- TOC entry 2522 (class 0 OID 0)
+-- Dependencies: 198
+-- Name: cms_title_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+--
+
+SELECT pg_catalog.setval('cms_title_id_seq', 4, true);
+
+
+--
+-- TOC entry 2444 (class 0 OID 29782)
+-- Dependencies: 204 2471
+-- Data for Name: cmsplugin_file; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY cmsplugin_file (cmsplugin_ptr_id, file, title) FROM stdin;
+\.
+
+
+--
+-- TOC entry 2445 (class 0 OID 29792)
+-- Dependencies: 205 2471
+-- Data for Name: cmsplugin_flash; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY cmsplugin_flash (cmsplugin_ptr_id, file, width, height) FROM stdin;
+\.
+
+
+--
+-- TOC entry 2446 (class 0 OID 29802)
+-- Dependencies: 206 2471
+-- Data for Name: cmsplugin_googlemap; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY cmsplugin_googlemap (cmsplugin_ptr_id, title, address, zipcode, city, content, zoom, lat, lng, route_planer_title, route_planer, width, height) FROM stdin;
+\.
+
+
+--
+-- TOC entry 2447 (class 0 OID 29816)
+-- Dependencies: 207 2471
+-- Data for Name: cmsplugin_link; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY cmsplugin_link (cmsplugin_ptr_id, name, url, page_link_id, mailto, target) FROM stdin;
+\.
+
+
+--
+-- TOC entry 2448 (class 0 OID 29834)
+-- Dependencies: 208 2471
+-- Data for Name: cmsplugin_picture; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY cmsplugin_picture (cmsplugin_ptr_id, image, url, page_link_id, alt, longdesc, "float") FROM stdin;
+\.
+
+
+--
+-- TOC entry 2451 (class 0 OID 29865)
+-- Dependencies: 211 2471
+-- Data for Name: cmsplugin_snippetptr; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY cmsplugin_snippetptr (cmsplugin_ptr_id, snippet_id) FROM stdin;
+\.
+
+
+--
+-- TOC entry 2452 (class 0 OID 29880)
+-- Dependencies: 212 2471
+-- Data for Name: cmsplugin_teaser; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY cmsplugin_teaser (cmsplugin_ptr_id, title, image, page_link_id, url, description) FROM stdin;
+\.
+
+
+--
+-- TOC entry 2453 (class 0 OID 29898)
+-- Dependencies: 213 2471
+-- Data for Name: cmsplugin_text; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY cmsplugin_text (cmsplugin_ptr_id, body) FROM stdin;
+\.
+
+
+--
+-- TOC entry 2455 (class 0 OID 29926)
+-- Dependencies: 215 2471
+-- Data for Name: cmsplugin_twitterrecententries; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY cmsplugin_twitterrecententries (cmsplugin_ptr_id, title, twitter_user, count, link_hint) FROM stdin;
+\.
+
+
+--
+-- TOC entry 2456 (class 0 OID 29937)
+-- Dependencies: 216 2471
+-- Data for Name: cmsplugin_twittersearch; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY cmsplugin_twittersearch (cmsplugin_ptr_id, title, query, count) FROM stdin;
+\.
+
+
+--
+-- TOC entry 2454 (class 0 OID 29911)
+-- Dependencies: 214 2471
+-- Data for Name: cmsplugin_video; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY cmsplugin_video (cmsplugin_ptr_id, movie, movie_url, image, width, height, auto_play, auto_hide, fullscreen, loop, bgcolor, textcolor, seekbarcolor, seekbarbgcolor, loadingbarcolor, buttonoutcolor, buttonovercolor, buttonhighlightcolor) FROM stdin;
+\.
+
+
+--
+-- TOC entry 2419 (class 0 OID 29528)
+-- Dependencies: 179 2471
+-- Data for Name: django_admin_log; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY django_admin_log (id, action_time, user_id, content_type_id, object_id, object_repr, action_flag, change_message) FROM stdin;
+1	2014-04-03 07:56:10.272886+03	1	35	1	joseph chingalo	1	
+2	2014-04-03 07:57:17.744252+03	1	37	1	latifa haji	1	
+3	2014-04-03 07:58:01.968682+03	1	32	1	mama chingalo	1	
+4	2014-04-03 07:58:36.398133+03	1	32	2	mama kiwori	1	
+5	2014-04-03 07:58:50.247057+03	1	10	1	login	1	
+6	2014-04-03 07:58:52.8314+03	1	10	1	login	2	
+7	2014-04-03 08:03:01.688337+03	1	34	3	need to repair	3	
+8	2014-04-03 08:03:01.702668+03	1	34	2	need to repair	3	
+9	2014-04-05 07:47:30.288302+03	1	36	1	frank chingalo	1	
+10	2014-04-09 23:06:37.892046+03	1	10	3	users	1	
+11	2014-04-09 23:07:42.733384+03	1	10	3	users	2	No fields changed.
+12	2014-04-09 23:07:45.925544+03	1	10	3	users	2	
+13	2014-04-09 23:40:37.033012+03	1	37	1	latifa haji	2	Changed district.
+14	2014-04-09 23:40:59.214712+03	1	36	1	frank chingalo	2	Changed district and region.
+15	2014-04-09 23:50:09.30843+03	1	32	2	mama kiwori	2	Changed district and region.
+16	2014-04-09 23:50:25.883807+03	1	32	1	mama chingalo	2	Changed district and region.
+17	2014-04-10 00:08:43.170419+03	1	32	2	mama kiwori	2	Changed supply_connection.
+18	2014-04-11 17:16:27.831119+03	1	10	3	users	3	
+\.
+
+
+--
+-- TOC entry 2523 (class 0 OID 0)
+-- Dependencies: 178
+-- Name: django_admin_log_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+--
+
+SELECT pg_catalog.setval('django_admin_log_id_seq', 18, true);
+
+
+--
+-- TOC entry 2414 (class 0 OID 29497)
+-- Dependencies: 174 2471
+-- Data for Name: django_content_type; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY django_content_type (id, name, app_label, model) FROM stdin;
+1	permission	auth	permission
+2	group	auth	group
+3	user	auth	user
+4	content type	contenttypes	contenttype
+5	session	sessions	session
+6	site	sites	site
+7	log entry	admin	logentry
+8	placeholder	cms	placeholder
+9	cms plugin	cms	cmsplugin
+10	page	cms	page
+11	Page moderator state	cms	pagemoderatorstate
+12	Page global permission	cms	globalpagepermission
+13	Page permission	cms	pagepermission
+14	User (page)	cms	pageuser
+15	User group (page)	cms	pageusergroup
+16	title	cms	title
+17	cache key	menus	cachekey
+18	migration history	south	migrationhistory
+19	file	file	file
+20	flash	flash	flash
+21	google map	googlemap	googlemap
+22	link	link	link
+23	picture	picture	picture
+24	Snippet	snippet	snippet
+25	Snippet	snippet	snippetptr
+26	teaser	teaser	teaser
+27	text	text	text
+28	video	video	video
+29	twitter recent entries	twitter	twitterrecententries
+30	twitter search	twitter	twittersearch
+31	CMS Redirect	cms_redirects	cmsredirect
+32	waterpoint	waterpoints	waterpoint
+33	waterpoint_photos	waterpoints	waterpoint_photos
+34	waterpoint_status	waterpoints	waterpoint_status
+35	administrator	users	administrator
+36	engineer	users	engineer
+37	chairperson	users	chairperson
+\.
+
+
+--
+-- TOC entry 2524 (class 0 OID 0)
+-- Dependencies: 173
+-- Name: django_content_type_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+--
+
+SELECT pg_catalog.setval('django_content_type_id_seq', 37, true);
+
+
+--
+-- TOC entry 2415 (class 0 OID 29510)
+-- Dependencies: 175 2471
+-- Data for Name: django_session; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY django_session (session_key, session_data, expire_date) FROM stdin;
+i3qzupezcohia5v1e115r7iyz54dqs4h	Mzk4YjAzOGU5OWQ2NzE4ZDc2YmIwNDZmZGNhMjJjNTEzZmUwYWIxMDp7ImNtc19hZG1pbl9zaXRlIjoxLCJfbWVzc2FnZXMiOiJbW1wiX19qc29uX21lc3NhZ2VcIiwwLDIwLFwiVGhlIGVuZ2luZWVyIFxcXCJmcmFuayBjaGluZ2Fsb1xcXCIgd2FzIGFkZGVkIHN1Y2Nlc3NmdWxseS5cIl0sW1wiX19qc29uX21lc3NhZ2VcIiwwLDIwLFwiVGhlIHBhZ2UgXFxcInVzZXJzXFxcIiB3YXMgYWRkZWQgc3VjY2Vzc2Z1bGx5LlwiXSxbXCJfX2pzb25fbWVzc2FnZVwiLDAsMjAsXCJUaGUgbGluayBcXFwiTWluaXN0cnkgT2YgV2F0ZXJcXFwiIHdhcyBhZGRlZCBzdWNjZXNzZnVsbHkuIFlvdSBtYXkgZWRpdCBpdCBhZ2FpbiBiZWxvdy5cIl0sW1wiX19qc29uX21lc3NhZ2VcIiwwLDIwLFwiVGhlIHBhZ2UgXFxcInVzZXJzXFxcIiB3YXMgY2hhbmdlZCBzdWNjZXNzZnVsbHkuXCJdLFtcIl9fanNvbl9tZXNzYWdlXCIsMCwyMCxcIlRoZSBwYWdlIFxcXCJ1c2Vyc1xcXCIgd2FzIHN1Y2Nlc3NmdWxseSBwdWJsaXNoZWRcIl0sW1wiX19qc29uX21lc3NhZ2VcIiwwLDIwLFwiVGhlIGNoYWlycGVyc29uIFxcXCJsYXRpZmEgaGFqaVxcXCIgd2FzIGNoYW5nZWQgc3VjY2Vzc2Z1bGx5LlwiXSxbXCJfX2pzb25fbWVzc2FnZVwiLDAsMjAsXCJUaGUgZW5naW5lZXIgXFxcImZyYW5rIGNoaW5nYWxvXFxcIiB3YXMgY2hhbmdlZCBzdWNjZXNzZnVsbHkuXCJdLFtcIl9fanNvbl9tZXNzYWdlXCIsMCwyMCxcIlRoZSB3YXRlcnBvaW50IFxcXCJtYW1hIGtpd29yaVxcXCIgd2FzIGNoYW5nZWQgc3VjY2Vzc2Z1bGx5LiBZb3UgbWF5IGFkZCBhbm90aGVyIHdhdGVycG9pbnQgYmVsb3cuXCJdLFtcIl9fanNvbl9tZXNzYWdlXCIsMCwyMCxcIlRoZSB3YXRlcnBvaW50IFxcXCJtYW1hIGNoaW5nYWxvXFxcIiB3YXMgY2hhbmdlZCBzdWNjZXNzZnVsbHkuXCJdLFtcIl9fanNvbl9tZXNzYWdlXCIsMCwyMCxcIlRoZSB3YXRlcnBvaW50IFxcXCJtYW1hIGtpd29yaVxcXCIgd2FzIGNoYW5nZWQgc3VjY2Vzc2Z1bGx5LlwiXSxbXCJfX2pzb25fbWVzc2FnZVwiLDAsMjAsXCJUaGUgcGFnZSBcXFwidXNlcnNcXFwiIHdhcyBkZWxldGVkIHN1Y2Nlc3NmdWxseS5cIl1dIiwiX2F1dGhfdXNlcl9pZCI6MSwiX2F1dGhfdXNlcl9iYWNrZW5kIjoiZGphbmdvLmNvbnRyaWIuYXV0aC5iYWNrZW5kcy5Nb2RlbEJhY2tlbmQifQ==	2014-04-25 17:16:30.700776+03
+u8m2y6g3ukideqy4tnkqi3ib1ll7ax50	N2JjMThlNzQ0OGU3NjY0NjVhZTg2MTBiNzRhMzIxZDI4NmU2MWFkZTp7fQ==	2014-04-25 19:20:35.848153+03
+ujcjz6f0ed4l92coz9lnndzyro7x6lgz	N2JjMThlNzQ0OGU3NjY0NjVhZTg2MTBiNzRhMzIxZDI4NmU2MWFkZTp7fQ==	2014-04-29 17:32:35.801592+03
+\.
+
+
+--
+-- TOC entry 2417 (class 0 OID 29520)
+-- Dependencies: 177 2471
+-- Data for Name: django_site; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY django_site (id, domain, name) FROM stdin;
+1	example.com	example.com
+\.
+
+
+--
+-- TOC entry 2525 (class 0 OID 0)
+-- Dependencies: 176
+-- Name: django_site_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+--
+
+SELECT pg_catalog.setval('django_site_id_seq', 1, true);
+
+
+--
+-- TOC entry 2441 (class 0 OID 29761)
+-- Dependencies: 201 2471
+-- Data for Name: menus_cachekey; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY menus_cachekey (id, language, site, key) FROM stdin;
+\.
+
+
+--
+-- TOC entry 2526 (class 0 OID 0)
+-- Dependencies: 200
+-- Name: menus_cachekey_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+--
+
+SELECT pg_catalog.setval('menus_cachekey_id_seq', 1, false);
+
+
+--
+-- TOC entry 2450 (class 0 OID 29854)
+-- Dependencies: 210 2471
+-- Data for Name: snippet_snippet; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY snippet_snippet (id, name, html, template) FROM stdin;
+\.
+
+
+--
+-- TOC entry 2527 (class 0 OID 0)
+-- Dependencies: 209
+-- Name: snippet_snippet_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+--
+
+SELECT pg_catalog.setval('snippet_snippet_id_seq', 1, false);
+
+
+--
+-- TOC entry 2443 (class 0 OID 29773)
+-- Dependencies: 203 2471
+-- Data for Name: south_migrationhistory; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY south_migrationhistory (id, app_name, migration, applied) FROM stdin;
+\.
+
+
+--
+-- TOC entry 2528 (class 0 OID 0)
+-- Dependencies: 202
+-- Name: south_migrationhistory_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+--
+
+SELECT pg_catalog.setval('south_migrationhistory_id_seq', 1, false);
+
+
+--
+-- TOC entry 2466 (class 0 OID 30007)
+-- Dependencies: 226 2471
+-- Data for Name: users_administrator; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY users_administrator (id, admin_id, admin_name, password, e_mail, telphone_number, address, district, region, sex, login_status) FROM stdin;
+1	1	joseph chingalo	111987	joseph@gmail.com	+255687168637				male	log_out
+\.
+
+
+--
+-- TOC entry 2529 (class 0 OID 0)
+-- Dependencies: 225
+-- Name: users_administrator_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+--
+
+SELECT pg_catalog.setval('users_administrator_id_seq', 1, true);
+
+
+--
+-- TOC entry 2470 (class 0 OID 30029)
+-- Dependencies: 230 2471
+-- Data for Name: users_chairperson; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY users_chairperson (id, cowso_id, cowso_chairperson_name, password, e_mail, telphone_number, address, district, region, physical_location_name, sex, login_status) FROM stdin;
+2	34	Eric Chingalo	1997	eric@gmail.com	+76767	p.o.box 11122,dar es salaam	kinondoni	dar es salaam	kimara	male	log_out
+3	6	Baraka	1111	baraka@gmail.com	+2332	p.o.box 45 arusha	kinondoni	dar es salaam	ubungo	male	log_out
+1	1	latifa haji	1997	latifa@gmail.com	+255718258304		kinondoni		kimara	female	log_out
+\.
+
+
+--
+-- TOC entry 2530 (class 0 OID 0)
+-- Dependencies: 229
+-- Name: users_chairperson_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+--
+
+SELECT pg_catalog.setval('users_chairperson_id_seq', 3, true);
+
+
+--
+-- TOC entry 2468 (class 0 OID 30018)
+-- Dependencies: 228 2471
+-- Data for Name: users_engineer; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY users_engineer (id, engineer_id, engineer_name, password, e_mail, telphone_number, address, district, region, sex, login_status) FROM stdin;
+2	23	Filomena Chingalo	0000	filomena@gmail.com	+565775	p.o.box 11122,dar es salaam	Temeke	dar es salaam	female	log_out
+1	8	frank chingalo	0000	frank@gmail.com	+565656		kinondoni	dar es salaam	male	log_out
+\.
+
+
+--
+-- TOC entry 2531 (class 0 OID 0)
+-- Dependencies: 227
+-- Name: users_engineer_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+--
+
+SELECT pg_catalog.setval('users_engineer_id_seq', 2, true);
+
+
+--
+-- TOC entry 2460 (class 0 OID 29970)
+-- Dependencies: 220 2471
+-- Data for Name: waterpoints_waterpoint; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY waterpoints_waterpoint (id, code_number, name, source_name, supply_connection, district, region, physical_location_name, latitude, longitude, fund, sponsor) FROM stdin;
+1	we2	mama chingalo	mto mbezi	waterpoint	kinondoni	dar es salaam	kimara			$2000	UN
+2	fg	mama kiwori	dawasa	industrial	kinondoni	dar es salaam	kimara			$45	udsm
+\.
+
+
+--
+-- TOC entry 2532 (class 0 OID 0)
+-- Dependencies: 219
+-- Name: waterpoints_waterpoint_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+--
+
+SELECT pg_catalog.setval('waterpoints_waterpoint_id_seq', 2, true);
+
+
+--
+-- TOC entry 2462 (class 0 OID 29981)
+-- Dependencies: 222 2471
+-- Data for Name: waterpoints_waterpoint_photos; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY waterpoints_waterpoint_photos (id, photos_id, image, image_title) FROM stdin;
+1	1	waterpoint/Kerekekere_brand_new_borehole.jpg	image 1
+2	1	waterpoint/Kerekekere_brand_new_borehole_1.jpg	image 1
+3	1	waterpoint/Kerekekere_Water_Committee_Training_today.jpg	img
+4	2	waterpoint/image.jpg	vd
+5	2	waterpoint/log.png	y
+\.
+
+
+--
+-- TOC entry 2533 (class 0 OID 0)
+-- Dependencies: 221
+-- Name: waterpoints_waterpoint_photos_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+--
+
+SELECT pg_catalog.setval('waterpoints_waterpoint_photos_id_seq', 5, true);
+
+
+--
+-- TOC entry 2464 (class 0 OID 29994)
+-- Dependencies: 224 2471
+-- Data for Name: waterpoints_waterpoint_status; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY waterpoints_waterpoint_status (id, name_id, status, status_date_update) FROM stdin;
+4	1	functioning	2014-04-03 08:03:19.482328+03
+5	2	non-functioning	2014-04-03 08:03:19.509863+03
+6	1	non-functioning	2014-04-03 11:44:48.995696+03
+7	2	functioning	2014-04-03 11:44:49.083339+03
+8	1	functioning	2014-04-11 16:25:30.3141+03
+9	2	need to repair	2014-04-11 16:25:30.761994+03
+10	1	functioning	2014-04-11 22:25:50.458656+03
+11	2	functioning	2014-04-11 22:25:50.591909+03
+12	1	functioning	2014-04-11 22:26:41.000306+03
+13	2	need to repair	2014-04-11 22:26:41.066064+03
+14	1	functioning	2014-04-15 17:38:25.394293+03
+15	2	non-functioning	2014-04-15 17:38:25.566187+03
+\.
+
+
+--
+-- TOC entry 2534 (class 0 OID 0)
+-- Dependencies: 223
+-- Name: waterpoints_waterpoint_status_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+--
+
+SELECT pg_catalog.setval('waterpoints_waterpoint_status_id_seq', 15, true);
+
+
+--
+-- TOC entry 2077 (class 2606 OID 29439)
+-- Dependencies: 166 166 2472
+-- Name: auth_group_name_key; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace: 
+--
+
+ALTER TABLE ONLY auth_group
+    ADD CONSTRAINT auth_group_name_key UNIQUE (name);
+
+
+--
+-- TOC entry 2072 (class 2606 OID 29424)
+-- Dependencies: 164 164 164 2472
+-- Name: auth_group_permissions_group_id_permission_id_key; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace: 
+--
+
+ALTER TABLE ONLY auth_group_permissions
+    ADD CONSTRAINT auth_group_permissions_group_id_permission_id_key UNIQUE (group_id, permission_id);
+
+
+--
+-- TOC entry 2075 (class 2606 OID 29422)
+-- Dependencies: 164 164 2472
+-- Name: auth_group_permissions_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace: 
+--
+
+ALTER TABLE ONLY auth_group_permissions
+    ADD CONSTRAINT auth_group_permissions_pkey PRIMARY KEY (id);
+
+
+--
+-- TOC entry 2080 (class 2606 OID 29437)
+-- Dependencies: 166 166 2472
+-- Name: auth_group_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace: 
+--
+
+ALTER TABLE ONLY auth_group
+    ADD CONSTRAINT auth_group_pkey PRIMARY KEY (id);
+
+
+--
+-- TOC entry 2067 (class 2606 OID 29414)
+-- Dependencies: 162 162 162 2472
+-- Name: auth_permission_content_type_id_codename_key; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace: 
+--
+
+ALTER TABLE ONLY auth_permission
+    ADD CONSTRAINT auth_permission_content_type_id_codename_key UNIQUE (content_type_id, codename);
+
+
+--
+-- TOC entry 2069 (class 2606 OID 29412)
+-- Dependencies: 162 162 2472
+-- Name: auth_permission_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace: 
+--
+
+ALTER TABLE ONLY auth_permission
+    ADD CONSTRAINT auth_permission_pkey PRIMARY KEY (id);
+
+
+--
+-- TOC entry 2083 (class 2606 OID 29452)
+-- Dependencies: 168 168 2472
+-- Name: auth_user_groups_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace: 
+--
+
+ALTER TABLE ONLY auth_user_groups
+    ADD CONSTRAINT auth_user_groups_pkey PRIMARY KEY (id);
+
+
+--
+-- TOC entry 2086 (class 2606 OID 29454)
+-- Dependencies: 168 168 168 2472
+-- Name: auth_user_groups_user_id_group_id_key; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace: 
+--
+
+ALTER TABLE ONLY auth_user_groups
+    ADD CONSTRAINT auth_user_groups_user_id_group_id_key UNIQUE (user_id, group_id);
+
+
+--
+-- TOC entry 2094 (class 2606 OID 29482)
+-- Dependencies: 172 172 2472
+-- Name: auth_user_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace: 
+--
+
+ALTER TABLE ONLY auth_user
+    ADD CONSTRAINT auth_user_pkey PRIMARY KEY (id);
+
+
+--
+-- TOC entry 2089 (class 2606 OID 29467)
+-- Dependencies: 170 170 2472
+-- Name: auth_user_user_permissions_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace: 
+--
+
+ALTER TABLE ONLY auth_user_user_permissions
+    ADD CONSTRAINT auth_user_user_permissions_pkey PRIMARY KEY (id);
+
+
+--
+-- TOC entry 2092 (class 2606 OID 29469)
+-- Dependencies: 170 170 170 2472
+-- Name: auth_user_user_permissions_user_id_permission_id_key; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace: 
+--
+
+ALTER TABLE ONLY auth_user_user_permissions
+    ADD CONSTRAINT auth_user_user_permissions_user_id_permission_id_key UNIQUE (user_id, permission_id);
+
+
+--
+-- TOC entry 2096 (class 2606 OID 29484)
+-- Dependencies: 172 172 2472
+-- Name: auth_user_username_key; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace: 
+--
+
+ALTER TABLE ONLY auth_user
+    ADD CONSTRAINT auth_user_username_key UNIQUE (username);
+
+
+--
+-- TOC entry 2122 (class 2606 OID 29569)
+-- Dependencies: 183 183 2472
+-- Name: cms_cmsplugin_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace: 
+--
+
+ALTER TABLE ONLY cms_cmsplugin
+    ADD CONSTRAINT cms_cmsplugin_pkey PRIMARY KEY (id);
+
+
+--
+-- TOC entry 2167 (class 2606 OID 29672)
+-- Dependencies: 193 193 2472
+-- Name: cms_globalpagepermission_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace: 
+--
+
+ALTER TABLE ONLY cms_globalpagepermission
+    ADD CONSTRAINT cms_globalpagepermission_pkey PRIMARY KEY (id);
+
+
+--
+-- TOC entry 2160 (class 2606 OID 29659)
+-- Dependencies: 191 191 191 2472
+-- Name: cms_globalpagepermission_site_globalpagepermission_id_site__key; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace: 
+--
+
+ALTER TABLE ONLY cms_globalpagepermission_sites
+    ADD CONSTRAINT cms_globalpagepermission_site_globalpagepermission_id_site__key UNIQUE (globalpagepermission_id, site_id);
+
+
+--
+-- TOC entry 2163 (class 2606 OID 29657)
+-- Dependencies: 191 191 2472
+-- Name: cms_globalpagepermission_sites_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace: 
+--
+
+ALTER TABLE ONLY cms_globalpagepermission_sites
+    ADD CONSTRAINT cms_globalpagepermission_sites_pkey PRIMARY KEY (id);
+
+
+--
+-- TOC entry 2142 (class 2606 OID 29606)
+-- Dependencies: 187 187 2472
+-- Name: cms_page_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace: 
+--
+
+ALTER TABLE ONLY cms_page
+    ADD CONSTRAINT cms_page_pkey PRIMARY KEY (id);
+
+
+--
+-- TOC entry 2130 (class 2606 OID 29589)
+-- Dependencies: 185 185 185 2472
+-- Name: cms_page_placeholders_page_id_placeholder_id_key; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace: 
+--
+
+ALTER TABLE ONLY cms_page_placeholders
+    ADD CONSTRAINT cms_page_placeholders_page_id_placeholder_id_key UNIQUE (page_id, placeholder_id);
+
+
+--
+-- TOC entry 2132 (class 2606 OID 29587)
+-- Dependencies: 185 185 2472
+-- Name: cms_page_placeholders_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace: 
+--
+
+ALTER TABLE ONLY cms_page_placeholders
+    ADD CONSTRAINT cms_page_placeholders_pkey PRIMARY KEY (id);
+
+
+--
+-- TOC entry 2147 (class 2606 OID 29608)
+-- Dependencies: 187 187 2472
+-- Name: cms_page_publisher_public_id_key; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace: 
+--
+
+ALTER TABLE ONLY cms_page
+    ADD CONSTRAINT cms_page_publisher_public_id_key UNIQUE (publisher_public_id);
+
+
+--
+-- TOC entry 2157 (class 2606 OID 29639)
+-- Dependencies: 189 189 2472
+-- Name: cms_pagemoderatorstate_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace: 
+--
+
+ALTER TABLE ONLY cms_pagemoderatorstate
+    ADD CONSTRAINT cms_pagemoderatorstate_pkey PRIMARY KEY (id);
+
+
+--
+-- TOC entry 2172 (class 2606 OID 29695)
+-- Dependencies: 195 195 2472
+-- Name: cms_pagepermission_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace: 
+--
+
+ALTER TABLE ONLY cms_pagepermission
+    ADD CONSTRAINT cms_pagepermission_pkey PRIMARY KEY (id);
+
+
+--
+-- TOC entry 2176 (class 2606 OID 29715)
+-- Dependencies: 196 196 2472
+-- Name: cms_pageuser_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace: 
+--
+
+ALTER TABLE ONLY cms_pageuser
+    ADD CONSTRAINT cms_pageuser_pkey PRIMARY KEY (user_ptr_id);
+
+
+--
+-- TOC entry 2179 (class 2606 OID 29730)
+-- Dependencies: 197 197 2472
+-- Name: cms_pageusergroup_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace: 
+--
+
+ALTER TABLE ONLY cms_pageusergroup
+    ADD CONSTRAINT cms_pageusergroup_pkey PRIMARY KEY (group_ptr_id);
+
+
+--
+-- TOC entry 2113 (class 2606 OID 29556)
+-- Dependencies: 181 181 2472
+-- Name: cms_placeholder_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace: 
+--
+
+ALTER TABLE ONLY cms_placeholder
+    ADD CONSTRAINT cms_placeholder_pkey PRIMARY KEY (id);
+
+
+--
+-- TOC entry 2233 (class 2606 OID 29955)
+-- Dependencies: 218 218 2472
+-- Name: cms_redirects_cmsredirect_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace: 
+--
+
+ALTER TABLE ONLY cms_redirects_cmsredirect
+    ADD CONSTRAINT cms_redirects_cmsredirect_pkey PRIMARY KEY (id);
+
+
+--
+-- TOC entry 2236 (class 2606 OID 29957)
+-- Dependencies: 218 218 218 2472
+-- Name: cms_redirects_cmsredirect_site_id_old_path_key; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace: 
+--
+
+ALTER TABLE ONLY cms_redirects_cmsredirect
+    ADD CONSTRAINT cms_redirects_cmsredirect_site_id_old_path_key UNIQUE (site_id, old_path);
+
+
+--
+-- TOC entry 2186 (class 2606 OID 29753)
+-- Dependencies: 199 199 199 2472
+-- Name: cms_title_language_page_id_key; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace: 
+--
+
+ALTER TABLE ONLY cms_title
+    ADD CONSTRAINT cms_title_language_page_id_key UNIQUE (language, page_id);
+
+
+--
+-- TOC entry 2191 (class 2606 OID 29751)
+-- Dependencies: 199 199 2472
+-- Name: cms_title_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace: 
+--
+
+ALTER TABLE ONLY cms_title
+    ADD CONSTRAINT cms_title_pkey PRIMARY KEY (id);
+
+
+--
+-- TOC entry 2199 (class 2606 OID 29786)
+-- Dependencies: 204 204 2472
+-- Name: cmsplugin_file_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace: 
+--
+
+ALTER TABLE ONLY cmsplugin_file
+    ADD CONSTRAINT cmsplugin_file_pkey PRIMARY KEY (cmsplugin_ptr_id);
+
+
+--
+-- TOC entry 2201 (class 2606 OID 29796)
+-- Dependencies: 205 205 2472
+-- Name: cmsplugin_flash_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace: 
+--
+
+ALTER TABLE ONLY cmsplugin_flash
+    ADD CONSTRAINT cmsplugin_flash_pkey PRIMARY KEY (cmsplugin_ptr_id);
+
+
+--
+-- TOC entry 2203 (class 2606 OID 29810)
+-- Dependencies: 206 206 2472
+-- Name: cmsplugin_googlemap_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace: 
+--
+
+ALTER TABLE ONLY cmsplugin_googlemap
+    ADD CONSTRAINT cmsplugin_googlemap_pkey PRIMARY KEY (cmsplugin_ptr_id);
+
+
+--
+-- TOC entry 2206 (class 2606 OID 29823)
+-- Dependencies: 207 207 2472
+-- Name: cmsplugin_link_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace: 
+--
+
+ALTER TABLE ONLY cmsplugin_link
+    ADD CONSTRAINT cmsplugin_link_pkey PRIMARY KEY (cmsplugin_ptr_id);
+
+
+--
+-- TOC entry 2209 (class 2606 OID 29841)
+-- Dependencies: 208 208 2472
+-- Name: cmsplugin_picture_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace: 
+--
+
+ALTER TABLE ONLY cmsplugin_picture
+    ADD CONSTRAINT cmsplugin_picture_pkey PRIMARY KEY (cmsplugin_ptr_id);
+
+
+--
+-- TOC entry 2216 (class 2606 OID 29869)
+-- Dependencies: 211 211 2472
+-- Name: cmsplugin_snippetptr_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace: 
+--
+
+ALTER TABLE ONLY cmsplugin_snippetptr
+    ADD CONSTRAINT cmsplugin_snippetptr_pkey PRIMARY KEY (cmsplugin_ptr_id);
+
+
+--
+-- TOC entry 2220 (class 2606 OID 29887)
+-- Dependencies: 212 212 2472
+-- Name: cmsplugin_teaser_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace: 
+--
+
+ALTER TABLE ONLY cmsplugin_teaser
+    ADD CONSTRAINT cmsplugin_teaser_pkey PRIMARY KEY (cmsplugin_ptr_id);
+
+
+--
+-- TOC entry 2222 (class 2606 OID 29905)
+-- Dependencies: 213 213 2472
+-- Name: cmsplugin_text_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace: 
+--
+
+ALTER TABLE ONLY cmsplugin_text
+    ADD CONSTRAINT cmsplugin_text_pkey PRIMARY KEY (cmsplugin_ptr_id);
+
+
+--
+-- TOC entry 2226 (class 2606 OID 29931)
+-- Dependencies: 215 215 2472
+-- Name: cmsplugin_twitterrecententries_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace: 
+--
+
+ALTER TABLE ONLY cmsplugin_twitterrecententries
+    ADD CONSTRAINT cmsplugin_twitterrecententries_pkey PRIMARY KEY (cmsplugin_ptr_id);
+
+
+--
+-- TOC entry 2228 (class 2606 OID 29942)
+-- Dependencies: 216 216 2472
+-- Name: cmsplugin_twittersearch_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace: 
+--
+
+ALTER TABLE ONLY cmsplugin_twittersearch
+    ADD CONSTRAINT cmsplugin_twittersearch_pkey PRIMARY KEY (cmsplugin_ptr_id);
+
+
+--
+-- TOC entry 2224 (class 2606 OID 29920)
+-- Dependencies: 214 214 2472
+-- Name: cmsplugin_video_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace: 
+--
+
+ALTER TABLE ONLY cmsplugin_video
+    ADD CONSTRAINT cmsplugin_video_pkey PRIMARY KEY (cmsplugin_ptr_id);
+
+
+--
+-- TOC entry 2110 (class 2606 OID 29537)
+-- Dependencies: 179 179 2472
+-- Name: django_admin_log_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace: 
+--
+
+ALTER TABLE ONLY django_admin_log
+    ADD CONSTRAINT django_admin_log_pkey PRIMARY KEY (id);
+
+
+--
+-- TOC entry 2099 (class 2606 OID 29504)
+-- Dependencies: 174 174 174 2472
+-- Name: django_content_type_app_label_model_key; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace: 
+--
+
+ALTER TABLE ONLY django_content_type
+    ADD CONSTRAINT django_content_type_app_label_model_key UNIQUE (app_label, model);
+
+
+--
+-- TOC entry 2101 (class 2606 OID 29502)
+-- Dependencies: 174 174 2472
+-- Name: django_content_type_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace: 
+--
+
+ALTER TABLE ONLY django_content_type
+    ADD CONSTRAINT django_content_type_pkey PRIMARY KEY (id);
+
+
+--
+-- TOC entry 2104 (class 2606 OID 29517)
+-- Dependencies: 175 175 2472
+-- Name: django_session_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace: 
+--
+
+ALTER TABLE ONLY django_session
+    ADD CONSTRAINT django_session_pkey PRIMARY KEY (session_key);
+
+
+--
+-- TOC entry 2107 (class 2606 OID 29525)
+-- Dependencies: 177 177 2472
+-- Name: django_site_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace: 
+--
+
+ALTER TABLE ONLY django_site
+    ADD CONSTRAINT django_site_pkey PRIMARY KEY (id);
+
+
+--
+-- TOC entry 2195 (class 2606 OID 29770)
+-- Dependencies: 201 201 2472
+-- Name: menus_cachekey_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace: 
+--
+
+ALTER TABLE ONLY menus_cachekey
+    ADD CONSTRAINT menus_cachekey_pkey PRIMARY KEY (id);
+
+
+--
+-- TOC entry 2211 (class 2606 OID 29864)
+-- Dependencies: 210 210 2472
+-- Name: snippet_snippet_name_key; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace: 
+--
+
+ALTER TABLE ONLY snippet_snippet
+    ADD CONSTRAINT snippet_snippet_name_key UNIQUE (name);
+
+
+--
+-- TOC entry 2214 (class 2606 OID 29862)
+-- Dependencies: 210 210 2472
+-- Name: snippet_snippet_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace: 
+--
+
+ALTER TABLE ONLY snippet_snippet
+    ADD CONSTRAINT snippet_snippet_pkey PRIMARY KEY (id);
+
+
+--
+-- TOC entry 2197 (class 2606 OID 29781)
+-- Dependencies: 203 203 2472
+-- Name: south_migrationhistory_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace: 
+--
+
+ALTER TABLE ONLY south_migrationhistory
+    ADD CONSTRAINT south_migrationhistory_pkey PRIMARY KEY (id);
+
+
+--
+-- TOC entry 2246 (class 2606 OID 30015)
+-- Dependencies: 226 226 2472
+-- Name: users_administrator_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace: 
+--
+
+ALTER TABLE ONLY users_administrator
+    ADD CONSTRAINT users_administrator_pkey PRIMARY KEY (id);
+
+
+--
+-- TOC entry 2250 (class 2606 OID 30037)
+-- Dependencies: 230 230 2472
+-- Name: users_chairperson_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace: 
+--
+
+ALTER TABLE ONLY users_chairperson
+    ADD CONSTRAINT users_chairperson_pkey PRIMARY KEY (id);
+
+
+--
+-- TOC entry 2248 (class 2606 OID 30026)
+-- Dependencies: 228 228 2472
+-- Name: users_engineer_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace: 
+--
+
+ALTER TABLE ONLY users_engineer
+    ADD CONSTRAINT users_engineer_pkey PRIMARY KEY (id);
+
+
+--
+-- TOC entry 2241 (class 2606 OID 29986)
+-- Dependencies: 222 222 2472
+-- Name: waterpoints_waterpoint_photos_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace: 
+--
+
+ALTER TABLE ONLY waterpoints_waterpoint_photos
+    ADD CONSTRAINT waterpoints_waterpoint_photos_pkey PRIMARY KEY (id);
+
+
+--
+-- TOC entry 2238 (class 2606 OID 29978)
+-- Dependencies: 220 220 2472
+-- Name: waterpoints_waterpoint_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace: 
+--
+
+ALTER TABLE ONLY waterpoints_waterpoint
+    ADD CONSTRAINT waterpoints_waterpoint_pkey PRIMARY KEY (id);
+
+
+--
+-- TOC entry 2244 (class 2606 OID 29999)
+-- Dependencies: 224 224 2472
+-- Name: waterpoints_waterpoint_status_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace: 
+--
+
+ALTER TABLE ONLY waterpoints_waterpoint_status
+    ADD CONSTRAINT waterpoints_waterpoint_status_pkey PRIMARY KEY (id);
+
+
+--
+-- TOC entry 2078 (class 1259 OID 30042)
+-- Dependencies: 166 2472
+-- Name: auth_group_name_like; Type: INDEX; Schema: public; Owner: postgres; Tablespace: 
+--
+
+CREATE INDEX auth_group_name_like ON auth_group USING btree (name varchar_pattern_ops);
+
+
+--
+-- TOC entry 2070 (class 1259 OID 30040)
+-- Dependencies: 164 2472
+-- Name: auth_group_permissions_group_id; Type: INDEX; Schema: public; Owner: postgres; Tablespace: 
+--
+
+CREATE INDEX auth_group_permissions_group_id ON auth_group_permissions USING btree (group_id);
+
+
+--
+-- TOC entry 2073 (class 1259 OID 30041)
+-- Dependencies: 164 2472
+-- Name: auth_group_permissions_permission_id; Type: INDEX; Schema: public; Owner: postgres; Tablespace: 
+--
+
+CREATE INDEX auth_group_permissions_permission_id ON auth_group_permissions USING btree (permission_id);
+
+
+--
+-- TOC entry 2065 (class 1259 OID 30039)
+-- Dependencies: 162 2472
+-- Name: auth_permission_content_type_id; Type: INDEX; Schema: public; Owner: postgres; Tablespace: 
+--
+
+CREATE INDEX auth_permission_content_type_id ON auth_permission USING btree (content_type_id);
+
+
+--
+-- TOC entry 2081 (class 1259 OID 30044)
+-- Dependencies: 168 2472
+-- Name: auth_user_groups_group_id; Type: INDEX; Schema: public; Owner: postgres; Tablespace: 
+--
+
+CREATE INDEX auth_user_groups_group_id ON auth_user_groups USING btree (group_id);
+
+
+--
+-- TOC entry 2084 (class 1259 OID 30043)
+-- Dependencies: 168 2472
+-- Name: auth_user_groups_user_id; Type: INDEX; Schema: public; Owner: postgres; Tablespace: 
+--
+
+CREATE INDEX auth_user_groups_user_id ON auth_user_groups USING btree (user_id);
+
+
+--
+-- TOC entry 2087 (class 1259 OID 30046)
+-- Dependencies: 170 2472
+-- Name: auth_user_user_permissions_permission_id; Type: INDEX; Schema: public; Owner: postgres; Tablespace: 
+--
+
+CREATE INDEX auth_user_user_permissions_permission_id ON auth_user_user_permissions USING btree (permission_id);
+
+
+--
+-- TOC entry 2090 (class 1259 OID 30045)
+-- Dependencies: 170 2472
+-- Name: auth_user_user_permissions_user_id; Type: INDEX; Schema: public; Owner: postgres; Tablespace: 
+--
+
+CREATE INDEX auth_user_user_permissions_user_id ON auth_user_user_permissions USING btree (user_id);
+
+
+--
+-- TOC entry 2097 (class 1259 OID 30047)
+-- Dependencies: 172 2472
+-- Name: auth_user_username_like; Type: INDEX; Schema: public; Owner: postgres; Tablespace: 
+--
+
+CREATE INDEX auth_user_username_like ON auth_user USING btree (username varchar_pattern_ops);
+
+
+--
+-- TOC entry 2116 (class 1259 OID 30056)
+-- Dependencies: 183 2472
+-- Name: cms_cmsplugin_language; Type: INDEX; Schema: public; Owner: postgres; Tablespace: 
+--
+
+CREATE INDEX cms_cmsplugin_language ON cms_cmsplugin USING btree (language);
+
+
+--
+-- TOC entry 2117 (class 1259 OID 30057)
+-- Dependencies: 183 2472
+-- Name: cms_cmsplugin_language_like; Type: INDEX; Schema: public; Owner: postgres; Tablespace: 
+--
+
+CREATE INDEX cms_cmsplugin_language_like ON cms_cmsplugin USING btree (language varchar_pattern_ops);
+
+
+--
+-- TOC entry 2118 (class 1259 OID 30060)
+-- Dependencies: 183 2472
+-- Name: cms_cmsplugin_level; Type: INDEX; Schema: public; Owner: postgres; Tablespace: 
+--
+
+CREATE INDEX cms_cmsplugin_level ON cms_cmsplugin USING btree (level);
+
+
+--
+-- TOC entry 2119 (class 1259 OID 30061)
+-- Dependencies: 183 2472
+-- Name: cms_cmsplugin_lft; Type: INDEX; Schema: public; Owner: postgres; Tablespace: 
+--
+
+CREATE INDEX cms_cmsplugin_lft ON cms_cmsplugin USING btree (lft);
+
+
+--
+-- TOC entry 2120 (class 1259 OID 30055)
+-- Dependencies: 183 2472
+-- Name: cms_cmsplugin_parent_id; Type: INDEX; Schema: public; Owner: postgres; Tablespace: 
+--
+
+CREATE INDEX cms_cmsplugin_parent_id ON cms_cmsplugin USING btree (parent_id);
+
+
+--
+-- TOC entry 2123 (class 1259 OID 30054)
+-- Dependencies: 183 2472
+-- Name: cms_cmsplugin_placeholder_id; Type: INDEX; Schema: public; Owner: postgres; Tablespace: 
+--
+
+CREATE INDEX cms_cmsplugin_placeholder_id ON cms_cmsplugin USING btree (placeholder_id);
+
+
+--
+-- TOC entry 2124 (class 1259 OID 30058)
+-- Dependencies: 183 2472
+-- Name: cms_cmsplugin_plugin_type; Type: INDEX; Schema: public; Owner: postgres; Tablespace: 
+--
+
+CREATE INDEX cms_cmsplugin_plugin_type ON cms_cmsplugin USING btree (plugin_type);
+
+
+--
+-- TOC entry 2125 (class 1259 OID 30059)
+-- Dependencies: 183 2472
+-- Name: cms_cmsplugin_plugin_type_like; Type: INDEX; Schema: public; Owner: postgres; Tablespace: 
+--
+
+CREATE INDEX cms_cmsplugin_plugin_type_like ON cms_cmsplugin USING btree (plugin_type varchar_pattern_ops);
+
+
+--
+-- TOC entry 2126 (class 1259 OID 30062)
+-- Dependencies: 183 2472
+-- Name: cms_cmsplugin_rght; Type: INDEX; Schema: public; Owner: postgres; Tablespace: 
+--
+
+CREATE INDEX cms_cmsplugin_rght ON cms_cmsplugin USING btree (rght);
+
+
+--
+-- TOC entry 2127 (class 1259 OID 30063)
+-- Dependencies: 183 2472
+-- Name: cms_cmsplugin_tree_id; Type: INDEX; Schema: public; Owner: postgres; Tablespace: 
+--
+
+CREATE INDEX cms_cmsplugin_tree_id ON cms_cmsplugin USING btree (tree_id);
+
+
+--
+-- TOC entry 2165 (class 1259 OID 30088)
+-- Dependencies: 193 2472
+-- Name: cms_globalpagepermission_group_id; Type: INDEX; Schema: public; Owner: postgres; Tablespace: 
+--
+
+CREATE INDEX cms_globalpagepermission_group_id ON cms_globalpagepermission USING btree (group_id);
+
+
+--
+-- TOC entry 2161 (class 1259 OID 30085)
+-- Dependencies: 191 2472
+-- Name: cms_globalpagepermission_sites_globalpagepermission_id; Type: INDEX; Schema: public; Owner: postgres; Tablespace: 
+--
+
+CREATE INDEX cms_globalpagepermission_sites_globalpagepermission_id ON cms_globalpagepermission_sites USING btree (globalpagepermission_id);
+
+
+--
+-- TOC entry 2164 (class 1259 OID 30086)
+-- Dependencies: 191 2472
+-- Name: cms_globalpagepermission_sites_site_id; Type: INDEX; Schema: public; Owner: postgres; Tablespace: 
+--
+
+CREATE INDEX cms_globalpagepermission_sites_site_id ON cms_globalpagepermission_sites USING btree (site_id);
+
+
+--
+-- TOC entry 2168 (class 1259 OID 30087)
+-- Dependencies: 193 2472
+-- Name: cms_globalpagepermission_user_id; Type: INDEX; Schema: public; Owner: postgres; Tablespace: 
+--
+
+CREATE INDEX cms_globalpagepermission_user_id ON cms_globalpagepermission USING btree (user_id);
+
+
+--
+-- TOC entry 2134 (class 1259 OID 30069)
+-- Dependencies: 187 2472
+-- Name: cms_page_in_navigation; Type: INDEX; Schema: public; Owner: postgres; Tablespace: 
+--
+
+CREATE INDEX cms_page_in_navigation ON cms_page USING btree (in_navigation);
+
+
+--
+-- TOC entry 2135 (class 1259 OID 30077)
+-- Dependencies: 187 2472
+-- Name: cms_page_level; Type: INDEX; Schema: public; Owner: postgres; Tablespace: 
+--
+
+CREATE INDEX cms_page_level ON cms_page USING btree (level);
+
+
+--
+-- TOC entry 2136 (class 1259 OID 30078)
+-- Dependencies: 187 2472
+-- Name: cms_page_lft; Type: INDEX; Schema: public; Owner: postgres; Tablespace: 
+--
+
+CREATE INDEX cms_page_lft ON cms_page USING btree (lft);
+
+
+--
+-- TOC entry 2137 (class 1259 OID 30076)
+-- Dependencies: 187 2472
+-- Name: cms_page_limit_visibility_in_menu; Type: INDEX; Schema: public; Owner: postgres; Tablespace: 
+--
+
+CREATE INDEX cms_page_limit_visibility_in_menu ON cms_page USING btree (limit_visibility_in_menu);
+
+
+--
+-- TOC entry 2138 (class 1259 OID 30073)
+-- Dependencies: 187 2472
+-- Name: cms_page_navigation_extenders; Type: INDEX; Schema: public; Owner: postgres; Tablespace: 
+--
+
+CREATE INDEX cms_page_navigation_extenders ON cms_page USING btree (navigation_extenders);
+
+
+--
+-- TOC entry 2139 (class 1259 OID 30074)
+-- Dependencies: 187 2472
+-- Name: cms_page_navigation_extenders_like; Type: INDEX; Schema: public; Owner: postgres; Tablespace: 
+--
+
+CREATE INDEX cms_page_navigation_extenders_like ON cms_page USING btree (navigation_extenders varchar_pattern_ops);
+
+
+--
+-- TOC entry 2140 (class 1259 OID 30066)
+-- Dependencies: 187 2472
+-- Name: cms_page_parent_id; Type: INDEX; Schema: public; Owner: postgres; Tablespace: 
+--
+
+CREATE INDEX cms_page_parent_id ON cms_page USING btree (parent_id);
+
+
+--
+-- TOC entry 2128 (class 1259 OID 30064)
+-- Dependencies: 185 2472
+-- Name: cms_page_placeholders_page_id; Type: INDEX; Schema: public; Owner: postgres; Tablespace: 
+--
+
+CREATE INDEX cms_page_placeholders_page_id ON cms_page_placeholders USING btree (page_id);
+
+
+--
+-- TOC entry 2133 (class 1259 OID 30065)
+-- Dependencies: 185 2472
+-- Name: cms_page_placeholders_placeholder_id; Type: INDEX; Schema: public; Owner: postgres; Tablespace: 
+--
+
+CREATE INDEX cms_page_placeholders_placeholder_id ON cms_page_placeholders USING btree (placeholder_id);
+
+
+--
+-- TOC entry 2143 (class 1259 OID 30067)
+-- Dependencies: 187 2472
+-- Name: cms_page_publication_date; Type: INDEX; Schema: public; Owner: postgres; Tablespace: 
+--
+
+CREATE INDEX cms_page_publication_date ON cms_page USING btree (publication_date);
+
+
+--
+-- TOC entry 2144 (class 1259 OID 30068)
+-- Dependencies: 187 2472
+-- Name: cms_page_publication_end_date; Type: INDEX; Schema: public; Owner: postgres; Tablespace: 
+--
+
+CREATE INDEX cms_page_publication_end_date ON cms_page USING btree (publication_end_date);
+
+
+--
+-- TOC entry 2145 (class 1259 OID 30081)
+-- Dependencies: 187 2472
+-- Name: cms_page_publisher_is_draft; Type: INDEX; Schema: public; Owner: postgres; Tablespace: 
+--
+
+CREATE INDEX cms_page_publisher_is_draft ON cms_page USING btree (publisher_is_draft);
+
+
+--
+-- TOC entry 2148 (class 1259 OID 30082)
+-- Dependencies: 187 2472
+-- Name: cms_page_publisher_state; Type: INDEX; Schema: public; Owner: postgres; Tablespace: 
+--
+
+CREATE INDEX cms_page_publisher_state ON cms_page USING btree (publisher_state);
+
+
+--
+-- TOC entry 2149 (class 1259 OID 30071)
+-- Dependencies: 187 2472
+-- Name: cms_page_reverse_id; Type: INDEX; Schema: public; Owner: postgres; Tablespace: 
+--
+
+CREATE INDEX cms_page_reverse_id ON cms_page USING btree (reverse_id);
+
+
+--
+-- TOC entry 2150 (class 1259 OID 30072)
+-- Dependencies: 187 2472
+-- Name: cms_page_reverse_id_like; Type: INDEX; Schema: public; Owner: postgres; Tablespace: 
+--
+
+CREATE INDEX cms_page_reverse_id_like ON cms_page USING btree (reverse_id varchar_pattern_ops);
+
+
+--
+-- TOC entry 2151 (class 1259 OID 30079)
+-- Dependencies: 187 2472
+-- Name: cms_page_rght; Type: INDEX; Schema: public; Owner: postgres; Tablespace: 
+--
+
+CREATE INDEX cms_page_rght ON cms_page USING btree (rght);
+
+
+--
+-- TOC entry 2152 (class 1259 OID 30075)
+-- Dependencies: 187 2472
+-- Name: cms_page_site_id; Type: INDEX; Schema: public; Owner: postgres; Tablespace: 
+--
+
+CREATE INDEX cms_page_site_id ON cms_page USING btree (site_id);
+
+
+--
+-- TOC entry 2153 (class 1259 OID 30070)
+-- Dependencies: 187 2472
+-- Name: cms_page_soft_root; Type: INDEX; Schema: public; Owner: postgres; Tablespace: 
+--
+
+CREATE INDEX cms_page_soft_root ON cms_page USING btree (soft_root);
+
+
+--
+-- TOC entry 2154 (class 1259 OID 30080)
+-- Dependencies: 187 2472
+-- Name: cms_page_tree_id; Type: INDEX; Schema: public; Owner: postgres; Tablespace: 
+--
+
+CREATE INDEX cms_page_tree_id ON cms_page USING btree (tree_id);
+
+
+--
+-- TOC entry 2155 (class 1259 OID 30083)
+-- Dependencies: 189 2472
+-- Name: cms_pagemoderatorstate_page_id; Type: INDEX; Schema: public; Owner: postgres; Tablespace: 
+--
+
+CREATE INDEX cms_pagemoderatorstate_page_id ON cms_pagemoderatorstate USING btree (page_id);
+
+
+--
+-- TOC entry 2158 (class 1259 OID 30084)
+-- Dependencies: 189 2472
+-- Name: cms_pagemoderatorstate_user_id; Type: INDEX; Schema: public; Owner: postgres; Tablespace: 
+--
+
+CREATE INDEX cms_pagemoderatorstate_user_id ON cms_pagemoderatorstate USING btree (user_id);
+
+
+--
+-- TOC entry 2169 (class 1259 OID 30090)
+-- Dependencies: 195 2472
+-- Name: cms_pagepermission_group_id; Type: INDEX; Schema: public; Owner: postgres; Tablespace: 
+--
+
+CREATE INDEX cms_pagepermission_group_id ON cms_pagepermission USING btree (group_id);
+
+
+--
+-- TOC entry 2170 (class 1259 OID 30091)
+-- Dependencies: 195 2472
+-- Name: cms_pagepermission_page_id; Type: INDEX; Schema: public; Owner: postgres; Tablespace: 
+--
+
+CREATE INDEX cms_pagepermission_page_id ON cms_pagepermission USING btree (page_id);
+
+
+--
+-- TOC entry 2173 (class 1259 OID 30089)
+-- Dependencies: 195 2472
+-- Name: cms_pagepermission_user_id; Type: INDEX; Schema: public; Owner: postgres; Tablespace: 
+--
+
+CREATE INDEX cms_pagepermission_user_id ON cms_pagepermission USING btree (user_id);
+
+
+--
+-- TOC entry 2174 (class 1259 OID 30092)
+-- Dependencies: 196 2472
+-- Name: cms_pageuser_created_by_id; Type: INDEX; Schema: public; Owner: postgres; Tablespace: 
+--
+
+CREATE INDEX cms_pageuser_created_by_id ON cms_pageuser USING btree (created_by_id);
+
+
+--
+-- TOC entry 2177 (class 1259 OID 30093)
+-- Dependencies: 197 2472
+-- Name: cms_pageusergroup_created_by_id; Type: INDEX; Schema: public; Owner: postgres; Tablespace: 
+--
+
+CREATE INDEX cms_pageusergroup_created_by_id ON cms_pageusergroup USING btree (created_by_id);
+
+
+--
+-- TOC entry 2114 (class 1259 OID 30052)
+-- Dependencies: 181 2472
+-- Name: cms_placeholder_slot; Type: INDEX; Schema: public; Owner: postgres; Tablespace: 
+--
+
+CREATE INDEX cms_placeholder_slot ON cms_placeholder USING btree (slot);
+
+
+--
+-- TOC entry 2115 (class 1259 OID 30053)
+-- Dependencies: 181 2472
+-- Name: cms_placeholder_slot_like; Type: INDEX; Schema: public; Owner: postgres; Tablespace: 
+--
+
+CREATE INDEX cms_placeholder_slot_like ON cms_placeholder USING btree (slot varchar_pattern_ops);
+
+
+--
+-- TOC entry 2229 (class 1259 OID 30111)
+-- Dependencies: 218 2472
+-- Name: cms_redirects_cmsredirect_old_path; Type: INDEX; Schema: public; Owner: postgres; Tablespace: 
+--
+
+CREATE INDEX cms_redirects_cmsredirect_old_path ON cms_redirects_cmsredirect USING btree (old_path);
+
+
+--
+-- TOC entry 2230 (class 1259 OID 30112)
+-- Dependencies: 218 2472
+-- Name: cms_redirects_cmsredirect_old_path_like; Type: INDEX; Schema: public; Owner: postgres; Tablespace: 
+--
+
+CREATE INDEX cms_redirects_cmsredirect_old_path_like ON cms_redirects_cmsredirect USING btree (old_path varchar_pattern_ops);
+
+
+--
+-- TOC entry 2231 (class 1259 OID 30109)
+-- Dependencies: 218 2472
+-- Name: cms_redirects_cmsredirect_page_id; Type: INDEX; Schema: public; Owner: postgres; Tablespace: 
+--
+
+CREATE INDEX cms_redirects_cmsredirect_page_id ON cms_redirects_cmsredirect USING btree (page_id);
+
+
+--
+-- TOC entry 2234 (class 1259 OID 30110)
+-- Dependencies: 218 2472
+-- Name: cms_redirects_cmsredirect_site_id; Type: INDEX; Schema: public; Owner: postgres; Tablespace: 
+--
+
+CREATE INDEX cms_redirects_cmsredirect_site_id ON cms_redirects_cmsredirect USING btree (site_id);
+
+
+--
+-- TOC entry 2180 (class 1259 OID 30101)
+-- Dependencies: 199 2472
+-- Name: cms_title_application_urls; Type: INDEX; Schema: public; Owner: postgres; Tablespace: 
+--
+
+CREATE INDEX cms_title_application_urls ON cms_title USING btree (application_urls);
+
+
+--
+-- TOC entry 2181 (class 1259 OID 30102)
+-- Dependencies: 199 2472
+-- Name: cms_title_application_urls_like; Type: INDEX; Schema: public; Owner: postgres; Tablespace: 
+--
+
+CREATE INDEX cms_title_application_urls_like ON cms_title USING btree (application_urls varchar_pattern_ops);
+
+
+--
+-- TOC entry 2182 (class 1259 OID 30100)
+-- Dependencies: 199 2472
+-- Name: cms_title_has_url_overwrite; Type: INDEX; Schema: public; Owner: postgres; Tablespace: 
+--
+
+CREATE INDEX cms_title_has_url_overwrite ON cms_title USING btree (has_url_overwrite);
+
+
+--
+-- TOC entry 2183 (class 1259 OID 30094)
+-- Dependencies: 199 2472
+-- Name: cms_title_language; Type: INDEX; Schema: public; Owner: postgres; Tablespace: 
+--
+
+CREATE INDEX cms_title_language ON cms_title USING btree (language);
+
+
+--
+-- TOC entry 2184 (class 1259 OID 30095)
+-- Dependencies: 199 2472
+-- Name: cms_title_language_like; Type: INDEX; Schema: public; Owner: postgres; Tablespace: 
+--
+
+CREATE INDEX cms_title_language_like ON cms_title USING btree (language varchar_pattern_ops);
+
+
+--
+-- TOC entry 2187 (class 1259 OID 30103)
+-- Dependencies: 199 2472
+-- Name: cms_title_page_id; Type: INDEX; Schema: public; Owner: postgres; Tablespace: 
+--
+
+CREATE INDEX cms_title_page_id ON cms_title USING btree (page_id);
+
+
+--
+-- TOC entry 2188 (class 1259 OID 30098)
+-- Dependencies: 199 2472
+-- Name: cms_title_path; Type: INDEX; Schema: public; Owner: postgres; Tablespace: 
+--
+
+CREATE INDEX cms_title_path ON cms_title USING btree (path);
+
+
+--
+-- TOC entry 2189 (class 1259 OID 30099)
+-- Dependencies: 199 2472
+-- Name: cms_title_path_like; Type: INDEX; Schema: public; Owner: postgres; Tablespace: 
+--
+
+CREATE INDEX cms_title_path_like ON cms_title USING btree (path varchar_pattern_ops);
+
+
+--
+-- TOC entry 2192 (class 1259 OID 30096)
+-- Dependencies: 199 2472
+-- Name: cms_title_slug; Type: INDEX; Schema: public; Owner: postgres; Tablespace: 
+--
+
+CREATE INDEX cms_title_slug ON cms_title USING btree (slug);
+
+
+--
+-- TOC entry 2193 (class 1259 OID 30097)
+-- Dependencies: 199 2472
+-- Name: cms_title_slug_like; Type: INDEX; Schema: public; Owner: postgres; Tablespace: 
+--
+
+CREATE INDEX cms_title_slug_like ON cms_title USING btree (slug varchar_pattern_ops);
+
+
+--
+-- TOC entry 2204 (class 1259 OID 30104)
+-- Dependencies: 207 2472
+-- Name: cmsplugin_link_page_link_id; Type: INDEX; Schema: public; Owner: postgres; Tablespace: 
+--
+
+CREATE INDEX cmsplugin_link_page_link_id ON cmsplugin_link USING btree (page_link_id);
+
+
+--
+-- TOC entry 2207 (class 1259 OID 30105)
+-- Dependencies: 208 2472
+-- Name: cmsplugin_picture_page_link_id; Type: INDEX; Schema: public; Owner: postgres; Tablespace: 
+--
+
+CREATE INDEX cmsplugin_picture_page_link_id ON cmsplugin_picture USING btree (page_link_id);
+
+
+--
+-- TOC entry 2217 (class 1259 OID 30107)
+-- Dependencies: 211 2472
+-- Name: cmsplugin_snippetptr_snippet_id; Type: INDEX; Schema: public; Owner: postgres; Tablespace: 
+--
+
+CREATE INDEX cmsplugin_snippetptr_snippet_id ON cmsplugin_snippetptr USING btree (snippet_id);
+
+
+--
+-- TOC entry 2218 (class 1259 OID 30108)
+-- Dependencies: 212 2472
+-- Name: cmsplugin_teaser_page_link_id; Type: INDEX; Schema: public; Owner: postgres; Tablespace: 
+--
+
+CREATE INDEX cmsplugin_teaser_page_link_id ON cmsplugin_teaser USING btree (page_link_id);
+
+
+--
+-- TOC entry 2108 (class 1259 OID 30051)
+-- Dependencies: 179 2472
+-- Name: django_admin_log_content_type_id; Type: INDEX; Schema: public; Owner: postgres; Tablespace: 
+--
+
+CREATE INDEX django_admin_log_content_type_id ON django_admin_log USING btree (content_type_id);
+
+
+--
+-- TOC entry 2111 (class 1259 OID 30050)
+-- Dependencies: 179 2472
+-- Name: django_admin_log_user_id; Type: INDEX; Schema: public; Owner: postgres; Tablespace: 
+--
+
+CREATE INDEX django_admin_log_user_id ON django_admin_log USING btree (user_id);
+
+
+--
+-- TOC entry 2102 (class 1259 OID 30049)
+-- Dependencies: 175 2472
+-- Name: django_session_expire_date; Type: INDEX; Schema: public; Owner: postgres; Tablespace: 
+--
+
+CREATE INDEX django_session_expire_date ON django_session USING btree (expire_date);
+
+
+--
+-- TOC entry 2105 (class 1259 OID 30048)
+-- Dependencies: 175 2472
+-- Name: django_session_session_key_like; Type: INDEX; Schema: public; Owner: postgres; Tablespace: 
+--
+
+CREATE INDEX django_session_session_key_like ON django_session USING btree (session_key varchar_pattern_ops);
+
+
+--
+-- TOC entry 2212 (class 1259 OID 30106)
+-- Dependencies: 210 2472
+-- Name: snippet_snippet_name_like; Type: INDEX; Schema: public; Owner: postgres; Tablespace: 
+--
+
+CREATE INDEX snippet_snippet_name_like ON snippet_snippet USING btree (name varchar_pattern_ops);
+
+
+--
+-- TOC entry 2239 (class 1259 OID 30113)
+-- Dependencies: 222 2472
+-- Name: waterpoints_waterpoint_photos_photos_id; Type: INDEX; Schema: public; Owner: postgres; Tablespace: 
+--
+
+CREATE INDEX waterpoints_waterpoint_photos_photos_id ON waterpoints_waterpoint_photos USING btree (photos_id);
+
+
+--
+-- TOC entry 2242 (class 1259 OID 30114)
+-- Dependencies: 224 2472
+-- Name: waterpoints_waterpoint_status_name_id; Type: INDEX; Schema: public; Owner: postgres; Tablespace: 
+--
+
+CREATE INDEX waterpoints_waterpoint_status_name_id ON waterpoints_waterpoint_status USING btree (name_id);
+
+
+--
+-- TOC entry 2252 (class 2606 OID 29425)
+-- Dependencies: 164 2068 162 2472
+-- Name: auth_group_permissions_permission_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY auth_group_permissions
+    ADD CONSTRAINT auth_group_permissions_permission_id_fkey FOREIGN KEY (permission_id) REFERENCES auth_permission(id) DEFERRABLE INITIALLY DEFERRED;
+
+
+--
+-- TOC entry 2254 (class 2606 OID 29455)
+-- Dependencies: 166 168 2079 2472
+-- Name: auth_user_groups_group_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY auth_user_groups
+    ADD CONSTRAINT auth_user_groups_group_id_fkey FOREIGN KEY (group_id) REFERENCES auth_group(id) DEFERRABLE INITIALLY DEFERRED;
+
+
+--
+-- TOC entry 2256 (class 2606 OID 29470)
+-- Dependencies: 162 2068 170 2472
+-- Name: auth_user_user_permissions_permission_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY auth_user_user_permissions
+    ADD CONSTRAINT auth_user_user_permissions_permission_id_fkey FOREIGN KEY (permission_id) REFERENCES auth_permission(id) DEFERRABLE INITIALLY DEFERRED;
+
+
+--
+-- TOC entry 2260 (class 2606 OID 29570)
+-- Dependencies: 183 2112 181 2472
+-- Name: cms_cmsplugin_placeholder_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY cms_cmsplugin
+    ADD CONSTRAINT cms_cmsplugin_placeholder_id_fkey FOREIGN KEY (placeholder_id) REFERENCES cms_placeholder(id) DEFERRABLE INITIALLY DEFERRED;
+
+
+--
+-- TOC entry 2272 (class 2606 OID 29678)
+-- Dependencies: 166 193 2079 2472
+-- Name: cms_globalpagepermission_group_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY cms_globalpagepermission
+    ADD CONSTRAINT cms_globalpagepermission_group_id_fkey FOREIGN KEY (group_id) REFERENCES auth_group(id) DEFERRABLE INITIALLY DEFERRED;
+
+
+--
+-- TOC entry 2269 (class 2606 OID 29660)
+-- Dependencies: 2106 177 191 2472
+-- Name: cms_globalpagepermission_sites_site_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY cms_globalpagepermission_sites
+    ADD CONSTRAINT cms_globalpagepermission_sites_site_id_fkey FOREIGN KEY (site_id) REFERENCES django_site(id) DEFERRABLE INITIALLY DEFERRED;
+
+
+--
+-- TOC entry 2271 (class 2606 OID 29673)
+-- Dependencies: 2093 193 172 2472
+-- Name: cms_globalpagepermission_user_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY cms_globalpagepermission
+    ADD CONSTRAINT cms_globalpagepermission_user_id_fkey FOREIGN KEY (user_id) REFERENCES auth_user(id) DEFERRABLE INITIALLY DEFERRED;
+
+
+--
+-- TOC entry 2262 (class 2606 OID 29590)
+-- Dependencies: 2112 185 181 2472
+-- Name: cms_page_placeholders_placeholder_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY cms_page_placeholders
+    ADD CONSTRAINT cms_page_placeholders_placeholder_id_fkey FOREIGN KEY (placeholder_id) REFERENCES cms_placeholder(id) DEFERRABLE INITIALLY DEFERRED;
+
+
+--
+-- TOC entry 2264 (class 2606 OID 29609)
+-- Dependencies: 177 187 2106 2472
+-- Name: cms_page_site_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY cms_page
+    ADD CONSTRAINT cms_page_site_id_fkey FOREIGN KEY (site_id) REFERENCES django_site(id) DEFERRABLE INITIALLY DEFERRED;
+
+
+--
+-- TOC entry 2268 (class 2606 OID 29640)
+-- Dependencies: 2141 187 189 2472
+-- Name: cms_pagemoderatorstate_page_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY cms_pagemoderatorstate
+    ADD CONSTRAINT cms_pagemoderatorstate_page_id_fkey FOREIGN KEY (page_id) REFERENCES cms_page(id) DEFERRABLE INITIALLY DEFERRED;
+
+
+--
+-- TOC entry 2267 (class 2606 OID 29645)
+-- Dependencies: 172 2093 189 2472
+-- Name: cms_pagemoderatorstate_user_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY cms_pagemoderatorstate
+    ADD CONSTRAINT cms_pagemoderatorstate_user_id_fkey FOREIGN KEY (user_id) REFERENCES auth_user(id) DEFERRABLE INITIALLY DEFERRED;
+
+
+--
+-- TOC entry 2274 (class 2606 OID 29701)
+-- Dependencies: 166 195 2079 2472
+-- Name: cms_pagepermission_group_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY cms_pagepermission
+    ADD CONSTRAINT cms_pagepermission_group_id_fkey FOREIGN KEY (group_id) REFERENCES auth_group(id) DEFERRABLE INITIALLY DEFERRED;
+
+
+--
+-- TOC entry 2275 (class 2606 OID 29706)
+-- Dependencies: 2141 187 195 2472
+-- Name: cms_pagepermission_page_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY cms_pagepermission
+    ADD CONSTRAINT cms_pagepermission_page_id_fkey FOREIGN KEY (page_id) REFERENCES cms_page(id) DEFERRABLE INITIALLY DEFERRED;
+
+
+--
+-- TOC entry 2273 (class 2606 OID 29696)
+-- Dependencies: 172 195 2093 2472
+-- Name: cms_pagepermission_user_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY cms_pagepermission
+    ADD CONSTRAINT cms_pagepermission_user_id_fkey FOREIGN KEY (user_id) REFERENCES auth_user(id) DEFERRABLE INITIALLY DEFERRED;
+
+
+--
+-- TOC entry 2277 (class 2606 OID 29721)
+-- Dependencies: 196 172 2093 2472
+-- Name: cms_pageuser_created_by_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY cms_pageuser
+    ADD CONSTRAINT cms_pageuser_created_by_id_fkey FOREIGN KEY (created_by_id) REFERENCES auth_user(id) DEFERRABLE INITIALLY DEFERRED;
+
+
+--
+-- TOC entry 2276 (class 2606 OID 29716)
+-- Dependencies: 172 196 2093 2472
+-- Name: cms_pageuser_user_ptr_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY cms_pageuser
+    ADD CONSTRAINT cms_pageuser_user_ptr_id_fkey FOREIGN KEY (user_ptr_id) REFERENCES auth_user(id) DEFERRABLE INITIALLY DEFERRED;
+
+
+--
+-- TOC entry 2279 (class 2606 OID 29736)
+-- Dependencies: 197 2093 172 2472
+-- Name: cms_pageusergroup_created_by_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY cms_pageusergroup
+    ADD CONSTRAINT cms_pageusergroup_created_by_id_fkey FOREIGN KEY (created_by_id) REFERENCES auth_user(id) DEFERRABLE INITIALLY DEFERRED;
+
+
+--
+-- TOC entry 2278 (class 2606 OID 29731)
+-- Dependencies: 2079 197 166 2472
+-- Name: cms_pageusergroup_group_ptr_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY cms_pageusergroup
+    ADD CONSTRAINT cms_pageusergroup_group_ptr_id_fkey FOREIGN KEY (group_ptr_id) REFERENCES auth_group(id) DEFERRABLE INITIALLY DEFERRED;
+
+
+--
+-- TOC entry 2296 (class 2606 OID 29958)
+-- Dependencies: 2141 218 187 2472
+-- Name: cms_redirects_cmsredirect_page_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY cms_redirects_cmsredirect
+    ADD CONSTRAINT cms_redirects_cmsredirect_page_id_fkey FOREIGN KEY (page_id) REFERENCES cms_page(id) DEFERRABLE INITIALLY DEFERRED;
+
+
+--
+-- TOC entry 2297 (class 2606 OID 29963)
+-- Dependencies: 177 2106 218 2472
+-- Name: cms_redirects_cmsredirect_site_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY cms_redirects_cmsredirect
+    ADD CONSTRAINT cms_redirects_cmsredirect_site_id_fkey FOREIGN KEY (site_id) REFERENCES django_site(id) DEFERRABLE INITIALLY DEFERRED;
+
+
+--
+-- TOC entry 2280 (class 2606 OID 29754)
+-- Dependencies: 2141 187 199 2472
+-- Name: cms_title_page_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY cms_title
+    ADD CONSTRAINT cms_title_page_id_fkey FOREIGN KEY (page_id) REFERENCES cms_page(id) DEFERRABLE INITIALLY DEFERRED;
+
+
+--
+-- TOC entry 2281 (class 2606 OID 29787)
+-- Dependencies: 2121 204 183 2472
+-- Name: cmsplugin_file_cmsplugin_ptr_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY cmsplugin_file
+    ADD CONSTRAINT cmsplugin_file_cmsplugin_ptr_id_fkey FOREIGN KEY (cmsplugin_ptr_id) REFERENCES cms_cmsplugin(id) DEFERRABLE INITIALLY DEFERRED;
+
+
+--
+-- TOC entry 2282 (class 2606 OID 29797)
+-- Dependencies: 2121 205 183 2472
+-- Name: cmsplugin_flash_cmsplugin_ptr_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY cmsplugin_flash
+    ADD CONSTRAINT cmsplugin_flash_cmsplugin_ptr_id_fkey FOREIGN KEY (cmsplugin_ptr_id) REFERENCES cms_cmsplugin(id) DEFERRABLE INITIALLY DEFERRED;
+
+
+--
+-- TOC entry 2283 (class 2606 OID 29811)
+-- Dependencies: 2121 206 183 2472
+-- Name: cmsplugin_googlemap_cmsplugin_ptr_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY cmsplugin_googlemap
+    ADD CONSTRAINT cmsplugin_googlemap_cmsplugin_ptr_id_fkey FOREIGN KEY (cmsplugin_ptr_id) REFERENCES cms_cmsplugin(id) DEFERRABLE INITIALLY DEFERRED;
+
+
+--
+-- TOC entry 2284 (class 2606 OID 29824)
+-- Dependencies: 183 2121 207 2472
+-- Name: cmsplugin_link_cmsplugin_ptr_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY cmsplugin_link
+    ADD CONSTRAINT cmsplugin_link_cmsplugin_ptr_id_fkey FOREIGN KEY (cmsplugin_ptr_id) REFERENCES cms_cmsplugin(id) DEFERRABLE INITIALLY DEFERRED;
+
+
+--
+-- TOC entry 2285 (class 2606 OID 29829)
+-- Dependencies: 2141 207 187 2472
+-- Name: cmsplugin_link_page_link_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY cmsplugin_link
+    ADD CONSTRAINT cmsplugin_link_page_link_id_fkey FOREIGN KEY (page_link_id) REFERENCES cms_page(id) DEFERRABLE INITIALLY DEFERRED;
+
+
+--
+-- TOC entry 2286 (class 2606 OID 29842)
+-- Dependencies: 183 2121 208 2472
+-- Name: cmsplugin_picture_cmsplugin_ptr_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY cmsplugin_picture
+    ADD CONSTRAINT cmsplugin_picture_cmsplugin_ptr_id_fkey FOREIGN KEY (cmsplugin_ptr_id) REFERENCES cms_cmsplugin(id) DEFERRABLE INITIALLY DEFERRED;
+
+
+--
+-- TOC entry 2287 (class 2606 OID 29847)
+-- Dependencies: 208 187 2141 2472
+-- Name: cmsplugin_picture_page_link_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY cmsplugin_picture
+    ADD CONSTRAINT cmsplugin_picture_page_link_id_fkey FOREIGN KEY (page_link_id) REFERENCES cms_page(id) DEFERRABLE INITIALLY DEFERRED;
+
+
+--
+-- TOC entry 2288 (class 2606 OID 29870)
+-- Dependencies: 2121 211 183 2472
+-- Name: cmsplugin_snippetptr_cmsplugin_ptr_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY cmsplugin_snippetptr
+    ADD CONSTRAINT cmsplugin_snippetptr_cmsplugin_ptr_id_fkey FOREIGN KEY (cmsplugin_ptr_id) REFERENCES cms_cmsplugin(id) DEFERRABLE INITIALLY DEFERRED;
+
+
+--
+-- TOC entry 2289 (class 2606 OID 29875)
+-- Dependencies: 2213 210 211 2472
+-- Name: cmsplugin_snippetptr_snippet_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY cmsplugin_snippetptr
+    ADD CONSTRAINT cmsplugin_snippetptr_snippet_id_fkey FOREIGN KEY (snippet_id) REFERENCES snippet_snippet(id) DEFERRABLE INITIALLY DEFERRED;
+
+
+--
+-- TOC entry 2290 (class 2606 OID 29888)
+-- Dependencies: 212 2121 183 2472
+-- Name: cmsplugin_teaser_cmsplugin_ptr_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY cmsplugin_teaser
+    ADD CONSTRAINT cmsplugin_teaser_cmsplugin_ptr_id_fkey FOREIGN KEY (cmsplugin_ptr_id) REFERENCES cms_cmsplugin(id) DEFERRABLE INITIALLY DEFERRED;
+
+
+--
+-- TOC entry 2291 (class 2606 OID 29893)
+-- Dependencies: 2141 187 212 2472
+-- Name: cmsplugin_teaser_page_link_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY cmsplugin_teaser
+    ADD CONSTRAINT cmsplugin_teaser_page_link_id_fkey FOREIGN KEY (page_link_id) REFERENCES cms_page(id) DEFERRABLE INITIALLY DEFERRED;
+
+
+--
+-- TOC entry 2292 (class 2606 OID 29906)
+-- Dependencies: 213 2121 183 2472
+-- Name: cmsplugin_text_cmsplugin_ptr_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY cmsplugin_text
+    ADD CONSTRAINT cmsplugin_text_cmsplugin_ptr_id_fkey FOREIGN KEY (cmsplugin_ptr_id) REFERENCES cms_cmsplugin(id) DEFERRABLE INITIALLY DEFERRED;
+
+
+--
+-- TOC entry 2294 (class 2606 OID 29932)
+-- Dependencies: 183 215 2121 2472
+-- Name: cmsplugin_twitterrecententries_cmsplugin_ptr_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY cmsplugin_twitterrecententries
+    ADD CONSTRAINT cmsplugin_twitterrecententries_cmsplugin_ptr_id_fkey FOREIGN KEY (cmsplugin_ptr_id) REFERENCES cms_cmsplugin(id) DEFERRABLE INITIALLY DEFERRED;
+
+
+--
+-- TOC entry 2295 (class 2606 OID 29943)
+-- Dependencies: 216 183 2121 2472
+-- Name: cmsplugin_twittersearch_cmsplugin_ptr_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY cmsplugin_twittersearch
+    ADD CONSTRAINT cmsplugin_twittersearch_cmsplugin_ptr_id_fkey FOREIGN KEY (cmsplugin_ptr_id) REFERENCES cms_cmsplugin(id) DEFERRABLE INITIALLY DEFERRED;
+
+
+--
+-- TOC entry 2293 (class 2606 OID 29921)
+-- Dependencies: 2121 183 214 2472
+-- Name: cmsplugin_video_cmsplugin_ptr_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY cmsplugin_video
+    ADD CONSTRAINT cmsplugin_video_cmsplugin_ptr_id_fkey FOREIGN KEY (cmsplugin_ptr_id) REFERENCES cms_cmsplugin(id) DEFERRABLE INITIALLY DEFERRED;
+
+
+--
+-- TOC entry 2251 (class 2606 OID 29505)
+-- Dependencies: 162 2100 174 2472
+-- Name: content_type_id_refs_id_d043b34a; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY auth_permission
+    ADD CONSTRAINT content_type_id_refs_id_d043b34a FOREIGN KEY (content_type_id) REFERENCES django_content_type(id) DEFERRABLE INITIALLY DEFERRED;
+
+
+--
+-- TOC entry 2259 (class 2606 OID 29543)
+-- Dependencies: 174 2100 179 2472
+-- Name: django_admin_log_content_type_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY django_admin_log
+    ADD CONSTRAINT django_admin_log_content_type_id_fkey FOREIGN KEY (content_type_id) REFERENCES django_content_type(id) DEFERRABLE INITIALLY DEFERRED;
+
+
+--
+-- TOC entry 2258 (class 2606 OID 29538)
+-- Dependencies: 2093 172 179 2472
+-- Name: django_admin_log_user_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY django_admin_log
+    ADD CONSTRAINT django_admin_log_user_id_fkey FOREIGN KEY (user_id) REFERENCES auth_user(id) DEFERRABLE INITIALLY DEFERRED;
+
+
+--
+-- TOC entry 2270 (class 2606 OID 29683)
+-- Dependencies: 191 2166 193 2472
+-- Name: globalpagepermission_id_refs_id_09b826f9; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY cms_globalpagepermission_sites
+    ADD CONSTRAINT globalpagepermission_id_refs_id_09b826f9 FOREIGN KEY (globalpagepermission_id) REFERENCES cms_globalpagepermission(id) DEFERRABLE INITIALLY DEFERRED;
+
+
+--
+-- TOC entry 2253 (class 2606 OID 29440)
+-- Dependencies: 166 164 2079 2472
+-- Name: group_id_refs_id_f4b32aac; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY auth_group_permissions
+    ADD CONSTRAINT group_id_refs_id_f4b32aac FOREIGN KEY (group_id) REFERENCES auth_group(id) DEFERRABLE INITIALLY DEFERRED;
+
+
+--
+-- TOC entry 2263 (class 2606 OID 29614)
+-- Dependencies: 2141 187 185 2472
+-- Name: page_id_refs_id_88abf373; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY cms_page_placeholders
+    ADD CONSTRAINT page_id_refs_id_88abf373 FOREIGN KEY (page_id) REFERENCES cms_page(id) DEFERRABLE INITIALLY DEFERRED;
+
+
+--
+-- TOC entry 2261 (class 2606 OID 29575)
+-- Dependencies: 183 183 2121 2472
+-- Name: parent_id_refs_id_8d462df0; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY cms_cmsplugin
+    ADD CONSTRAINT parent_id_refs_id_8d462df0 FOREIGN KEY (parent_id) REFERENCES cms_cmsplugin(id) DEFERRABLE INITIALLY DEFERRED;
+
+
+--
+-- TOC entry 2265 (class 2606 OID 29619)
+-- Dependencies: 187 2141 187 2472
+-- Name: parent_id_refs_id_ca1f299f; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY cms_page
+    ADD CONSTRAINT parent_id_refs_id_ca1f299f FOREIGN KEY (parent_id) REFERENCES cms_page(id) DEFERRABLE INITIALLY DEFERRED;
+
+
+--
+-- TOC entry 2266 (class 2606 OID 29624)
+-- Dependencies: 187 2141 187 2472
+-- Name: publisher_public_id_refs_id_ca1f299f; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY cms_page
+    ADD CONSTRAINT publisher_public_id_refs_id_ca1f299f FOREIGN KEY (publisher_public_id) REFERENCES cms_page(id) DEFERRABLE INITIALLY DEFERRED;
+
+
+--
+-- TOC entry 2255 (class 2606 OID 29485)
+-- Dependencies: 168 2093 172 2472
+-- Name: user_id_refs_id_40c41112; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY auth_user_groups
+    ADD CONSTRAINT user_id_refs_id_40c41112 FOREIGN KEY (user_id) REFERENCES auth_user(id) DEFERRABLE INITIALLY DEFERRED;
+
+
+--
+-- TOC entry 2257 (class 2606 OID 29490)
+-- Dependencies: 2093 172 170 2472
+-- Name: user_id_refs_id_4dc23c39; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY auth_user_user_permissions
+    ADD CONSTRAINT user_id_refs_id_4dc23c39 FOREIGN KEY (user_id) REFERENCES auth_user(id) DEFERRABLE INITIALLY DEFERRED;
+
+
+--
+-- TOC entry 2298 (class 2606 OID 29987)
+-- Dependencies: 220 2237 222 2472
+-- Name: waterpoints_waterpoint_photos_photos_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY waterpoints_waterpoint_photos
+    ADD CONSTRAINT waterpoints_waterpoint_photos_photos_id_fkey FOREIGN KEY (photos_id) REFERENCES waterpoints_waterpoint(id) DEFERRABLE INITIALLY DEFERRED;
+
+
+--
+-- TOC entry 2299 (class 2606 OID 30000)
+-- Dependencies: 2237 224 220 2472
+-- Name: waterpoints_waterpoint_status_name_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY waterpoints_waterpoint_status
+    ADD CONSTRAINT waterpoints_waterpoint_status_name_id_fkey FOREIGN KEY (name_id) REFERENCES waterpoints_waterpoint(id) DEFERRABLE INITIALLY DEFERRED;
+
+
+--
+-- TOC entry 2477 (class 0 OID 0)
+-- Dependencies: 5
+-- Name: public; Type: ACL; Schema: -; Owner: postgres
+--
+
+REVOKE ALL ON SCHEMA public FROM PUBLIC;
+REVOKE ALL ON SCHEMA public FROM postgres;
+GRANT ALL ON SCHEMA public TO postgres;
+GRANT ALL ON SCHEMA public TO PUBLIC;
+
+
+-- Completed on 2014-04-15 21:31:12 EAT
+
+--
+-- PostgreSQL database dump complete
+--
+
