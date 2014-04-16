@@ -207,7 +207,7 @@ def createEngineer(request,user_id):
 		'shinyanga':shinyanga,'ruvuma':ruvuma,'rukwa':rukwa,'pwani':pwani,'mwanza':mwanza,'mtwara':mtwara,
 		'mbeya':mbeya,'mara':mara,'manyara':manyara,'lindi':lindi,'kusini_unguja':kusini_unguja,
 		'kigoma':kigoma,'katavi':katavi,'kaskazini_Pemba':kaskazini_Pemba,'kagera':kagera,'iringa':iringa,
-		'geita':geita,'dodoma':dodoma,'dar_es_salama':dar_es_salama,'arusha':arusha,
+		'geita':geita,'dodoma':dodoma,'dar_es_salama':dar_es_salama,'arusha':arusha,'morogoro':morogoro,
 		'message':message,'position':'admin','user':user,'warning':warning,'welcome_info':welcome_info}
 		return render(request, 'createEngineer.html', context)
 
@@ -300,7 +300,7 @@ def createChairperson(request, user_id):
 		'shinyanga':shinyanga,'ruvuma':ruvuma,'rukwa':rukwa,'pwani':pwani,'mwanza':mwanza,'mtwara':mtwara,
 		'mbeya':mbeya,'mara':mara,'manyara':manyara,'lindi':lindi,'kusini_unguja':kusini_unguja,
 		'kigoma':kigoma,'katavi':katavi,'kaskazini_Pemba':kaskazini_Pemba,'kagera':kagera,'iringa':iringa,
-		'geita':geita,'dodoma':dodoma,'dar_es_salama':dar_es_salama,'arusha':arusha,
+		'geita':geita,'dodoma':dodoma,'dar_es_salama':dar_es_salama,'arusha':arusha,'morogoro':morogoro,
 		'message':message ,'user':user,'warning':warning,'welcome_info':welcome_info,'position':'admin' }
 		return render(request, 'createChairperson.html', context)	
 
