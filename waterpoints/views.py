@@ -30,50 +30,71 @@ def waterpointDetail(request,user_id):
 		longitude = ''
 		fund = ''
 		sponsor = ''
-		
-		#take form from template
-		form = request.POST
-		
-		#taking values from posted form
-		code_number_list = form.getlist('code_number')
-		code_number = code_number_list[0]
-		
-		water_connection_list = form.getlist('name')
-		water_connection = water_connection_list[0]
-		
-		source_name_list = form.getlist('source_name')
-		source_name = source_name_list[0]
-		
-		supply_connectionlist = form.getlist('supply_connection')
-		supply_connection = supply_connectionlist[0]
-		
-		district_list = form.getlist('district')
-		district = district_list[0]
-		
-		region_list = form.getlist('region')
-		region = region_list[0]
-		
-		physical_location_name_list = form.getlist('physical_location_name')
-		physical_location_name = physical_location_name_list[0]
-		
-		latitude_list = form.getlist('latitude')
-		latitude = latitude_list[0]
-		
-		longitude_list = form.getlist('longitude')
-		longitude = longitude_list[0]
-		
-		fund_list = form.getlist('fund')
-		fund = fund_list[0]
-		
-		sponsor_list = form.getlist('sponsor')		
-		sponsor = sponsor_list[0]
-		
-		#checking if form is completed or not, and taking the action
-		if sponsor == '' or fund == '':
-			warning = 'not'
-		else:
-			message = 'ok'	
+		if request.POST:
 			
+			#take form from template
+			form = request.POST
+		
+			#taking values from posted form
+			code_number_list = form.getlist('code_number')
+			code_number = code_number_list[0]
+		
+			water_connection_list = form.getlist('name')
+			water_connection = water_connection_list[0]
+		
+			source_name_list = form.getlist('source_name')
+			source_name = source_name_list[0]
+		
+			supply_connectionlist = form.getlist('supply_connection')
+			supply_connection = supply_connectionlist[0]
+		
+			district_list = form.getlist('district')
+			district = district_list[0]
+		
+			region_list = form.getlist('region')
+			region = region_list[0]
+		
+			physical_location_name_list = form.getlist('physical_location_name')
+			physical_location_name = physical_location_name_list[0]
+		
+			latitude_list = form.getlist('latitude')
+			latitude = latitude_list[0]
+		
+			longitude_list = form.getlist('longitude')
+			longitude = longitude_list[0]
+		
+			fund_list = form.getlist('fund')
+			fund = fund_list[0]
+		
+			sponsor_list = form.getlist('sponsor')		
+			sponsor = sponsor_list[0]
+		
+			#checking if form is completed or not, and taking the action
+			if code_number == '' or water_connection == '' or source_name == '' or district == '' or region == '' or physical_location_name == '' or latitude == '' or longitude == '' or sponsor == '' or fund == '':
+				warning = 'Please fill all information below, for successfull create new water supply connection'
+			else:
+				message = 'You  have successfull create new water supply connection'	
+			#saving the form if all fields have been filled
+			if message:
+				#create object
+				new_water_connection = Waterpoint()
+				
+				#supply values
+				new_water_connection.code_number = 	code_number
+				new_water_connection.name = water_connection
+				new_water_connection.source_name = source_name
+				new_water_connection.supply_connection = supply_connection
+				new_water_connection.district = district
+				new_water_connection.region = region
+				new_water_connection.physical_location_name = physical_location_name
+				new_water_connection.latitude = latitude
+				new_water_connection.longitude = longitude
+				new_water_connection.fund = fund
+				new_water_connection.sponsor =  sponsor
+				
+				#saving form
+				new_water_connection.save()
+				
 		context = {'warning':warning,'message':message,'position':'engineer', 'user':user,'welcome_info':welcome_info}
 		return render(request,'waterpointdescription.html',context)
 		    
