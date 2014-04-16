@@ -5,7 +5,36 @@ from django.core.urlresolvers import reverse
 from users.models import *
 from waterpoints.models import *
 
-
+# lists of regions with respective districts
+arusha = ['arumeru', 'arusha-city', 'arusha district','longido','monduli', 'ngorongoro']
+dar_es_salama = ['ilala', 'kinondoni', 'temeke']
+dodoma = ['bahi', 'chamwino', 'chemba','dodoma municipal', 'kondoa', 'kongwa','mpwapwa']
+geita = ['bukombe','chato','geita', 'mbongwe', "nyang'hwale"]
+iringa = ['iringa district', 'iringa municipal', 'kilolo', 'mafinga town', 'mufindi']
+kagera = ['biharamulo', 'bukoba district', 'bukoba municipal','karagwe','kyerwa', 'missenyi','muleba','ngara']
+kaskazini_Pemba = ['micheweni', 'wete']
+kaskazini_unguja = ['kaskazini A', 'kaskazini B']
+katavi = ['mlele', 'mpanda district', 'mpanda town']
+kigoma = ['buhigwe', 'kakonko', 'kasulu', 'kasulu town', 'kibondo', 'kigoma district', 'kigoma-ujiji municipal', 'uvinza']
+kilimanjaro = ['hai', 'moshi district', 'moshi municipal', 'mwanga', 'rombo', 'same' , 'siha']
+kusini_pemba = ['chake chake','mkoani']
+kusini_unguja = ['kati', 'kusini']
+lindi = ['kilwa', 'lindi district', 'lindi municipal', 'liwale', 'nachingwea', 'ruangwa']
+manyara  = ['babati town', 'babati district', 'hanang', 'kiteto', 'mbulu', 'simanjiro']
+mara = ['bunda', 'butiama', 'musoma district', 'musoma municipal', 'rorya', 'sengeti', 'tarime']
+mbeya = ['chunya', 'ileje', 'kyela', 'mbarali', 'mbeya city', 'mbeya district', 'mbozi', 'momba', 'rungwe', 'tunduma']
+mjini_magharibi = ['magharibi', 'mjini']
+morogoro = ['gairo', 'kilombero', 'kilosa', 'morogoro district', 'morogoro municipal', 'mvomero', 'ulanga']
+mtwara = ['masasi district', 'masasi town', 'mtwara district', 'mtwara municipal', 'nayumbu', 'newala', 'tandahimba']
+mwanza = ['ilemela municipal','kwimba', 'mangu', 'misungwi', 'nyamagana municipal', 'sengerema', 'ukerewe']
+pwani = ['bagamoyo', 'kibaha district', 'kibaha town', 'kisarawe', 'mafia', 'mkuranga', 'rufiji']
+rukwa = ['kalambo','nkasi', 'sumbawanga district','sumbawanga municipal']
+ruvuma = ['mbinga', 'songea district','songea municipal', 'tunduru', 'namtumbo', 'nyasa']
+shinyanga = ['kahama town', 'kahama', 'kishapu', 'shinyanga district', 'shinyanga municipal']
+simiyu = ['bariadi', 'busega', 'itilima', 'maswa', 'meatu']
+singida = ['ikungi', 'iramba', 'manyoni', 'mkalama', 'singida district', 'singida municipal']
+tabora = ['igunga','kaliua', 'nzega','sikonge', 'tabora municipal', 'urambo',  'uyui']
+tanga = ['handeni', 'handeni town', 'kilindi', 'korogwe town' , 'korongwe', 'lushoto', 'muhenza', 'mkinga', 'pangani', 'tanga city']
 
 #authorization of users login into the system
 def authorize(request):
@@ -24,7 +53,7 @@ def authorize(request):
 	usernamelist = loginform.getlist('username')
 	if not usernamelist :
 		message = 'Sorry! Currently you are not log in into this System.'
-		context = {'message':message}
+		context = {'message':message,}
 		return render(request, 'notlogin.html', context)
 	else:
 		username = usernamelist[0]
@@ -34,7 +63,7 @@ def authorize(request):
 	passwordlist = loginform.getlist('password')
 	if not passwordlist:
 		message = 'Sorry! Currently you are not log in into this System.'
-		context = {'message':message}
+		context = {'message':message,}
 		return render(request, 'notlogin.html', context)
 	else:
 		password = passwordlist[0]	
@@ -173,7 +202,13 @@ def createEngineer(request,user_id):
 				#saving data
 				newuser.save()
 	
-		context = {'message':message,'position':'admin','user':user,'warning':warning,'welcome_info':welcome_info}
+		context = {'kaskazini_unguja':kaskazini_unguja,'kilimanjaro':kilimanjaro,'kusini_pemba':kusini_pemba,
+		'mjini_magharibi':mjini_magharibi,'tanga':tanga,'tabora':tabora,'singida':singida,'simiyu':simiyu,
+		'shinyanga':shinyanga,'ruvuma':ruvuma,'rukwa':rukwa,'pwani':pwani,'mwanza':mwanza,'mtwara':mtwara,
+		'mbeya':mbeya,'mara':mara,'manyara':manyara,'lindi':lindi,'kusini_unguja':kusini_unguja,
+		'kigoma':kigoma,'katavi':katavi,'kaskazini_Pemba':kaskazini_Pemba,'kagera':kagera,'iringa':iringa,
+		'geita':geita,'dodoma':dodoma,'dar_es_salama':dar_es_salama,'arusha':arusha,
+		'message':message,'position':'admin','user':user,'warning':warning,'welcome_info':welcome_info}
 		return render(request, 'createEngineer.html', context)
 
 #create COWSO chairperson	
@@ -260,7 +295,13 @@ def createChairperson(request, user_id):
 			#saving data
 			newuser.save()
 	
-		context = {'message':message ,'user':user,'warning':warning,'welcome_info':welcome_info,'position':'admin' }
+		context = {'kaskazini_unguja':kaskazini_unguja,'kilimanjaro':kilimanjaro,'kusini_pemba':kusini_pemba,
+		'mjini_magharibi':mjini_magharibi,'tanga':tanga,'tabora':tabora,'singida':singida,'simiyu':simiyu,
+		'shinyanga':shinyanga,'ruvuma':ruvuma,'rukwa':rukwa,'pwani':pwani,'mwanza':mwanza,'mtwara':mtwara,
+		'mbeya':mbeya,'mara':mara,'manyara':manyara,'lindi':lindi,'kusini_unguja':kusini_unguja,
+		'kigoma':kigoma,'katavi':katavi,'kaskazini_Pemba':kaskazini_Pemba,'kagera':kagera,'iringa':iringa,
+		'geita':geita,'dodoma':dodoma,'dar_es_salama':dar_es_salama,'arusha':arusha,
+		'message':message ,'user':user,'warning':warning,'welcome_info':welcome_info,'position':'admin' }
 		return render(request, 'createChairperson.html', context)	
 
 # back to admin home page	

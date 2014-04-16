@@ -6,8 +6,39 @@ from users.models import *
 from waterpoints.forms import *
 from waterpoints.models import *
 
-#description of waterpoints
-		
+#regions with respective districts
+# lists of regions with respective districts
+arusha = ['arumeru', 'arusha-city', 'arusha district','longido','monduli', 'ngorongoro']
+dar_es_salama = ['ilala', 'kinondoni', 'temeke']
+dodoma = ['bahi', 'chamwino', 'chemba','dodoma municipal', 'kondoa', 'kongwa','mpwapwa']
+geita = ['bukombe','chato','geita', 'mbongwe', "nyang'hwale"]
+iringa = ['iringa district', 'iringa municipal', 'kilolo', 'mafinga town', 'mufindi']
+kagera = ['biharamulo', 'bukoba district', 'bukoba municipal','karagwe','kyerwa', 'missenyi','muleba','ngara']
+kaskazini_Pemba = ['micheweni', 'wete']
+kaskazini_unguja = ['kaskazini A', 'kaskazini B']
+katavi = ['mlele', 'mpanda district', 'mpanda town']
+kigoma = ['buhigwe', 'kakonko', 'kasulu', 'kasulu town', 'kibondo', 'kigoma district', 'kigoma-ujiji municipal', 'uvinza']
+kilimanjaro = ['hai', 'moshi district', 'moshi municipal', 'mwanga', 'rombo', 'same' , 'siha']
+kusini_pemba = ['chake chake','mkoani']
+kusini_unguja = ['kati', 'kusini']
+lindi = ['kilwa', 'lindi district', 'lindi municipal', 'liwale', 'nachingwea', 'ruangwa']
+manyara  = ['babati town', 'babati district', 'hanang', 'kiteto', 'mbulu', 'simanjiro']
+mara = ['bunda', 'butiama', 'musoma district', 'musoma municipal', 'rorya', 'sengeti', 'tarime']
+mbeya = ['chunya', 'ileje', 'kyela', 'mbarali', 'mbeya city', 'mbeya district', 'mbozi', 'momba', 'rungwe', 'tunduma']
+mjini_magharibi = ['magharibi', 'mjini']
+morogoro = ['gairo', 'kilombero', 'kilosa', 'morogoro district', 'morogoro municipal', 'mvomero', 'ulanga']
+mtwara = ['masasi district', 'masasi town', 'mtwara district', 'mtwara municipal', 'nayumbu', 'newala', 'tandahimba']
+mwanza = ['ilemela municipal','kwimba', 'mangu', 'misungwi', 'nyamagana municipal', 'sengerema', 'ukerewe']
+pwani = ['bagamoyo', 'kibaha district', 'kibaha town', 'kisarawe', 'mafia', 'mkuranga', 'rufiji']
+rukwa = ['kalambo','nkasi', 'sumbawanga district','sumbawanga municipal']
+ruvuma = ['mbinga', 'songea district','songea municipal', 'tunduru', 'namtumbo', 'nyasa']
+shinyanga = ['kahama town', 'kahama', 'kishapu', 'shinyanga district', 'shinyanga municipal']
+simiyu = ['bariadi', 'busega', 'itilima', 'maswa', 'meatu']
+singida = ['ikungi', 'iramba', 'manyoni', 'mkalama', 'singida district', 'singida municipal']
+tabora = ['igunga','kaliua', 'nzega','sikonge', 'tabora municipal', 'urambo',  'uyui']
+tanga = ['handeni', 'handeni town', 'kilindi', 'korogwe town' , 'korongwe', 'lushoto', 'muhenza', 'mkinga', 'pangani', 'tanga city']
+
+#description of waterpoints		
 def waterpointDetail(request,user_id):
 	#get the current user
 	user = Engineer()
