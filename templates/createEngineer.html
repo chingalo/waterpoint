@@ -44,7 +44,125 @@ Fill the form below, to register new District water Engineer
 
 <tr>
 	<td id = 'field_name' >District &#160;&#160; </td>
-	<td><input type = "text" name = "district" placeholder = "Enter District" /></td>
+	<td>
+		<select name = 'district'>
+			
+			<option name = 'district' value = ''>&#160;&#160;-----&#160;&#160;Arusha&#160;&#160;-----</option>
+			{% for district in arusha %}
+			<option name = 'district' value = '{{district}}'>{{district}}</option>
+			{% endfor %}
+			<option name = 'district' value = ''>&#160;&#160;-----&#160;&#160;Dar-es-salaam&#160;&#160;-----</option>
+			{% for district in dar_es_salama %}
+			<option name = 'district' value = '{{district}}'>{{district}}</option>
+			{% endfor %}
+			<option name = 'district' value = ''>&#160;&#160;-----&#160;&#160;Dodoma&#160;&#160;-----</option>
+			{% for district in dodoma %}
+			<option name = 'district' value = '{{district}}'>{{district}}</option>
+			{% endfor %}
+			<option name = 'district' value = ''>&#160;&#160;-----&#160;&#160;Geita &#160;&#160;-----</option>
+			{% for district in geita %}
+			<option name = 'district' value = '{{district}}'>{{district}}</option>
+			{% endfor %}
+			<option name = 'district' value = ''>&#160;&#160;-----&#160;&#160;Iringa &#160;&#160;-----</option>
+			{% for district in iringa %}
+			<option name = 'district' value = '{{district}}'>{{district}}</option>
+			{% endfor %}
+			<option name = 'district' value = ''>&#160;&#160;-----&#160;&#160;Kagera &#160;&#160;-----</option>
+			{% for district in  kagera%}
+			<option name = 'district' value = '{{district}}'>{{district}}</option>
+			{% endfor %}
+			<option name = 'district' value = ''>&#160;&#160;-----&#160;&#160;Kaskazini Pemba&#160;&#160;-----</option>
+			{% for district in kaskazini_Pemba %}
+			<option name = 'district' value = '{{district}}'>{{district}}</option>
+			{% endfor %}
+			<option name = 'district' value = ''>&#160;&#160;-----&#160;&#160;kaskazini Unguja &#160;&#160;-----</option>
+			{% for district in kaskazini_unguja %}
+			<option name = 'district' value = '{{district}}'>{{district}}</option>
+			{% endfor %}
+			<option name = 'district' value = ''>&#160;&#160;-----&#160;&#160;Katavi &#160;&#160;-----</option>
+			{% for district in katavi %}
+			<option name = 'district' value = '{{district}}'>{{district}}</option>
+			{% endfor %}
+			<option name = 'district' value = ''>&#160;&#160;-----&#160;&#160;Kigoma &#160;&#160;-----</option>
+			{% for district in kigoma %}
+			<option name = 'district' value = '{{district}}'>{{district}}</option>
+			{% endfor %}
+			<option name = 'district' value = ''>&#160;&#160;-----&#160;&#160; Kilimamjaro&#160;&#160;-----</option>
+			{% for district in kilimanjaro %}
+			<option name = 'district' value = '{{district}}'>{{district}}</option>
+			{% endfor %}
+			<option name = 'district' value = ''>&#160;&#160;-----&#160;&#160;Kusini Pemba &#160;&#160;-----</option>
+			{% for district in kusini_pemba %}
+			<option name = 'district' value = '{{district}}'>{{district}}</option>
+			{% endfor %}
+			<option name = 'district' value = ''>&#160;&#160;-----&#160;&#160;Kusini Unguja &#160;&#160;-----</option>
+			{% for district in kusini_unguja %}
+			<option name = 'district' value = '{{district}}'>{{district}}</option>
+			{% endfor %}
+			<option name = 'district' value = ''>&#160;&#160;-----&#160;&#160;Lindi &#160;&#160;-----</option>
+			{% for district in lindi %}
+			<option name = 'district' value = '{{district}}'>{{district}}</option>
+			{% endfor %}
+			<option name = 'district' value = ''>&#160;&#160;-----&#160;&#160;Manyara &#160;&#160;-----</option>
+			{% for district in manyara %}
+			<option name = 'district' value = '{{district}}'>{{district}}</option>
+			{% endfor %}
+			<option name = 'district' value = ''>&#160;&#160;-----&#160;&#160;Mara &#160;&#160;-----</option>
+			{% for district in mara  %}
+			<option name = 'district' value = '{{district}}'>{{district}}</option>
+			{% endfor %}
+			<option name = 'district' value = ''>&#160;&#160;-----&#160;&#160;Mbeya &#160;&#160;-----</option>
+			{% for district in mbeya %}
+			<option name = 'district' value = '{{district}}'>{{district}}</option>
+			{% endfor %}
+			<option name = 'district' value = ''>&#160;&#160;-----&#160;&#160;Morogoro &#160;&#160;-----</option>
+			{% for district in morogoro %}
+			<option name = 'district' value = '{{district}}'>{{district}}</option>
+			{% endfor %}
+			<option name = 'district' value = ''>&#160;&#160;-----&#160;&#160;Mtwara &#160;&#160;-----</option>
+			{% for district in mtwara %}
+			<option name = 'district' value = '{{district}}'>{{district}}</option>
+			{% endfor %}
+			<option name = 'district' value = ''>&#160;&#160;-----&#160;&#160;Mwanza &#160;&#160;-----</option>
+			{% for district in mwanza %}
+			<option name = 'district' value = '{{district}}'>{{district}}</option>
+			{% endfor %}
+			<option name = 'district' value = ''>&#160;&#160;-----&#160;&#160;Pwani &#160;&#160;-----</option>
+			{% for district in pwani %}
+			<option name = 'district' value = '{{district}}'>{{district}}</option>
+			{% endfor %}
+			<option name = 'district' value = ''>&#160;&#160;-----&#160;&#160;Rukwa &#160;&#160;-----</option>
+			{% for district in rukwa %}
+			<option name = 'district' value = '{{district}}'>{{district}}</option>
+			{% endfor %}
+			<option name = 'district' value = ''>&#160;&#160;-----&#160;&#160;Ruvuma &#160;&#160;-----</option>
+			{% for district in ruvuma %}
+			<option name = 'district' value = '{{district}}'>{{district}}</option>
+			{% endfor %}
+			<option name = 'district' value = ''>&#160;&#160;-----&#160;&#160;Shinyanga &#160;&#160;-----</option>
+			{% for district in shinyanga %}
+			<option name = 'district' value = '{{district}}'>{{district}}</option>
+			{% endfor %}
+			<option name = 'district' value = ''>&#160;&#160;-----&#160;&#160;Simiyu &#160;&#160;-----</option>
+			{% for district in simiyu %}
+			<option name = 'district' value = '{{district}}'>{{district}}</option>
+			{% endfor %}
+			<option name = 'district' value = ''>&#160;&#160;-----&#160;&#160;Singida &#160;&#160;-----</option>
+			{% for district in singida %}
+			<option name = 'district' value = '{{district}}'>{{district}}</option>
+			{% endfor %}
+			<option name = 'district' value = ''>&#160;&#160;-----&#160;&#160;Tabora &#160;&#160;-----</option>
+			{% for district in tabora %}
+			<option name = 'district' value = '{{district}}'>{{district}}</option>
+			{% endfor %}
+			<option name = 'district' value = ''>&#160;&#160;-----&#160;&#160;Tanga &#160;&#160;-----</option>
+			{% for district in tanga %}
+			<option name = 'district' value = '{{district}}'>{{district}}</option>
+			{% endfor %}
+			
+		</select>	
+	</td>
+	<!--<td><input type = "text" name = "district" placeholder = "Enter District" /></td> -->
 </tr>
 
 <tr>
