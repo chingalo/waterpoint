@@ -8,14 +8,74 @@
 <!-- detail about current engineer -->
 <span class ='pull-right welcomeinfo'>{{welcome_info}}<i>,&#160;{{user.engineer_name}}<b>&#160;.</b></i>&#160;&#160;<a href = "{% url 'log_out' user.id user.e_mail user.password position %}" >log out</a><br> <a href = "{% url 'engineerhome' user.id %}">back</a></span><br><hr>
 <!-- info or error message during registration -->
- <i >{{message}}</i><br><br>
+ <i >{{message}}{{warning}}</i><br>
+ <hr>
 
 <!-- form for creating all descrption of water point-->
 <form action ="{% url 'waterpointDetail' user.id %}" method="POST">
 {% csrf_token %}	
 <div style = "text-align:center; ">
-<table align="center">
-{{ form.as_table}}
+<table align = 'center'>
+<tr>
+	<td id = 'field_name' >code number for water connection &#160;&#160; </td>
+	<td><input type = "text" name = "code_number" placeholder = "Enter water connection id" /></td>
+</tr>
+
+<tr>
+	<td id = 'field_name' >water connection name &#160;&#160; </td>
+	<td><input type = "text" name = "name" placeholder = "water connecction name" /></td>
+</tr>
+
+<tr>
+	<td id = 'field_name' >source name for water connection &#160;&#160; </td>
+	<td><input type = "text" name = "source_name" placeholder = "source for water connection" /></td>
+</tr>
+
+<tr>
+	<td id = 'field_name'> category for water connection &#160;&#160; </td>
+	<td><select name = 'supply_connection'>
+			<option name = 'supply_connection' value = 'waterpoint'>waterpoint</option>
+			<option name = 'supply_connection' value = 'domestic'>domestic</option>
+			<option name = 'supply_connection' value = 'business'>business</option>
+			<option name = 'supply_connection' value = 'institutional'>institutional</option>
+			<option name = 'supply_connection' value = 'industrial'>industrial</option>
+	     </select>
+	<td>
+	
+</tr>
+
+<tr>
+	<td id = 'field_name' >District &#160;&#160; </td>
+	<td><input type = "text" name = "district" placeholder = "Enter District" /></td>
+</tr>
+
+<tr>
+	<td id = 'field_name' >Region &#160;&#160; </td>
+	<td><input type = "text" name = "region" placeholder = "Enter Region" /></td>
+</tr>
+
+<tr>
+	<td id = 'field_name' >name of street or village  &#160;&#160; </td>
+	<td><input type = "text" name = "physical_location_name" placeholder = "name of street or village" /></td>
+</tr>
+
+<tr>
+	<td id = 'field_name' >latitude &#160;&#160; </td>
+	<td><input type = "text" name = "latitude" placeholder = "latitude for water connection " /></td>
+</tr>	
+<tr>
+	<td id = 'field_name' >longitude &#160;&#160; </td>
+	<td><input type = "text" name = "longitude" placeholder = "longitude for water connection" /></td>
+</tr>
+<tr>
+	<td id = 'field_name' >fund &#160;&#160; </td>
+	<td><input type = "text" name = "fund" placeholder = "amount funded for water connection" /></td>
+</tr>
+<tr>
+	<td id = 'field_name' >name of sponsor &#160;&#160; </td>
+	<td><input type = "text" name = "sponsor" placeholder = "name of sponsor" /></td>
+</tr>
+
 </table>
 <br>
 <input type = 'submit' value = "Register" name = "submit">&#160;&#160;
