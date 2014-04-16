@@ -176,9 +176,7 @@ def createEngineer(request,user_id):
 			user_district_list = form.getlist('district')
 			user_district = user_district_list[0]
 		
-			user_region_list = form.getlist('region')
-			user_region = user_region_list[0]	
-	
+				
 			if user_sex == '' or user_telphone_number == '' or user_email == '' or user_password == '' or user_name == '' or user_id == '' :
 				warning = 'please fill all information in the from for successfull create new District water Engineer'
 			else: 
@@ -269,9 +267,7 @@ def createChairperson(request, user_id):
 			user_district_list = form.getlist('district')
 			user_district = user_district_list[0]
 		
-			user_region_list = form.getlist('region')
-			user_region = user_region_list[0]
-	
+				
 			if user_sex == '' or user_location == '' or user_telphone_number == '' or user_email == '' or user_password == '' or user_name == '' or user_id == '' :
 				warning = 'please fill all information in the from inoreder to create new user'
 			else: 
