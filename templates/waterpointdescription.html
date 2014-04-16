@@ -8,9 +8,13 @@
 <!-- detail about current engineer -->
 <span class ='pull-right welcomeinfo'>{{welcome_info}}<i>,&#160;{{user.engineer_name}}<b>&#160;.</b></i>&#160;&#160;<a href = "{% url 'log_out' user.id user.e_mail user.password position %}" >log out</a><br> <a href = "{% url 'engineerhome' user.id %}">back</a></span><br><hr>
 <!-- info or error message during registration -->
- <i >{{message}}{{warning}}</i><br>
- <hr>
+{% if message or warning%}{{message}} <i ><span style = 'color:red';>{{warning}}</span></i>
+{% else %}
 
+<!-- header of registration form-->
+Fill the form below, to register new water connection
+{% endif %}
+<hr>
 <!-- form for creating all descrption of water point-->
 <form action ="{% url 'waterpointDetail' user.id %}" method="POST">
 {% csrf_token %}	
