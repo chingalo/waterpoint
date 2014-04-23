@@ -195,7 +195,68 @@ def createEngineer(request,user_id):
 				newuser.address = user_address
 				newuser.sex = user_sex
 				newuser.district = user_district
-				newuser.region = user_region
+				
+				#setting region deprnd on district
+				if user_district in arusha :
+					newuser.region = "Arusha"
+				elif user_district in dar_es_salama:
+					newuser.region = "Dar-es-salaam"
+				elif user_district in dodoma:
+					newuser.region = "Dodoma"
+				elif user_district in geita :
+					newuser.region = "Geita"
+				elif user_district in iringa :
+					newuser.region = "Iringa"	
+				elif user_district in kagera:
+					newuser.region = "Kagera"
+				elif user_district in kaskazini_Pemba:
+					newuser.region = "Kaskazini Pemba"
+				elif user_district in kaskazini_unguja:
+					newuser.region = "Kaskazini Unguja"
+				elif user_district in katavi:
+					newuser.region = "Katavi"	
+				elif user_district in kigoma :
+					newuser.region = "Kigoma"
+				elif user_district in kilimanjaro:
+					newuser.region = "Kilimanjaro"
+				elif user_district in kusini_pemba:
+					newuser.region = "Kusini Pemba"
+				elif user_district in kusini_unguja:
+					newuser.region = "Kusini Unguja"	
+				elif user_district in lindi:
+					newuser.region = "Lindi"
+				elif user_district in manyara:
+					newuser.region = "Manyara"
+				elif user_district in mara :
+					newuser.region = "Mara"
+				elif user_district in mbeya:
+					newuser.region = "Mbeya"	
+				elif user_district in mjini_magharibi:
+					newuser.region = "Mjini Magharibi"
+				elif user_district in morogoro:
+					newuser.region = "Morogoro"
+				elif user_district in mtwara:
+					newuser.region = "Mtwara"
+				elif user_district in mwanza:
+					newuser.region = "Mwanza"	
+				elif user_district in pwani:
+					newuser.region = "Pwani"
+				elif user_district in rukwa:
+					newuser.region = "Rukwa"
+				elif user_district in ruvuma:
+					newuser.region = "Ruvuma"
+				elif user_district in shinyanga:
+					newuser.region = "Shinyanga"	
+				elif user_district in simiyu:
+					newuser.region = "Simiyu"
+				elif user_district in singida:
+					newuser.region = "Singida"
+				elif user_district in tabora:
+					newuser.region = "Tabora"
+				elif user_district in tanga:
+					newuser.region = "tanga"	
+						 						
+				#newuser.region = 
 	
 				#saving data
 				newuser.save()
@@ -286,7 +347,8 @@ def createChairperson(request, user_id):
 			newuser.address = user_address
 			newuser.sex = user_sex
 			newuser.district = user_district
-			newuser.region = user_region
+			#setting region deprnd on district
+			#newuser.region = 
 	
 			#saving data
 			newuser.save()
