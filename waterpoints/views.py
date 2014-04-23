@@ -79,11 +79,11 @@ def waterpointDetail(request,user_id):
 			supply_connectionlist = form.getlist('supply_connection')
 			supply_connection = supply_connectionlist[0]
 		
-			district_list = form.getlist('district')
-			district = district_list[0]
-		
-			region_list = form.getlist('region')
-			region = region_list[0]
+			#district_list = form.getlist('district')
+			#district = district_list[0]
+			#or district == '' or region == '' 
+			#region_list = form.getlist('region')
+			#region = region_list[0]
 		
 			physical_location_name_list = form.getlist('physical_location_name')
 			physical_location_name = physical_location_name_list[0]
@@ -101,7 +101,7 @@ def waterpointDetail(request,user_id):
 			sponsor = sponsor_list[0]
 		
 			#checking if form is completed or not, and taking the action
-			if code_number == '' or water_connection == '' or source_name == '' or district == '' or region == '' or physical_location_name == '' or latitude == '' or longitude == '' or sponsor == '' or fund == '':
+			if code_number == '' or water_connection == '' or source_name == '' or physical_location_name == '' or latitude == '' or longitude == '' or sponsor == '' or fund == '':
 				warning = 'Please fill all information below, for successfull create new water supply connection'
 			else:
 				message = 'You  have successfull create new water supply connection'	
@@ -115,8 +115,8 @@ def waterpointDetail(request,user_id):
 				new_water_connection.name = water_connection
 				new_water_connection.source_name = source_name
 				new_water_connection.supply_connection = supply_connection
-				new_water_connection.district = district
-				new_water_connection.region = region
+				new_water_connection.district = user.district
+				new_water_connection.region = user.region
 				new_water_connection.physical_location_name = physical_location_name
 				new_water_connection.latitude = latitude
 				new_water_connection.longitude = longitude

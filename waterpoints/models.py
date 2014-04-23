@@ -16,8 +16,8 @@ class Waterpoint(models.Model):
 	('industrial','industrial'),
 	)	
 	supply_connection = models.CharField(max_length=200, choices = supply_connection_category , default = 'waterpoint')
-	district = models.CharField(max_length = 200, blank = True)
-	region = models.CharField(max_length = 200, blank = True)
+	district = models.CharField(max_length = 200)
+	region = models.CharField(max_length = 200)
 	physical_location_name = models.CharField(max_length = 200)
 	latitude = models.CharField(max_length = 200 , blank = True) 
 	longitude = models.CharField(max_length = 200 , blank = True)
